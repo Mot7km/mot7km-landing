@@ -129,9 +129,9 @@ export default function Hero() {
 
           {/* 3D Floating Ecosystem Mockups */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 80 }}
+            initial={{ y: 30, scale: 0.95 }}
+            animate={{ y: 0, scale: 1 }}
+            transition={{ duration: 0.8, type: "spring", stiffness: 80 }}
             className="flex-1 relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center mt-10 lg:mt-0 perspective-1000"
           >
             {/* Base Glowing Orb */}
