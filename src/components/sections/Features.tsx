@@ -106,16 +106,16 @@ export default function Features() {
         </div>
 
         {/* Interactive Tabs Menu */}
-        <div className="sticky top-[72px] md:top-24 z-40 flex justify-center mb-12 sm:mb-16 w-full overflow-hidden py-3 md:py-0 bg-background/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-y md:border-transparent border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] md:shadow-none pointer-events-none">
-          <div className="pointer-events-auto flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full md:rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-full md:w-auto max-w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+        <div className="sticky top-[72px] md:top-24 z-40 flex justify-center mb-12 sm:mb-16 w-full py-3 md:py-0 bg-background/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-y md:border-transparent border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] md:shadow-none pointer-events-none">
+          <div className="pointer-events-auto flex flex-nowrap md:flex-wrap items-center justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-[95vw] sm:max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 rounded-full md:rounded-full text-xs md:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center ${
-                    isActive ? "text-white" : "text-text-muted hover:text-white hover:bg-white/5"
+                  className={`relative flex items-center px-4 md:px-6 py-2.5 md:py-3 rounded-full md:rounded-full text-xs md:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center ${
+                    isActive ? "text-white gap-2" : "text-text-muted hover:text-white hover:bg-white/5 gap-0"
                   }`}
                 >
                   {isActive && (
@@ -125,9 +125,25 @@ export default function Features() {
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                  <span className={isActive ? "md:text-primary-light drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] md:drop-shadow-md text-primary-light" : ""}>{tab.icon}</span>
-                  <span className="md:hidden">{tab.titleMobile}</span>
-                  <span className="hidden md:inline">{tab.titleDesktop}</span>
+                  <span className={`relative z-10 ${isActive ? "md:text-primary-light drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] md:drop-shadow-md text-primary-light" : ""}`}>
+                    {tab.icon}
+                  </span>
+                  
+                  <AnimatePresence mode="wait">
+                    {isActive && (
+                      <motion.span
+                        key="text"
+                        initial={{ width: 0, opacity: 0, scale: 0.8 }}
+                        animate={{ width: "auto", opacity: 1, scale: 1 }}
+                        exit={{ width: 0, opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.2, ease: "easeInOut" }}
+                        className="relative z-10 overflow-hidden flex items-center"
+                      >
+                        <span className="md:hidden">{tab.titleMobile}</span>
+                        <span className="hidden md:inline">{tab.titleDesktop}</span>
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
                 </button>
               );
             })}
