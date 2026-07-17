@@ -141,7 +141,7 @@ export default function UseCases() {
           </div>
 
           {/* Right: Ultra-Premium Visual Display */}
-          <div className="w-full lg:w-2/3 min-h-[500px] md:min-h-[600px] relative perspective-1000">
+          <div className="w-full lg:w-2/3 min-h-[400px] sm:min-h-[500px] md:min-h-[600px] relative perspective-1000 mt-8 lg:mt-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCase}
@@ -149,7 +149,7 @@ export default function UseCases() {
                 animate={{ opacity: 1, filter: "blur(0px)", scale: 1, rotateY: 0 }}
                 exit={{ opacity: 0, filter: "blur(10px)", scale: 0.95, rotateY: -10 }}
                 transition={{ duration: 0.5, ease: "easeOut" }}
-                className="absolute inset-0 w-full h-full rounded-[2.5rem] overflow-hidden bg-surface/30 backdrop-blur-2xl border border-white/5 shadow-2xl flex flex-col items-center justify-center p-8 md:p-12"
+                className="absolute inset-0 w-full h-full rounded-[2rem] md:rounded-[2.5rem] overflow-hidden bg-surface/30 backdrop-blur-2xl border border-white/5 shadow-2xl flex flex-col items-center justify-center p-6 sm:p-8 md:p-12"
               >
                 {/* Immersive Glowing Mesh Background */}
                 <div 
@@ -170,7 +170,7 @@ export default function UseCases() {
                     initial={{ x: -20, opacity: 0, scale: 0.9 }}
                     animate={{ x: 0, opacity: 1, scale: 1 }}
                     transition={{ type: "spring", bounce: 0.5, delay: 0.2 }}
-                    className="relative flex-1 w-full max-w-[320px] lg:max-w-none h-64 lg:h-full rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden group"
+                    className="relative flex-1 w-full max-w-[320px] lg:max-w-none h-48 sm:h-64 lg:h-full rounded-2xl md:rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden group"
                   >
                     <Image 
                       src={cases[activeCase].image} 
@@ -196,7 +196,7 @@ export default function UseCases() {
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3, duration: 0.5 }}
-                      className="text-3xl md:text-4xl font-extrabold text-white mb-6 drop-shadow-sm"
+                      className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 sm:mb-6 drop-shadow-sm"
                     >
                       {cases[activeCase].title}
                     </motion.h3>
@@ -205,7 +205,7 @@ export default function UseCases() {
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.5 }}
-                      className="text-lg md:text-xl text-text-secondary leading-relaxed font-medium"
+                      className="text-base md:text-xl text-text-secondary leading-relaxed font-medium"
                     >
                       {cases[activeCase].desc}
                     </motion.p>

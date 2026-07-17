@@ -104,8 +104,8 @@ export default function Features() {
         </div>
 
         {/* Interactive Tabs Menu */}
-        <div className="flex justify-center mb-16">
-          <div className="flex flex-wrap items-center justify-center gap-2 p-2 bg-surface/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full shadow-inner max-w-fit">
+        <div className="flex justify-center mb-16 w-full overflow-hidden">
+          <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-2 p-2 bg-surface/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full shadow-inner max-w-full overflow-x-auto snap-x hide-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -177,12 +177,12 @@ export default function Features() {
               </div>
 
               {/* Image & Review Side */}
-              <div className="relative z-10 w-full aspect-square md:aspect-auto md:h-[600px] flex items-center justify-center">
+              <div className="relative z-10 w-full aspect-[4/3] sm:aspect-square md:aspect-auto md:h-[600px] flex items-center justify-center mt-8 lg:mt-0">
                 {/* Huge glowing backplate */}
                 <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] ${currentContent.glowColor} blur-[100px] rounded-full pointer-events-none opacity-50`} />
                 
                 {/* Main Mockup Image Container */}
-                <div className="relative w-full h-full max-h-[500px] bg-surface/30 backdrop-blur-md rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
+                <div className="relative w-full h-full max-h-[400px] md:max-h-[500px] bg-surface/30 backdrop-blur-md rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
                   <Image 
                     src={currentContent.image}
                     alt={currentContent.title}
@@ -198,7 +198,7 @@ export default function Features() {
                   initial={{ opacity: 0, y: 30, rotate: -2 }}
                   animate={{ opacity: 1, y: 0, rotate: 0 }}
                   transition={{ delay: 0.4, type: "spring" }}
-                  className="absolute -bottom-8 md:bottom-12 -left-4 md:-left-12 max-w-sm bg-surface/80 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-2xl z-30"
+                  className="absolute bottom-4 left-4 right-4 md:right-auto md:-bottom-8 md:-left-12 max-w-sm bg-surface/90 backdrop-blur-3xl border border-white/20 rounded-2xl p-5 md:p-6 shadow-2xl z-30"
                 >
                   <Quote size={28} className={`${currentContent.accent} opacity-50 mb-3`} />
                   <p className="text-white text-sm md:text-base leading-relaxed mb-4 italic drop-shadow-md">

@@ -67,7 +67,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.15] mb-6 tracking-tight drop-shadow-sm"
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-[1.15] mb-6 tracking-tight drop-shadow-sm"
             >
               {t("hero.title1")} <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">{t("hero.title2")}</span>
@@ -132,7 +132,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.3, type: "spring", stiffness: 80 }}
-            className="flex-1 relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center mt-10 lg:mt-0 perspective-1000"
+            className="flex-1 relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center mt-10 lg:mt-0 perspective-1000"
           >
             {/* Base Glowing Orb */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-primary/20 blur-[80px] rounded-full animate-pulse pointer-events-none" />
@@ -185,12 +185,12 @@ export default function Hero() {
           <p className="text-center text-sm font-bold text-text-muted mb-8 uppercase tracking-[0.2em]">
             {language === 'ar' ? "موثوق من قبل أكثر من +100 علامة تجارية" : "Trusted by over 100+ brands"}
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+          <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-10 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
             {/* Dummy Logos */}
-            <div className="flex items-center gap-2 font-black text-xl text-white hover:scale-105 transition-transform"><span className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/50 text-white">B</span>Burger Hub</div>
-            <div className="flex items-center gap-2 font-black text-xl text-white hover:scale-105 transition-transform"><span className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center shadow-lg shadow-secondary/50 text-white">C</span>Cafe Latte</div>
-            <div className="flex items-center gap-2 font-black text-xl text-white hover:scale-105 transition-transform"><span className="w-10 h-10 rotate-45 bg-accent flex items-center justify-center shadow-lg shadow-accent/50 text-white"><span className="-rotate-45">S</span></span>Steak House</div>
-            <div className="flex items-center gap-2 font-black text-xl text-white hover:scale-105 transition-transform"><span className="w-10 h-10 rounded-lg bg-success flex items-center justify-center border-2 border-white/20 shadow-lg shadow-success/50 text-white">J</span>Juice Time</div>
+            <div className="flex items-center gap-2 font-black text-base md:text-xl text-white hover:scale-105 transition-transform"><span className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary flex items-center justify-center shadow-lg shadow-primary/50 text-white">B</span>Burger Hub</div>
+            <div className="flex items-center gap-2 font-black text-base md:text-xl text-white hover:scale-105 transition-transform"><span className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-secondary flex items-center justify-center shadow-lg shadow-secondary/50 text-white">C</span>Cafe Latte</div>
+            <div className="flex items-center gap-2 font-black text-base md:text-xl text-white hover:scale-105 transition-transform"><span className="w-8 h-8 md:w-10 md:h-10 rotate-45 bg-accent flex items-center justify-center shadow-lg shadow-accent/50 text-white"><span className="-rotate-45">S</span></span>Steak House</div>
+            <div className="flex items-center gap-2 font-black text-base md:text-xl text-white hover:scale-105 transition-transform"><span className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-success flex items-center justify-center border-2 border-white/20 shadow-lg shadow-success/50 text-white">J</span>Juice Time</div>
           </div>
         </motion.div>
       </div>
