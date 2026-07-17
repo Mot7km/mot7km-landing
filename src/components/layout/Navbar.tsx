@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Globe, Moon, Sun } from "lucide-react";
+import { Menu, X, Globe, Moon, Sun, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -106,39 +106,44 @@ export default function Navbar() {
         </nav>
 
         {/* Right: Controls & CTA */}
-        <div className="flex items-center gap-2 pr-1 shrink-0">
-          <div className="hidden sm:flex items-center gap-1 mr-2">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleTheme}
-              className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/5 flex items-center justify-center w-9 h-9"
-              aria-label="Toggle Theme"
-            >
-              {mounted && (
-                <motion.div
-                  key={theme}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-                </motion.div>
-              )}
-            </motion.button>
-            <motion.button 
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleLanguage}
-              className="px-3 py-2 text-sm font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wider rounded-full hover:bg-white/5"
-            >
-              {language === "en" ? "AR" : "EN"}
-            </motion.button>
-          </div>
+        <div className="flex items-center gap-1.5 sm:gap-2 pr-1 shrink-0">
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleTheme}
+            className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/5 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9"
+            aria-label="Toggle Theme"
+          >
+            {mounted && (
+              <motion.div
+                key={theme}
+                initial={{ rotate: -90, opacity: 0 }}
+                animate={{ rotate: 0, opacity: 1 }}
+                transition={{ duration: 0.2 }}
+              >
+                {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+              </motion.div>
+            )}
+          </motion.button>
+          <motion.button 
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleLanguage}
+            className="px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wider rounded-full hover:bg-white/5"
+          >
+            {language === "en" ? "AR" : "EN"}
+          </motion.button>
 
           <Link
             href="#demo"
             className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_rgba(22,131,199,0.3)] hover:shadow-[0_0_25px_rgba(22,131,199,0.5)] hover:-translate-y-0.5"
           >
             {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
+          </Link>
+          {/* Compact mobile CTA */}
+          <Link
+            href="#demo"
+            className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r from-primary to-primary-light text-white shadow-[0_0_12px_rgba(22,131,199,0.3)]"
+          >
+            <ArrowRight size={16} />
           </Link>
 
           {/* Mobile Menu Toggle */}
@@ -162,12 +167,22 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="lg:hidden pointer-events-auto absolute top-20 left-4 right-4 bg-surface/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 flex flex-col gap-4 shadow-2xl z-50"
+          <>
+            {/* Backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm pointer-events-auto z-40 lg:hidden"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="lg:hidden pointer-events-auto absolute top-20 left-4 right-4 bg-surface/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-2xl z-50"
           >
             <ul className="flex flex-col gap-2">
               {navLinks.map((link) => {
@@ -188,28 +203,15 @@ export default function Navbar() {
               })}
             </ul>
             <hr className="border-white/10" />
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-between py-2 border-b border-white/10 px-4">
-                <span className="text-white/60 text-sm">{language === 'ar' ? 'المظهر' : 'Theme'}</span>
-                <button onClick={toggleTheme} className="text-white p-2 bg-white/5 rounded-full w-9 h-9 flex items-center justify-center">
-                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
-                </button>
-              </div>
-              <div className="flex items-center justify-between py-2 border-b border-white/10 px-4">
-                <span className="text-white/60 text-sm">{language === 'ar' ? 'اللغة' : 'Language'}</span>
-                <button onClick={toggleLanguage} className="text-white font-bold uppercase px-4 py-2 bg-white/5 rounded-full text-xs">
-                  {language === "en" ? "AR" : "EN"}
-                </button>
-              </div>
-              <Link
-                href="#demo"
-                className="w-full text-center py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)] mt-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
-              </Link>
-            </div>
+            <Link
+              href="#demo"
+              className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)]"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
+            </Link>
           </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

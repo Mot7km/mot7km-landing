@@ -41,7 +41,7 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-24 bg-background relative overflow-hidden">
+    <section id="faq" className="py-16 sm:py-24 bg-background relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-secondary/5 blur-[120px] rounded-full pointer-events-none" />
@@ -53,7 +53,7 @@ export default function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl font-bold text-text-primary mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-6"
           >
             {t("faq.title1")} <span className="text-gradient bg-accent-gradient">{t("faq.title2")}</span>
           </motion.h2>
@@ -84,7 +84,7 @@ export default function FAQ() {
                   setActiveCategory(cat.id);
                   setOpenIndex(0); // open first question of new category
                 }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${
                   isActive 
                     ? 'bg-primary text-white shadow-[0_0_20px_rgba(22,131,199,0.3)] border-transparent scale-105' 
                     : 'bg-surface/50 text-text-muted hover:text-text-primary border border-border/50 hover:border-border hover:bg-surface'
@@ -118,15 +118,15 @@ export default function FAQ() {
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                       isOpen 
-                        ? 'border-primary/40 bg-surface shadow-[0_0_30px_rgba(22,131,199,0.1)] scale-[1.02] z-10 relative' 
+                        ? 'border-primary/40 bg-surface shadow-[0_0_30px_rgba(22,131,199,0.1)] sm:scale-[1.02] z-10 relative' 
                         : 'border-border/50 bg-surface/50 hover:border-border hover:bg-surface'
                     }`}
                   >
                     <button
-                      className="w-full px-6 py-5 flex items-center justify-between text-start outline-none"
+                      className="w-full px-4 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-start outline-none"
                       onClick={() => toggleOpen(index)}
                     >
-                      <span className={`font-bold text-lg pr-4 transition-colors ${isOpen ? 'text-primary' : 'text-text-primary'}`}>
+                      <span className={`font-bold text-base sm:text-lg pr-4 transition-colors ${isOpen ? 'text-primary' : 'text-text-primary'}`}>
                         {faq.q}
                       </span>
                       <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${isOpen ? 'bg-primary/10 text-primary rotate-180' : 'bg-transparent text-text-muted'}`}>

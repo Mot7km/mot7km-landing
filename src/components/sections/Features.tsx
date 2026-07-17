@@ -13,10 +13,10 @@ export default function Features() {
   const [activeTab, setActiveTab] = useState<TabId>("web");
 
   const tabs = [
-    { id: "web" as TabId, icon: <MonitorDot size={20} />, title: t("feat.web.title") },
-    { id: "pos" as TabId, icon: <Store size={20} />, title: t("feat.pos.title") },
-    { id: "mobile" as TabId, icon: <Smartphone size={20} />, title: t("feat.mobile.title") },
-    { id: "qr" as TabId, icon: <QrCode size={20} />, title: t("feat.qr.title") },
+    { id: "web" as TabId, icon: <MonitorDot size={20} />, titleDesktop: t("feat.web.title"), titleMobile: t("feat.web.short") },
+    { id: "pos" as TabId, icon: <Store size={20} />, titleDesktop: t("feat.pos.title"), titleMobile: t("feat.pos.short") },
+    { id: "mobile" as TabId, icon: <Smartphone size={20} />, titleDesktop: t("feat.mobile.title"), titleMobile: t("feat.mobile.short") },
+    { id: "qr" as TabId, icon: <QrCode size={20} />, titleDesktop: t("feat.qr.title"), titleMobile: t("feat.qr.short") },
   ];
 
   const contentMap: Record<TabId, any> = {
@@ -69,11 +69,13 @@ export default function Features() {
   const currentContent = contentMap[activeTab];
 
   return (
-    <section id="features" className="py-32 bg-background relative overflow-hidden">
+    <section id="features" className="py-16 sm:py-24 md:py-32 bg-background relative">
       {/* Immersive Background Glows */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/3" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/3" />
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay pointer-events-none" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full translate-y-1/3 -translate-x-1/3" />
+        <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
+      </div>
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         
@@ -88,7 +90,7 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 tracking-tight"
           >
             {t("features.title1")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">{t("features.title2")}</span>
           </motion.h2>
@@ -104,27 +106,28 @@ export default function Features() {
         </div>
 
         {/* Interactive Tabs Menu */}
-        <div className="flex justify-center mb-16 w-full overflow-hidden">
-          <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-2 p-2 bg-surface/50 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full shadow-inner max-w-full overflow-x-auto snap-x hide-scrollbar">
+        <div className="sticky top-[72px] md:top-24 z-40 flex justify-center mb-12 sm:mb-16 w-full overflow-hidden py-3 md:py-0 bg-background/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-y md:border-transparent border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] md:shadow-none pointer-events-none">
+          <div className="pointer-events-auto flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full md:rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-full md:w-auto max-w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex items-center gap-2 px-6 py-3 rounded-xl md:rounded-full text-sm font-bold transition-all duration-300 z-10 ${
+                  className={`relative flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 rounded-full md:rounded-full text-xs md:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center ${
                     isActive ? "text-white" : "text-text-muted hover:text-white hover:bg-white/5"
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeFeatureTab"
-                      className="absolute inset-0 bg-primary/20 border border-primary/50 rounded-xl md:rounded-full shadow-[0_0_15px_rgba(22,131,199,0.3)] -z-10"
+                      className="absolute inset-0 md:bg-primary/20 bg-gradient-to-r from-primary/30 to-primary/10 border md:border-primary/50 border-primary/40 rounded-full md:rounded-full shadow-[0_0_20px_rgba(22,131,199,0.3)] md:shadow-[0_0_15px_rgba(22,131,199,0.3)] -z-10 backdrop-blur-md md:backdrop-blur-none"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                  <span className={isActive ? "text-primary-light drop-shadow-md" : ""}>{tab.icon}</span>
-                  {tab.title}
+                  <span className={isActive ? "md:text-primary-light drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] md:drop-shadow-md text-primary-light" : ""}>{tab.icon}</span>
+                  <span className="md:hidden">{tab.titleMobile}</span>
+                  <span className="hidden md:inline">{tab.titleDesktop}</span>
                 </button>
               );
             })}
@@ -193,12 +196,12 @@ export default function Features() {
                   <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                 </div>
 
-                {/* Overlapping Review Card */}
+                {/* Overlapping Review Card — static on mobile, absolute on md+ */}
                 <motion.div 
                   initial={{ opacity: 0, y: 30, rotate: -2 }}
                   animate={{ opacity: 1, y: 0, rotate: 0 }}
                   transition={{ delay: 0.4, type: "spring" }}
-                  className="absolute bottom-4 left-4 right-4 md:right-auto md:-bottom-8 md:-left-12 max-w-sm bg-surface/90 backdrop-blur-3xl border border-white/20 rounded-2xl p-5 md:p-6 shadow-2xl z-30"
+                  className="relative mt-6 md:mt-0 md:absolute md:bottom-12 md:-left-12 max-w-sm bg-surface/90 backdrop-blur-3xl border border-white/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-2xl z-30"
                 >
                   <Quote size={28} className={`${currentContent.accent} opacity-50 mb-3`} />
                   <p className="text-white text-sm md:text-base leading-relaxed mb-4 italic drop-shadow-md">

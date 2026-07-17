@@ -8,9 +8,9 @@ export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-surface border-t border-border pt-16 pb-8">
+    <footer className="bg-surface border-t border-border pt-10 sm:pt-16 pb-6 sm:pb-8">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
           
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-6">

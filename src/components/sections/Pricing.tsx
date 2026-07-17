@@ -53,7 +53,7 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-32 bg-background relative overflow-hidden">
+    <section id="pricing" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Immersive Background Glows */}
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/10 blur-[150px] rounded-full pointer-events-none" />
@@ -72,7 +72,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 tracking-tight"
           >
             {t("pricing.title1")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-light">{t("pricing.title2")}</span>
           </motion.h2>
@@ -122,7 +122,7 @@ export default function Pricing() {
         </motion.div>
 
         {/* Main Plans (3 Cards) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-16 sm:mb-20 items-center">
           {mainPlans.map((plan, i) => {
             const isCustom = plan.price === 'Custom';
             let displayPrice = plan.price;
@@ -138,12 +138,12 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 100 }}
-                className={`relative flex flex-col rounded-[2.5rem] p-8 md:p-10 border backdrop-blur-2xl transition-all duration-500 bg-gradient-to-b ${plan.color} ${plan.border} ${plan.glow} ${
-                  plan.popular ? 'lg:-translate-y-6 z-20 scale-105' : 'hover:-translate-y-2 z-10'
+                className={`relative flex flex-col rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 border backdrop-blur-2xl transition-all duration-500 bg-gradient-to-b ${plan.color} ${plan.border} ${plan.glow} ${
+                  plan.popular ? 'lg:-translate-y-6 z-20 lg:scale-105' : 'hover:-translate-y-2 z-10'
                 }`}
               >
                 {/* Internal subtle highlight */}
-                <div className="absolute inset-0 rounded-[2.5rem] border border-white/5 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
+                <div className="absolute inset-0 rounded-3xl md:rounded-[2.5rem] border border-white/5 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
 
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-accent text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-[0_0_20px_rgba(22,131,199,0.5)] whitespace-nowrap z-30">
@@ -156,7 +156,7 @@ export default function Pricing() {
                   <p className="text-text-secondary text-sm mb-6 min-h-[40px] leading-relaxed">{plan.description}</p>
                   
                   <div className="flex items-end gap-2 mb-2">
-                    <span className={`font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70 ${isCustom ? 'text-4xl' : 'text-6xl tracking-tighter'}`}>
+                    <span className={`font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70 ${isCustom ? 'text-3xl sm:text-4xl' : 'text-5xl sm:text-6xl tracking-tighter'}`}>
                       {displayPrice}
                     </span>
                     {!isCustom && (
@@ -218,7 +218,7 @@ export default function Pricing() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-5xl mx-auto"
         >
-          <div className="relative bg-gradient-to-r from-surface/80 to-surface/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-10 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden group">
+          <div className="relative bg-gradient-to-r from-surface/80 to-surface/40 backdrop-blur-xl border border-white/10 rounded-3xl md:rounded-[2.5rem] p-5 sm:p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-10 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden group">
             
             {/* Animated Background Highlight inside banner */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
@@ -228,7 +228,7 @@ export default function Pricing() {
                 <Sparkles size={14} className="text-primary" />
                 {t("pf.name")}
               </div>
-              <h3 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-4">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-4">
                 {language === 'ar' ? 'هل تبحث عن منيو إلكتروني فقط؟' : 'Just looking for a Digital Menu?'}
               </h3>
               <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl leading-relaxed">

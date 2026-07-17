@@ -59,12 +59,12 @@ export default function Roadmap() {
   ];
 
   return (
-    <section id="roadmap" className="py-32 bg-background relative overflow-hidden">
+    <section id="roadmap" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Immersive Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-gradient-to-b from-primary/10 via-transparent to-transparent blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-24">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-24">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/5 text-text-secondary text-sm font-bold mb-6 backdrop-blur-md">
             <Rocket size={16} className="text-accent" />
             <span>The Future of Mot7km</span>
@@ -74,7 +74,7 @@ export default function Roadmap() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 tracking-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 tracking-tight"
           >
             {t("roadmap.title1")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent">{t("roadmap.title2")}</span>
           </motion.h2>
@@ -91,12 +91,12 @@ export default function Roadmap() {
 
         <div className="relative max-w-5xl mx-auto">
           {/* Illuminated Vertical Track */}
-          <div className="absolute top-0 bottom-0 left-8 md:left-1/2 w-1 -translate-x-1/2 rounded-full bg-surface border-x border-white/5">
+          <div className="absolute top-0 bottom-0 left-10 md:left-1/2 w-1 -translate-x-1/2 rounded-full bg-surface border-x border-white/5">
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary via-secondary to-transparent blur-[2px]" />
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary via-secondary to-transparent" />
           </div>
 
-          <div className="space-y-16">
+          <div className="space-y-10 sm:space-y-16">
             {phases.map((phase, i) => {
               const Icon = phase.icon;
               return (
@@ -111,17 +111,17 @@ export default function Roadmap() {
                   }`}
                 >
                   {/* Glowing Timeline Dot */}
-                  <div className={`absolute left-8 md:left-1/2 w-6 h-6 rounded-full border-4 -translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-150 ${phase.dot}`}>
+                  <div className={`absolute left-10 md:left-1/2 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-4 -translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-150 ${phase.dot}`}>
                     {phase.status === 'current' && (
                       <div className="absolute inset-0 rounded-full animate-ping bg-primary opacity-50" />
                     )}
                   </div>
 
                   {/* Glassmorphic Content Card */}
-                  <div className={`flex-1 w-full md:w-1/2 pl-20 md:pl-0 ${
+                  <div className={`flex-1 w-full md:w-1/2 pl-24 md:pl-0 ${
                     i % 2 === 0 ? "md:pr-20 text-start md:text-end" : "md:pl-20 text-start"
                   }`}>
-                    <div className={`relative p-8 rounded-[2rem] backdrop-blur-xl bg-gradient-to-br ${phase.color} border ${phase.borderColor} ${phase.glow} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl`}>
+                    <div className={`relative p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] backdrop-blur-xl bg-gradient-to-br ${phase.color} border ${phase.borderColor} ${phase.glow} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl`}>
                       
                       {/* Subtle Internal Highlight */}
                       <div className="absolute inset-0 rounded-[2rem] border border-white/10 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
@@ -134,11 +134,11 @@ export default function Roadmap() {
                           <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${phase.status === 'current' ? 'text-primary' : phase.status === 'next' ? 'text-secondary' : 'text-text-muted'}`}>
                             {phase.status === 'current' ? 'In Progress' : phase.status === 'next' ? 'Up Next' : 'Planned'}
                           </div>
-                          <h3 className="text-2xl font-bold text-text-primary">{phase.title}</h3>
+                          <h3 className="text-xl sm:text-2xl font-bold text-text-primary">{phase.title}</h3>
                         </div>
                       </div>
                       
-                      <p className={`text-lg leading-relaxed relative z-10 ${phase.status !== 'future' ? 'text-text-primary/90' : 'text-text-secondary'}`}>
+                      <p className={`text-base sm:text-lg leading-relaxed relative z-10 ${phase.status !== 'future' ? 'text-text-primary/90' : 'text-text-secondary'}`}>
                         {phase.desc}
                       </p>
                     </div>

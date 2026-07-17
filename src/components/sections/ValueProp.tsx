@@ -8,13 +8,13 @@ export default function ValueProp() {
   const { t } = useLanguage();
 
   return (
-    <section id="how-it-works" className="py-32 bg-background relative overflow-hidden">
+    <section id="how-it-works" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Immersive Background Orbs */}
       <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4" />
       <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-accent/5 blur-[100px] rounded-full pointer-events-none -translate-x-1/2" />
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+        <div className="flex flex-col lg:flex-row items-center gap-10 sm:gap-16 lg:gap-24">
           
           {/* Text Content */}
           <div className="flex-1 max-w-xl">
@@ -28,7 +28,7 @@ export default function ValueProp() {
                 <Sparkles size={16} />
                 <span>How Mot7km Works</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 leading-[1.1] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6 leading-[1.1] tracking-tight">
                 {t("value.title1")} <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-300% animate-gradient">{t("value.title2")}</span>
               </h2>
@@ -133,7 +133,7 @@ export default function ValueProp() {
                    </div>
                    <div>
                      <div className="text-xs font-bold text-text-muted uppercase tracking-wider">{t("val.stat.customers")}</div>
-                     <div className="font-extrabold text-text-primary text-xl mt-1">142</div>
+                     <div className="font-extrabold text-text-primary text-lg sm:text-xl mt-1">142</div>
                    </div>
                 </div>
               </div>

@@ -47,10 +47,10 @@ export default function Hero() {
       <div className="absolute top-40 right-[-10%] w-[600px] h-[600px] bg-accent/15 blur-[120px] rounded-full pointer-events-none mix-blend-screen" />
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-12 mb-20">
+        <div className="flex flex-col-reverse lg:flex-row items-center gap-2 sm:gap-12 lg:gap-12 mb-12 sm:mb-20">
           
           {/* Content */}
-          <div className="flex-1 text-center lg:text-start z-20">
+          <div className="flex-1 text-center lg:text-start z-20 -mt-6 sm:mt-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,7 +91,7 @@ export default function Hero() {
             >
               <Link
                 href="#demo"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary text-white font-bold text-lg transition-all shadow-[0_0_30px_rgba(22,131,199,0.3)] hover:shadow-[0_0_40px_rgba(22,131,199,0.5)] hover:-translate-y-1 flex items-center justify-center gap-2 group"
+                className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light hover:from-primary-light hover:to-primary text-white font-bold text-base sm:text-lg transition-all shadow-[0_0_30px_rgba(22,131,199,0.3)] hover:shadow-[0_0_40px_rgba(22,131,199,0.5)] hover:-translate-y-1 flex items-center justify-center gap-2 group"
               >
                 <span>{t("hero.cta1")}</span>
                 <motion.span
@@ -104,7 +104,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="#how-it-works"
-                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-surface/50 backdrop-blur-md hover:bg-surface text-text-primary font-bold text-lg transition-all border border-white/10 hover:border-white/20 flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-xl bg-surface/50 backdrop-blur-md hover:bg-surface text-text-primary font-bold text-base sm:text-lg transition-all border border-white/10 hover:border-white/20 flex items-center justify-center gap-2"
               >
                 <span>{t("hero.cta2")}</span>
               </Link>
@@ -133,15 +133,15 @@ export default function Hero() {
             initial={{ y: 30, scale: 0.95 }}
             animate={{ y: 0, scale: 1 }}
             transition={{ duration: 0.8, type: "spring", stiffness: 80 }}
-            className="flex-1 relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center mt-10 lg:mt-0 perspective-1000"
+            className="flex-1 relative w-full min-h-[400px] md:h-[500px] lg:h-[600px] flex justify-center items-center mt-12 lg:mt-0 perspective-1000"
           >
             {/* Base Glowing Orb */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-primary/20 blur-[80px] rounded-full animate-pulse pointer-events-none" />
 
-            {/* Layer 1: Web Dashboard (Back) */}
+            {/* Layer 1: Web Dashboard (Back) — hidden on mobile */}
             <motion.div
               style={{ x: dashboardX, y: dashboardY, rotateY: language === 'ar' ? 15 : -15, rotateX: 5 }}
-              className="absolute left-0 lg:-left-20 top-10 w-[85%] md:w-[75%] rounded-[1.5rem] md:rounded-[2rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden bg-surface/80 backdrop-blur-xl z-10"
+              className="hidden sm:block absolute left-0 lg:-left-20 top-10 w-[85%] md:w-[75%] rounded-[1.5rem] md:rounded-[2rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden bg-surface/80 backdrop-blur-xl z-10"
             >
               <div className="relative w-full aspect-[16/10]">
                 <Image src="/mockups/web_dashboard.png" alt="Dashboard" fill className="object-cover opacity-80 mix-blend-lighten" unoptimized priority />
@@ -149,10 +149,10 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Layer 2: POS Terminal (Middle Right) */}
+            {/* Layer 2: POS Terminal (Middle Right) — hidden on mobile */}
             <motion.div
               style={{ x: posX, y: posY, rotateY: language === 'ar' ? -10 : 10, rotateX: -5 }}
-              className="absolute right-0 lg:-right-10 top-32 w-[60%] md:w-[50%] rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden bg-surface backdrop-blur-2xl z-20"
+              className="hidden sm:block absolute right-0 lg:-right-10 top-32 w-[60%] md:w-[50%] rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden bg-surface backdrop-blur-2xl z-20"
             >
               <div className="relative w-full aspect-[4/3]">
                 <Image src="/mockups/pos_terminal.png" alt="POS Terminal" fill className="object-cover opacity-90" unoptimized priority />
@@ -165,10 +165,10 @@ export default function Hero() {
               style={{ x: mobileX, y: mobileY }}
               animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-[12%] lg:left-[26%] bottom-4 md:bottom-10 lg:bottom-16 w-[76%] md:w-[62%] z-30 drop-shadow-[0_25px_60px_rgba(22,131,199,0.55)]"
+              className="relative sm:absolute sm:left-[12%] lg:left-[26%] sm:bottom-4 md:bottom-10 lg:bottom-16 w-[75%] max-w-[280px] sm:max-w-none sm:w-[76%] md:w-[62%] z-30 drop-shadow-[0_25px_60px_rgba(22,131,199,0.55)] mx-auto"
             >
-              <div className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/11]">
-                <Image src="/assets/mockups/mobile_app_mockup.png" alt="Mot7km Mobile App" fill className="object-contain scale-125 md:scale-135" priority />
+              <div className="relative w-full aspect-[1/2] sm:aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/11]">
+                <Image src="/assets/mockups/mobile_app_mockup.png" alt="Mot7km Mobile App" fill className="object-contain scale-[1.1] sm:scale-125 md:scale-135" priority />
               </div>
             </motion.div>
 
@@ -181,7 +181,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="pt-12 border-t border-white/5 mt-16"
+          className="pt-8 sm:pt-12 border-t border-white/5 mt-10 sm:mt-16"
         >
           <p className="text-center text-sm font-bold text-text-muted mb-8 uppercase tracking-[0.2em]">
             {language === 'ar' ? "موثوق من قبل أكثر من +100 علامة تجارية" : "Trusted by over 100+ brands"}

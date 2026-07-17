@@ -12,7 +12,7 @@ export default function SectionDivider({ titleKey }: SectionDividerProps) {
   const text = titleKey ? t(titleKey) : null;
 
   return (
-    <div className="w-full flex items-center justify-center py-4 md:py-8 overflow-hidden relative bg-transparent">
+    <div className="w-full flex items-center justify-center py-6 md:py-8 overflow-hidden relative bg-transparent">
       <div className="w-full flex items-center justify-center gap-3 md:gap-5 relative z-10 px-4 md:px-0">
         
         {/* Left Line */}
@@ -39,7 +39,7 @@ export default function SectionDivider({ titleKey }: SectionDividerProps) {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary px-4 tracking-wide whitespace-nowrap drop-shadow-lg flex-shrink-0"
+            className="text-xl sm:text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary px-4 tracking-wide whitespace-nowrap sm:whitespace-nowrap drop-shadow-lg flex-shrink-0"
           >
             {text}
           </motion.h3>
