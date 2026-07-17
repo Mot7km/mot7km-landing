@@ -15,6 +15,7 @@ export default function Hero() {
   const mouseY = useMotionValue(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
     const { currentTarget, clientX, clientY } = e;
     const { left, top, width, height } = currentTarget.getBoundingClientRect();
     // Normalize mouse coordinates to range [-0.5, 0.5]
@@ -167,7 +168,7 @@ export default function Hero() {
               className="absolute left-[12%] lg:left-[26%] bottom-4 md:bottom-10 lg:bottom-16 w-[76%] md:w-[62%] z-30 drop-shadow-[0_25px_60px_rgba(22,131,199,0.55)]"
             >
               <div className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/11]">
-                <Image src="/assets/mockups/mobile app mockup.svg" alt="Mot7km Mobile App" fill className="object-contain scale-125 md:scale-135" unoptimized priority />
+                <Image src="/assets/mockups/mobile app mockup.webp" alt="Mot7km Mobile App" fill className="object-contain scale-125 md:scale-135" priority />
               </div>
             </motion.div>
 
