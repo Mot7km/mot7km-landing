@@ -168,14 +168,35 @@ const translations: Record<Language, Record<string, string>> = {
     "faq.title1": "الأسئلة",
     "faq.title2": "الشائعة",
     "faq.desc": "كل ما تود معرفته عن نظام Mot7km وكيف يمكنه خدمة نشاطك.",
-    "faq.q1": "هل يمكنني الترقية من الباقة المجانية أو Starter لاحقاً؟",
-    "faq.a1": "بالتأكيد، يمكنك البدء بالباقة المجانية أو باقة Starter للحصول على منيو رقمي، وعندما يتوسع عملك وتحتاج إلى نظام كاشير وإدارة، يمكنك الترقية إلى باقة Business أو Pro في أي وقت بضغطة زر.",
-    "faq.q2": "ماذا تعني إعلانات المنيو في الباقة المجانية؟",
-    "faq.a2": "الباقة المجانية مخصصة للتجربة، وسيتم عرض إعلانات صغيرة غير مزعجة للعملاء عند تصفحهم للمنيو الخاص بك. للتمتع بمنيو خالٍ من الإعلانات تماماً وبمظهر احترافي لعلامتك التجارية، ننصحك بالترقية لباقة Starter.",
-    "faq.q3": "هل يعمل نظام الكاشير (POS) إذا انقطع الإنترنت؟",
-    "faq.a3": "نعم، في باقة Pro فما فوق، نظام الكاشير مصمم بتقنية (Offline-first)، مما يعني أن عمليات البيع والطباعة ستستمر بشكل طبيعي حتى عند انقطاع الإنترنت، وسيقوم النظام بمزامنة البيانات تلقائياً فور عودة الاتصال.",
-    "faq.q4": "هل أحتاج إلى شراء أجهزة خاصة لعمل النظام؟",
-    "faq.a4": "لا، Mot7km هو نظام سحابي مرن، يمكنك استخدام لوحة التحكم من أي متصفح ويب (كمبيوتر، لابتوب، آيباد). وتطبيقات الكاشير والإدارة ستعمل على الأجهزة الذكية المتوفرة لديك دون الحاجة لأجهزة مخصصة ومكلفة.",
+    
+    // Categories
+    "faq.cat.general": "عامة",
+    "faq.cat.pricing": "الباقات والاشتراكات",
+    "faq.cat.tech": "التقنية والتشغيل",
+
+    // General
+    "faq.q.g1": "هل نظام Mot7km مناسب لنشاطي التجاري؟",
+    "faq.a.g1": "نعم، النظام مرن جداً ومصمم ليناسب مختلف الأنشطة مثل المطاعم، الكافيهات، محلات العصير، الصالونات، ومحلات التجزئة.",
+    "faq.q.g2": "هل يمكنني تجربة النظام قبل الدفع؟",
+    "faq.a.g2": "بالتأكيد، يمكنك البدء بالباقة المجانية (المنيو الرقمي) أو طلب نسخة تجريبية (Demo) لتجربة الكاشير ولوحة التحكم كاملة.",
+    "faq.q.g3": "ما الفرق بين المنيو الرقمي ونظام الـ POS؟",
+    "faq.a.g3": "المنيو الرقمي يتيح لعملائك استعراض منتجاتك عبر الـ QR. أما نظام الـ POS (الكاشير) فهو النظام الشامل الذي يستخدمه موظفوك لتسجيل الطلبات، وطباعة الفواتير، وإدارة المخزون.",
+
+    // Pricing
+    "faq.q.p1": "هل توجد رسوم تأسيس أو دفعات مخفية؟",
+    "faq.a.p1": "لا توجد أي رسوم خفية أو رسوم تأسيس. أنت تدفع فقط قيمة الاشتراك الموضحة في الباقة سواء شهرياً أو سنوياً.",
+    "faq.q.p2": "كيف يمكنني الترقية أو تغيير باقتي؟",
+    "faq.a.p2": "يمكنك ترقية باقتك في أي وقت مباشرة من لوحة التحكم الخاصة بك بضغطة زر واحدة.",
+    "faq.q.p3": "ماذا تعني إعلانات المنيو في الباقة المجانية؟",
+    "faq.a.p3": "باقة المنيو المجانية مخصصة للتجربة، وسيظهر بها إعلانات صغيرة غير مزعجة للعميل. للتمتع بمنيو خالٍ من الإعلانات بهويتك الخاصة، يمكنك الترقية لباقة Starter.",
+
+    // Tech
+    "faq.q.t1": "هل يعمل نظام الكاشير (POS) إذا انقطع الإنترنت؟",
+    "faq.a.t1": "نعم، نظامنا مبني بتقنية (Offline-first)، أي أن عمليات البيع والطباعة مستمرة حتى لو انقطع الإنترنت، وستتم مزامنة البيانات تلقائياً فور عودته.",
+    "faq.q.t2": "هل أحتاج إلى شراء أجهزة كاشير غالية؟",
+    "faq.a.t2": "لا، Mot7km يعمل كـ (Web و App) على معظم الأجهزة الذكية والأجهزة اللوحية (الآيباد، الأندرويد، اللابتوب)، مما يوفر عليك تكاليف الأجهزة.",
+    "faq.q.t3": "هل بياناتي المالية ومعلومات عملائي آمنة؟",
+    "faq.a.t3": "بياناتك مشفرة بالكامل ومحفوظة على خوادم سحابية عالمية عالية الأمان. لا يمكن لأحد الوصول إليها غيرك أنت والموظفين المخولين من قبلك.",
 
     // Footer
     "footer.desc": "نظام تشغيل متكامل السحابي (SaaS) مصمم خصيصاً للمقاهي والمطاعم لإدارة العمليات بكل سهولة وذكاء.",
@@ -340,14 +361,35 @@ const translations: Record<Language, Record<string, string>> = {
     "faq.title1": "Frequently Asked",
     "faq.title2": "Questions",
     "faq.desc": "Everything you need to know about Mot7km and how it can serve your business.",
-    "faq.q1": "Can I upgrade from Free or Starter later?",
-    "faq.a1": "Absolutely. You can start with the Free or Starter plan to get your digital menu up and running. When your business grows and you need a POS and deeper management, you can upgrade to Business or Pro anytime with a single click.",
-    "faq.q2": "What does 'Ads in Menu' mean for the Free Plan?",
-    "faq.a2": "The Free plan is meant for trial and basic use, so it includes small, non-intrusive ads displayed to your customers while browsing the menu. For a completely ad-free, professional, and branded experience, we recommend upgrading to the Starter plan.",
-    "faq.q3": "Does the POS system work if the internet goes down?",
-    "faq.a3": "Yes. On the Pro plan and above, our POS system is built with an 'Offline-first' architecture. Sales and printing operations will continue normally even during an outage, and data will automatically sync once the connection is restored.",
-    "faq.q4": "Do I need to buy special hardware?",
-    "faq.a4": "No, Mot7km is a flexible cloud system. You can use the admin dashboard from any web browser (PC, Laptop, iPad). The POS and management apps will work on standard smart devices you already own, without needing expensive proprietary hardware.",
+    
+    // Categories
+    "faq.cat.general": "General",
+    "faq.cat.pricing": "Pricing & Billing",
+    "faq.cat.tech": "Technical & Setup",
+
+    // General
+    "faq.q.g1": "Is Mot7km suitable for my business type?",
+    "faq.a.g1": "Yes, our system is highly flexible and designed for cafes, restaurants, retail shops, salons, and juice bars.",
+    "faq.q.g2": "Can I try the system before paying?",
+    "faq.a.g2": "Absolutely! You can start with our Free Plan for the digital menu, or request a demo to try the full POS and dashboard.",
+    "faq.q.g3": "What's the difference between the QR Menu and the POS?",
+    "faq.a.g3": "The QR Menu allows customers to view your items. The POS is the comprehensive cashier system your staff uses to take orders, print receipts, and manage inventory.",
+
+    // Pricing
+    "faq.q.p1": "Are there any setup fees or hidden costs?",
+    "faq.a.p1": "No hidden fees and no setup costs. You only pay the subscription fee for your chosen plan, either monthly or annually.",
+    "faq.q.p2": "How can I upgrade my plan?",
+    "faq.a.p2": "You can seamlessly upgrade your plan at any time directly from your admin dashboard with a single click.",
+    "faq.q.p3": "What are the 'Ads' in the Free Plan menu?",
+    "faq.a.p3": "The free plan is intended for trial and basic use. It will show small, non-intrusive ads to your customers. For an ad-free experience with your brand identity, upgrade to the Starter plan.",
+
+    // Tech
+    "faq.q.t1": "Does the POS work if the internet goes down?",
+    "faq.a.t1": "Yes. Our POS uses an 'Offline-first' architecture. Sales and printing continue without interruption, and data syncs automatically when the connection is restored.",
+    "faq.q.t2": "Do I need to buy expensive cashier hardware?",
+    "faq.a.t2": "No, Mot7km is device-agnostic. It runs flawlessly on most smart devices, tablets (iPads, Android), and laptops, saving you from expensive hardware costs.",
+    "faq.q.t3": "Is my financial and customer data secure?",
+    "faq.a.t3": "Your data is fully encrypted and stored on highly secure global cloud servers. Only you and authorized staff can access it.",
 
     // Footer
     "footer.desc": "A complete cloud operating system (SaaS) tailored for cafes and restaurants to manage operations effortlessly and smartly.",
@@ -361,13 +403,21 @@ const translations: Record<Language, Record<string, string>> = {
 };
 
 export const LanguageProvider = ({ children }: { children: React.ReactNode }) => {
-  const [language, setLanguageState] = useState<Language>("en"); // Set default to 'en' since user asked for it
+  const [language, setLanguageState] = useState<Language>("en"); // Initial state before hydration
 
   useEffect(() => {
     // Check local storage or browser preference
     const savedLang = localStorage.getItem("lang") as Language;
     if (savedLang && (savedLang === "ar" || savedLang === "en")) {
       setLanguage(savedLang);
+    } else {
+      // Auto-detect system language
+      const sysLang = navigator.language.toLowerCase();
+      if (sysLang.startsWith("ar")) {
+        setLanguage("ar");
+      } else {
+        setLanguage("en");
+      }
     }
   }, []);
 
