@@ -4,18 +4,33 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Globe, Moon, Sun } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState("");
   const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
+      
+      // Calculate scroll progress percentage
+      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalScroll > 0) {
+        setScrollProgress(window.scrollY / totalScroll);
+      } else {
+        setScrollProgress(0);
+      }
       
       const sections = document.querySelectorAll("section[id]");
       let current = "";
@@ -32,13 +47,7 @@ export default function Navbar() {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    if (newTheme) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const toggleLanguage = () => {
@@ -57,7 +66,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300">
-      <div className={`pointer-events-auto flex items-center justify-between transition-all duration-300 rounded-full border border-white/10 shadow-2xl bg-[#0B0F19]/80 backdrop-blur-xl max-w-6xl w-full ${isScrolled ? 'p-2' : 'p-3'}`}>
+      <div className={`pointer-events-auto flex items-center justify-between transition-all duration-300 rounded-full border border-white/10 shadow-2xl bg-surface/80 backdrop-blur-xl max-w-6xl w-full relative overflow-hidden ${isScrolled ? 'p-2' : 'p-3'}`}>
         
         {/* Left: Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0 pl-2">
@@ -99,26 +108,37 @@ export default function Navbar() {
         {/* Right: Controls & CTA */}
         <div className="flex items-center gap-2 pr-1 shrink-0">
           <div className="hidden sm:flex items-center gap-1 mr-2">
-            <button
+            <motion.button
+              whileTap={{ scale: 0.9 }}
               onClick={toggleTheme}
-              className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/5"
+              className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/5 flex items-center justify-center w-9 h-9"
               aria-label="Toggle Theme"
             >
-              {isDark ? <Sun size={16} /> : <Moon size={16} />}
-            </button>
-            <button 
+              {mounted && (
+                <motion.div
+                  key={theme}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                </motion.div>
+              )}
+            </motion.button>
+            <motion.button 
+              whileTap={{ scale: 0.9 }}
               onClick={toggleLanguage}
-              className="px-3 py-2 text-sm font-medium text-white/60 hover:text-white transition-colors uppercase tracking-wider rounded-full hover:bg-white/5"
+              className="px-3 py-2 text-sm font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wider rounded-full hover:bg-white/5"
             >
               {language === "en" ? "AR" : "EN"}
-            </button>
+            </motion.button>
           </div>
 
           <Link
             href="#demo"
-            className="hidden sm:flex px-5 py-2 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-sm transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)]"
+            className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_rgba(22,131,199,0.3)] hover:shadow-[0_0_25px_rgba(22,131,199,0.5)] hover:-translate-y-0.5"
           >
-            Start free trial
+            {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
           </Link>
 
           {/* Mobile Menu Toggle */}
@@ -129,53 +149,69 @@ export default function Navbar() {
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+
+        {/* Scroll Progress Line */}
+        <div className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-white/5">
+          <motion.div
+            className="h-full bg-gradient-to-r from-primary via-primary-light to-accent shadow-[0_0_10px_rgba(22,131,199,0.8)]"
+            style={{ width: `${scrollProgress * 100}%` }}
+          />
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden pointer-events-auto absolute top-20 left-4 right-4 bg-[#0B0F19]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col gap-4 shadow-2xl">
-          <ul className="flex flex-col gap-2">
-            {navLinks.map((link) => {
-              const isActive = activeSection === link.id;
-              return (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
-                      isActive ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <hr className="border-white/10" />
-          <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-between py-2 border-b border-white/10 px-4">
-              <span className="text-white/60 text-sm">Theme</span>
-              <button onClick={toggleTheme} className="text-white p-2 bg-white/5 rounded-full">
-                {isDark ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="lg:hidden pointer-events-auto absolute top-20 left-4 right-4 bg-surface/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-6 flex flex-col gap-4 shadow-2xl z-50"
+          >
+            <ul className="flex flex-col gap-2">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
+                        isActive ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
+                      }`}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <hr className="border-white/10" />
+            <div className="flex flex-col gap-3">
+              <div className="flex items-center justify-between py-2 border-b border-white/10 px-4">
+                <span className="text-white/60 text-sm">{language === 'ar' ? 'المظهر' : 'Theme'}</span>
+                <button onClick={toggleTheme} className="text-white p-2 bg-white/5 rounded-full w-9 h-9 flex items-center justify-center">
+                  {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
+              </div>
+              <div className="flex items-center justify-between py-2 border-b border-white/10 px-4">
+                <span className="text-white/60 text-sm">{language === 'ar' ? 'اللغة' : 'Language'}</span>
+                <button onClick={toggleLanguage} className="text-white font-bold uppercase px-4 py-2 bg-white/5 rounded-full text-xs">
+                  {language === "en" ? "AR" : "EN"}
+                </button>
+              </div>
+              <Link
+                href="#demo"
+                className="w-full text-center py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)] mt-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
+              </Link>
             </div>
-            <div className="flex items-center justify-between py-2 border-b border-white/10 px-4">
-              <span className="text-white/60 text-sm">Language</span>
-              <button onClick={toggleLanguage} className="text-white font-medium uppercase px-4 py-2 bg-white/5 rounded-full">
-                {language === "en" ? "AR" : "EN"}
-              </button>
-            </div>
-            <Link
-              href="#demo"
-              className="w-full text-center py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all shadow-[0_0_15px_rgba(79,70,229,0.4)] mt-2"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Start free trial
-            </Link>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
