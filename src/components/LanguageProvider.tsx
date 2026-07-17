@@ -22,6 +22,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.howItWorks": "آلية العمل",
     "nav.roadmap": "خارطة الطريق",
     "nav.faq": "الأسئلة الشائعة",
+    "nav.pricing": "الأسعار",
     "nav.demo": "اطلب عرضاً",
     "nav.language": "English",
     
@@ -47,6 +48,33 @@ const translations: Record<Language, Record<string, string>> = {
     "feat.pos.desc": "نظام كاشير موثوق يعمل حتى في حالة انقطاع الإنترنت (Offline-first) لضمان عدم توقف مبيعاتك.",
     "feat.qr.title": "المنيو الرقمي (QR)",
     "feat.qr.desc": "تجربة تصفح سريعة للعملاء تشبه المتاجر الإلكترونية، بدون الحاجة لتحميل أي تطبيقات.",
+    "feat.web.longDesc": "تحكم كامل في إيراداتك ومصروفاتك من خلال لوحة تحكم سحابية بتصميم عصري يبرز أهم المؤشرات. تتبع مبيعات الفروع، إدارة دقيقة للمخزون والورديات، وتحليل تفصيلي لأداء الموظفين بضغطة زر.",
+    "feat.web.b1": "تقارير مالية حية ومفصلة",
+    "feat.web.b2": "إدارة سلاسل الفروع مركزياً",
+    "feat.web.b3": "نظام صلاحيات متدرج للموظفين",
+    "feat.web.review": "لوحة التحكم أنقذتنا من الفوضى! بضغطة واحدة أرى مبيعات كل الفروع، وأتخذ قرارات سريعة بناءً على أرقام دقيقة.",
+    "feat.web.reviewer": "أحمد خ. - مؤسس سلسلة مطاعم",
+    
+    "feat.pos.longDesc": "نظام نقاط بيع صمم لسرعة الأداء وعدم الانقطاع. يعمل حتى في أسوأ ظروف الإنترنت (Offline-first)، مع واجهة مريحة للكاشير تمنع أخطاء الطلبات وتسرع من خدمة العملاء.",
+    "feat.pos.b1": "دعم العمل بدون إنترنت (Offline)",
+    "feat.pos.b2": "ربط مباشر مع المطبخ (KDS)",
+    "feat.pos.b3": "دعم أجهزة متعددة وتوافق تام",
+    "feat.pos.review": "سرعة استجابة الكاشير ممتازة، ولم نعد نقلق أبداً إذا انقطع الإنترنت، النظام يحتفظ بكل شيء ويزامن تلقائياً.",
+    "feat.pos.reviewer": "سارة م. - مديرة مقهى",
+
+    "feat.mobile.longDesc": "لا داعي للتواجد في المطعم طوال الوقت. تطبيق المدير يضع كل التفاصيل بين يديك: مبيعات لحظية، إشعارات بالغاء الطلبات، ومتابعة لأداء الورديات مباشرة من هاتفك.",
+    "feat.mobile.b1": "إشعارات حية ومباشرة",
+    "feat.mobile.b2": "تتبع مبيعات جميع الفروع",
+    "feat.mobile.b3": "واجهة سريعة وخفيفة جداً",
+    "feat.mobile.review": "التطبيق يغنيني عن التواجد في الفروع. أستطيع معرفة ذروة المبيعات ومن هو الكاشير الأفضل أينما كنت.",
+    "feat.mobile.reviewer": "خالد أ. - مستثمر",
+
+    "feat.qr.longDesc": "المنيو الرقمي ليس مجرد قائمة طعام، بل أداة مبيعات ذكية. اعرض أطباقك بصور جذابة، وادفع العملاء لطلب المزيد عبر اقتراحات ذكية ومبيعات متقاطعة.",
+    "feat.qr.b1": "صور عالية الدقة وتصميم احترافي",
+    "feat.qr.b2": "تحديثات لحظية للأسعار والأصناف",
+    "feat.qr.b3": "بدون تحميل أي تطبيقات إضافية",
+    "feat.qr.review": "مبيعاتنا زادت بشكل ملحوظ لأن العميل أصبح يرى صور الأطباق ويطلب الإضافات بسهولة من هاتفه الخاص.",
+    "feat.qr.reviewer": "محمد ع. - صاحب لاونج",
 
     // Use Cases
     "useCases.title1": "مصمم خصيصاً",
@@ -215,6 +243,7 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.howItWorks": "How It Works",
     "nav.roadmap": "Roadmap",
     "nav.faq": "FAQ",
+    "nav.pricing": "Pricing",
     "nav.demo": "Request a Demo",
     "nav.language": "عربي",
     
@@ -240,6 +269,33 @@ const translations: Record<Language, Record<string, string>> = {
     "feat.pos.desc": "A reliable cashier system that works offline to ensure your sales never stop.",
     "feat.qr.title": "Digital Menu (QR)",
     "feat.qr.desc": "A fast browsing experience for customers similar to e-commerce, with no app downloads required.",
+    "feat.web.longDesc": "Full control over your revenue and expenses through a modern cloud dashboard that highlights key metrics. Track branch sales, manage inventory, and analyze staff performance with one click.",
+    "feat.web.b1": "Live & detailed financial reports",
+    "feat.web.b2": "Centralized multi-branch management",
+    "feat.web.b3": "Granular staff permissions",
+    "feat.web.review": "The dashboard saved us from chaos! With one click I see sales across all branches and make fast, data-driven decisions.",
+    "feat.web.reviewer": "Ahmed K. - Restaurant Chain Founder",
+    
+    "feat.pos.longDesc": "A Point of Sale system built for speed and reliability. It works even in the worst internet conditions (Offline-first), with an intuitive UI that reduces order errors and speeds up service.",
+    "feat.pos.b1": "Works completely offline",
+    "feat.pos.b2": "Direct Kitchen Display (KDS) sync",
+    "feat.pos.b3": "Multi-device cross compatibility",
+    "feat.pos.review": "The POS speed is incredible, and we never worry if the internet drops. The system keeps everything and syncs automatically.",
+    "feat.pos.reviewer": "Sarah M. - Cafe Manager",
+
+    "feat.mobile.longDesc": "No need to be at the restaurant all the time. The Manager App puts everything in your hands: live sales, order cancellations alerts, and shift tracking directly from your phone.",
+    "feat.mobile.b1": "Instant live push notifications",
+    "feat.mobile.b2": "Track sales across branches",
+    "feat.mobile.b3": "Lightning fast and lightweight",
+    "feat.mobile.review": "The app means I don't have to be physically present. I can see sales peaks and the best performing cashier wherever I am.",
+    "feat.mobile.reviewer": "Khaled A. - Investor",
+
+    "feat.qr.longDesc": "The digital menu isn't just a list; it's a smart sales tool. Showcase your dishes with stunning photos and drive higher order values with smart upselling suggestions.",
+    "feat.qr.b1": "High-res images & premium layout",
+    "feat.qr.b2": "Real-time menu updates & pricing",
+    "feat.qr.b3": "No app downloads required",
+    "feat.qr.review": "Our sales increased significantly because customers now see beautiful photos of dishes and easily add extras from their phones.",
+    "feat.qr.reviewer": "Mohamed A. - Lounge Owner",
 
     // Use Cases
     "useCases.title1": "Tailored for",

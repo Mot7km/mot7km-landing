@@ -7,17 +7,24 @@ import Roadmap from "@/components/sections/Roadmap";
 import Pricing from "@/components/sections/Pricing";
 import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/layout/Footer";
+import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-background">
       <Navbar />
       <Hero />
+      <SectionDivider titleKey="nav.features" />
       <Features />
+      <SectionDivider titleKey="nav.useCases" />
       <UseCases />
+      <SectionDivider titleKey="nav.howItWorks" />
       <ValueProp />
+      <SectionDivider titleKey="nav.roadmap" />
       <Roadmap />
+      <SectionDivider titleKey="nav.pricing" />
       <Pricing />
+      <SectionDivider titleKey="nav.faq" />
       <FAQ />
       <Footer />
     </main>

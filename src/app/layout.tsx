@@ -34,7 +34,7 @@ export default function RootLayout({
       className={`${cairo.variable} ${roboto.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans bg-background text-text-primary">
+      <body className="min-h-full flex flex-col font-sans bg-background text-text-primary overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <LanguageProvider>
             <SplashScreen />
