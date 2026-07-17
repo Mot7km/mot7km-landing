@@ -143,7 +143,7 @@ export default function Hero() {
               className="absolute left-0 lg:-left-20 top-10 w-[85%] md:w-[75%] rounded-[1.5rem] md:rounded-[2rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden bg-surface/80 backdrop-blur-xl z-10"
             >
               <div className="relative w-full aspect-[16/10]">
-                <Image src="/mockups/web_dashboard.png" alt="Dashboard" fill className="object-cover opacity-80 mix-blend-lighten" unoptimized />
+                <Image src="/mockups/web_dashboard.png" alt="Dashboard" fill className="object-cover opacity-80 mix-blend-lighten" unoptimized priority />
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent mix-blend-overlay" />
               </div>
             </motion.div>
@@ -154,7 +154,7 @@ export default function Hero() {
               className="absolute right-0 lg:-right-10 top-32 w-[60%] md:w-[50%] rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden bg-surface backdrop-blur-2xl z-20"
             >
               <div className="relative w-full aspect-[4/3]">
-                <Image src="/mockups/pos_terminal.png" alt="POS Terminal" fill className="object-cover opacity-90" unoptimized />
+                <Image src="/mockups/pos_terminal.png" alt="POS Terminal" fill className="object-cover opacity-90" unoptimized priority />
                 <div className="absolute inset-0 border border-white/10 rounded-2xl" />
               </div>
             </motion.div>
@@ -167,7 +167,7 @@ export default function Hero() {
               className="absolute left-[12%] lg:left-[26%] bottom-4 md:bottom-10 lg:bottom-16 w-[76%] md:w-[62%] z-30 drop-shadow-[0_25px_60px_rgba(22,131,199,0.55)]"
             >
               <div className="relative w-full aspect-[4/3] md:aspect-[16/10] lg:aspect-[16/11]">
-                <Image src="/assets/mockups/mobile app mockup.svg" alt="Mot7km Mobile App" fill className="object-contain scale-125 md:scale-135" unoptimized />
+                <Image src="/assets/mockups/mobile app mockup.svg" alt="Mot7km Mobile App" fill className="object-contain scale-125 md:scale-135" unoptimized priority />
               </div>
             </motion.div>
 
