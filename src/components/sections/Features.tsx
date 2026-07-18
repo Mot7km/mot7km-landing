@@ -58,7 +58,7 @@ export default function Features() {
         </div>
 
         {/* Sticky Tab Bar */}
-        <div className="sticky top-[72px] md:top-24 z-50 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0 border-b md:border-transparent border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] md:shadow-none">
+        <div className="sticky top-[72px] md:top-24 z-50 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0  ">
           <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
