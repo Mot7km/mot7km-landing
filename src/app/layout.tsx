@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo, Roboto } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/components/LanguageProvider";
+import { LanguageProvider } from "@/config/LanguageProvider";
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 import SplashScreen from "@/components/layout/SplashScreen";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeProvider } from "@/config/ThemeProvider";
 
 export default function RootLayout({
   children,

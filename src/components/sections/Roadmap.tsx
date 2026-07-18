@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, Rocket } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 import { getRoadmapPhases, type RoadmapPhase, getPhaseStyles } from "@/data/roadmap";
 
 

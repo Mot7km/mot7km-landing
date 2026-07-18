@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Globe, Moon, Sun, ArrowRight } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 

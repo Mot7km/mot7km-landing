@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, MonitorPlay, Smartphone } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 
 export default function Hero() {
@@ -24,7 +24,7 @@ export default function Hero() {
   return (
     <section
       id="product"
-      className="relative pt-30 pb-16 sm:pt-32 sm:pb-20 md:pt-48 md:pb-32"
+      className="relative pt-30 pb-16 sm:pt-32 sm:pb-20 md:pt-48 md:pb-32 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Background decorations – unchanged */}

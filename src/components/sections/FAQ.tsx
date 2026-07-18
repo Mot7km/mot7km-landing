@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle, CreditCard, Settings } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 
 export default function FAQ() {
   const { t } = useLanguage();

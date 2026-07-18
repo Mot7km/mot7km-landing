@@ -11,7 +11,7 @@
 
   export default function Home() {
     return (
-      <main className="min-h-screen bg-background text-text-primary relative overflow-hidden">
+      <main className="min-h-screen max-w-fit bg-background text-text-primary">
         <Navbar />
         <Hero />
         <SectionDivider titleKey="nav.features" />

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 import Image from "next/image";
 import { getUseCases, type UseCase } from "@/data/useCases";
 

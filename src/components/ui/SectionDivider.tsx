@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 
 interface SectionDividerProps {
   titleKey?: string;

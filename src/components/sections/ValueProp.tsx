@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, PieChart, Users, LineChart, Sparkles } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 
 export default function ValueProp() {
   const { t } = useLanguage();

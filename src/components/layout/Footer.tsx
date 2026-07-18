@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 
 export default function Footer() {
   const { t } = useLanguage();

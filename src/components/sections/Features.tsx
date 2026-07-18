@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, CheckCircle2, Quote } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 import Image from "next/image";
 import { getFeaturesTabs, getFeaturesContent, type TabId } from "@/data/features";
 
@@ -11,16 +11,19 @@ export default function Features() {
   const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState<TabId>("web");
 
-  const tabs = getFeaturesTabs(t);
-  const contentMap = getFeaturesContent(t);
+  const tabs = useMemo(() => getFeaturesTabs(t), [t]);
+  const contentMap = useMemo(() => getFeaturesContent(t), [t]);
   const currentContent = contentMap[activeTab];
 
   return (
-    <section id="features" className="py-16 sm:py-24 md:py-32 bg-background relative">
-      {/* Background Glows – always there */}
+    <section
+      id="features"
+      className="relative min-h-screen py-16 sm:py-24 md:py-32 bg-background"
+    >
+      {/* Background glows – decorative, clipped by their parent */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 blur-[150px] rounded-full translate-y-1/3 -translate-x-1/3" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] blur-[150px] rounded-full -translate-y-1/2 translate-x-1/3" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] blur-[150px] rounded-full translate-y-1/3 -translate-x-1/3" />
         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
@@ -29,18 +32,21 @@ export default function Features() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface/80 border border-white/10 text-white text-xs font-bold mb-6 backdrop-blur-md shadow-lg uppercase tracking-widest">
             <Sparkles size={14} className="text-primary" />
-            <span>{language === 'ar' ? 'تعمق في المزايا' : 'Deep Dive'}</span>
+            <span>{language === "ar" ? "تعمق في المزايا" : "Deep Dive"}</span>
           </div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-4 sm:mb-6 tracking-tight"
           >
-            {t("features.title1")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">{t("features.title2")}</span>
+            {t("features.title1")}{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-light to-accent">
+              {t("features.title2")}
+            </span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -51,9 +57,9 @@ export default function Features() {
           </motion.p>
         </div>
 
-        {/* Tabs – now scrollable horizontally on all screens, but centered on larger */}
-        <div className="sticky top-[72px] md:top-24 z-40 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0 bg-background/80 md:bg-transparent backdrop-blur-xl md:backdrop-blur-none border-y md:border-transparent border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] md:shadow-none pointer-events-none">
-          <div className="pointer-events-auto flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-[95vw] sm:max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+        {/* Sticky Tab Bar */}
+        <div className="sticky top-[72px] md:top-24 z-50 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0 border-b md:border-transparent border-white/5 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)] md:shadow-none">
+          <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
               return (
@@ -61,7 +67,9 @@ export default function Features() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`relative flex items-center px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center ${
-                    isActive ? "text-white gap-1.5 sm:gap-2" : "text-text-muted hover:text-white hover:bg-white/5 gap-0"
+                    isActive
+                      ? "text-white gap-1.5 sm:gap-2"
+                      : "text-text-muted hover:text-white hover:bg-white/5 gap-1.5 sm:gap-2"
                   }`}
                 >
                   {isActive && (
@@ -71,33 +79,36 @@ export default function Features() {
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                  <span className={`relative z-10 ${isActive ? "md:text-primary-light drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] md:drop-shadow-md text-primary-light" : ""}`}>
+                  {/* Icon – always visible */}
+                  <span
+                    className={`relative z-10 ${
+                      isActive
+                        ? "md:text-primary-light drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] md:drop-shadow-md text-primary-light"
+                        : ""
+                    }`}
+                  >
                     {tab.icon}
                   </span>
-                  
-                  <AnimatePresence mode="wait">
-                    {isActive && (
-                      <motion.span
-                        key="text"
-                        initial={{ width: 0, opacity: 0, scale: 0.8 }}
-                        animate={{ width: "auto", opacity: 1, scale: 1 }}
-                        exit={{ width: 0, opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.2, ease: "easeInOut" }}
-                        className="relative z-10 overflow-hidden flex items-center"
-                      >
-                        <span className="md:hidden">{tab.titleMobile}</span>
-                        <span className="hidden md:inline">{tab.titleDesktop}</span>
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
+
+                  {/* Desktop label – always visible on md and up */}
+                  <span className="relative z-10 hidden md:inline">
+                    {tab.titleDesktop}
+                  </span>
+
+                  {/* Mobile label – visible only for the active tab */}
+                  {isActive && (
+                    <span className="relative z-10 md:hidden">
+                      {tab.titleMobile}
+                    </span>
+                  )}
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Content – fully responsive */}
-        <div className="max-w-7xl mx-auto">
+        {/* Content */}
+        <div className="max-w-7xl mx-auto overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -107,30 +118,36 @@ export default function Features() {
               transition={{ duration: 0.4, ease: "easeInOut" }}
               className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-start lg:items-center"
             >
-              {/* Text Side – always first on mobile */}
+              {/* Text Side */}
               <div className="flex flex-col relative z-20 order-1 lg:order-none">
-                <div className={`inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br ${currentContent.gradient} border border-white/10 mb-6 sm:mb-8 shadow-lg`}>
-                  {tabs.find(t => t.id === activeTab)?.icon}
+                {/* Icon + Title inline */}
+                <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                  <span
+                    className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${currentContent.gradient} border border-white/10 shadow-lg text-white shrink-0`}
+                  >
+                    {tabs.find((t) => t.id === activeTab)?.icon}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight drop-shadow-sm">
+                    {currentContent.title}
+                  </h3>
                 </div>
-                
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white mb-4 sm:mb-6 leading-tight drop-shadow-sm">
-                  {currentContent.title}
-                </h3>
-                
+
                 <p className="text-text-secondary text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 max-w-lg">
                   {currentContent.desc}
                 </p>
-                
+
                 <ul className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
                   {currentContent.bullets.map((bullet: string, idx: number) => (
-                    <motion.li 
+                    <motion.li
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 + (idx * 0.1) }}
-                      key={idx} 
+                      transition={{ delay: 0.2 + idx * 0.1 }}
+                      key={idx}
                       className="flex items-start sm:items-center gap-3 text-white/90 font-medium text-sm sm:text-base"
                     >
-                      <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center ${currentContent.glowColor} text-white shrink-0 mt-0.5 sm:mt-0`}>
+                      <div
+                        className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center ${currentContent.glowColor} text-white shrink-0 mt-0.5 sm:mt-0`}
+                      >
                         <CheckCircle2 size={16} className={currentContent.accent} />
                       </div>
                       <span>{bullet}</span>
@@ -139,15 +156,15 @@ export default function Features() {
                 </ul>
               </div>
 
-              {/* Image & Review Side – order-2 on mobile, so it appears below text */}
+              {/* Image & Review Side */}
               <div className="relative z-10 order-2 lg:order-none w-full">
                 <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-auto lg:h-[600px] flex items-center justify-center">
-                  {/* Glow behind image */}
-                  <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] ${currentContent.glowColor} blur-[100px] rounded-full pointer-events-none opacity-50`} />
-                  
-                  {/* Image container */}
+                  <div
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] ${currentContent.glowColor} blur-[100px] rounded-full pointer-events-none opacity-50`}
+                  />
+
                   <div className="relative w-full h-full max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-none bg-surface/30 backdrop-blur-md rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
-                    <Image 
+                    <Image
                       src={currentContent.image}
                       alt={currentContent.title}
                       fill
@@ -158,8 +175,7 @@ export default function Features() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
                   </div>
 
-                  {/* Review Card – relative on small, absolute on large */}
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 30, rotate: -2 }}
                     animate={{ opacity: 1, y: 0, rotate: 0 }}
                     transition={{ delay: 0.4, type: "spring" }}
@@ -173,7 +189,9 @@ export default function Features() {
                       <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-white font-bold text-sm sm:text-base">
                         {currentContent.reviewer.charAt(0)}
                       </div>
-                      <span className="text-text-secondary text-xs sm:text-sm font-bold">{currentContent.reviewer}</span>
+                      <span className="text-text-secondary text-xs sm:text-sm font-bold">
+                        {currentContent.reviewer}
+                      </span>
                     </div>
                   </motion.div>
                 </div>

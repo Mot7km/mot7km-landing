@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, ArrowRight, Sparkles, Zap } from "lucide-react";
-import { useLanguage } from "@/components/LanguageProvider";
+import { useLanguage } from "@/config/LanguageProvider";
 import Link from "next/link";
 import { getPricingPlans, type PricingPlan } from "@/data/pricing";
 
