@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cairo, Roboto } from "next/font/google";
 import "./globals.css";
-import { LanguageProvider } from "@/config/LanguageProvider";
+import I18nProvider from '@/components/providers/I18nProvider';
 
 const cairo = Cairo({
   variable: "--font-cairo",
@@ -29,20 +29,17 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      dir="ltr"
       className={`${cairo.variable} ${roboto.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-text-primary overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LanguageProvider>
+          <I18nProvider>
             <SplashScreen />
             {children}
-          </LanguageProvider>
+          </I18nProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
-

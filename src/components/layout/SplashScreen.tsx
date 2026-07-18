@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 
 export default function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true);
   const [currentWord, setCurrentWord] = useState(0);
-  const { language } = useLanguage();
+  const { i18n } = useTranslation();
+  const language = i18n.language;
 
   const words = language === 'ar' 
     ? ["كاشير سحابي...", "منيو رقمي ذكي...", "إدارة كاملة...", "مُتَحَكِّم"]

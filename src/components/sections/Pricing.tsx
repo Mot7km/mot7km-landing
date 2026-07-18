@@ -3,12 +3,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, X, ArrowRight, Sparkles, Zap } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { getPricingPlans, type PricingPlan } from "@/data/pricing";
 
 export default function Pricing() {
-  const { t, language } = useLanguage();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
   const [isAnnual, setIsAnnual] = useState(true);
   const plans = getPricingPlans(t);
 
@@ -33,7 +34,7 @@ export default function Pricing() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/5 text-text-secondary text-sm font-bold mb-6 backdrop-blur-md shadow-lg">
             <Zap size={16} className="text-primary" />
-            <span>Simple, Transparent Pricing</span>
+            <span>{language === 'ar' ? 'أسعار شفافة وبسيطة' : 'Simple, Transparent Pricing'}</span>
           </div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -188,7 +189,7 @@ export default function Pricing() {
         >
           <div className="relative bg-gradient-to-r from-surface/80 to-surface/40 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-4 sm:p-6 md:p-12 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden group">
             
-            {/* Shine effect – unchanged */}
+            {/* Shine effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             
             {/* Left content */}

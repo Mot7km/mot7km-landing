@@ -3,10 +3,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle, CreditCard, Settings } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 
 export default function FAQ() {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<number>(0);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 

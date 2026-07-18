@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { getUseCases, type UseCase } from "@/data/useCases";
 
 export default function UseCases() {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const [activeCase, setActiveCase] = useState(0);
   const cases = getUseCases(t);
 

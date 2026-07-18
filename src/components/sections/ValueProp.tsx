@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { TrendingUp, PieChart, Users, LineChart, Sparkles } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 
 export default function ValueProp() {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <section

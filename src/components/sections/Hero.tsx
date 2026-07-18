@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, MonitorPlay, Smartphone } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 
 export default function Hero() {
-  const { t, language } = useLanguage();
+  const { t, i18n } = useTranslation(); // i18n instance gives us language
+  const language = i18n.language;
   const ArrowIcon = language === "en" ? ArrowRight : ArrowLeft;
 
   const {
@@ -34,7 +35,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-12 lg:gap-12 mb-8 sm:mb-12 lg:mb-20">
-          {/* Left Content – now full width on mobile */}
+          {/* Left Content */}
           <div className="flex-1 text-center lg:text-start z-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -99,7 +100,7 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            {/* Stats – unchanged */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -124,7 +125,7 @@ export default function Hero() {
             transition={{ duration: 0.8, type: "spring", stiffness: 80 }}
             className="hidden sm:flex flex-1 relative w-full min-h-[400px] md:h-[500px] lg:h-[600px] justify-center items-center perspective-1000"
           >
-            {/* Glow orb – visible on larger screens only */}
+            {/* Glow orb */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-primary/20 blur-[80px] rounded-full animate-pulse pointer-events-none" />
 
             {/* Web Dashboard */}
@@ -173,7 +174,7 @@ export default function Hero() {
               </div>
             </motion.div>
 
-            {/* Mobile App – no conflicting animate */}
+            {/* Mobile App */}
             <motion.div
               style={{ x: mobileX, y: mobileY }}
               className="absolute sm:left-[12%] lg:left-[26%] sm:bottom-4 md:bottom-10 lg:bottom-16 w-[75%] max-w-[280px] sm:max-w-none sm:w-[76%] md:w-[62%] z-30 drop-shadow-[0_25px_60px_rgba(22,131,199,0.55)] mx-auto"

@@ -3,12 +3,13 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, CheckCircle2, Quote } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { getFeaturesTabs, getFeaturesContent, type TabId } from "@/data/features";
 
 export default function Features() {
-  const { t, language } = useLanguage();
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
   const [activeTab, setActiveTab] = useState<TabId>("web");
 
   const tabs = useMemo(() => getFeaturesTabs(t), [t]);

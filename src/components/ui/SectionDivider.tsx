@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 
 interface SectionDividerProps {
   titleKey?: string;
 }
 
 export default function SectionDivider({ titleKey }: SectionDividerProps) {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const text = titleKey ? t(titleKey) : null;
 
   return (

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, Globe, Moon, Sun, ArrowRight } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 
@@ -14,7 +14,8 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState("");
-  const { language, setLanguage, t } = useLanguage();
+  const { t, i18n } = useTranslation(); // i18n instance
+  const language = i18n.language;
 
   useEffect(() => {
     setMounted(true);
@@ -23,7 +24,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      
+
       // Calculate scroll progress percentage
       const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
       if (totalScroll > 0) {
@@ -31,7 +32,7 @@ export default function Navbar() {
       } else {
         setScrollProgress(0);
       }
-      
+
       const sections = document.querySelectorAll("section[id]");
       let current = "";
       sections.forEach((section) => {
@@ -51,7 +52,8 @@ export default function Navbar() {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === "en" ? "ar" : "en");
+    const newLang = language === "en" ? "ar" : "en";
+    i18n.changeLanguage(newLang);
   };
 
   const navLinks = [
@@ -136,7 +138,7 @@ export default function Navbar() {
             href="#demo"
             className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_rgba(22,131,199,0.3)] hover:shadow-[0_0_25px_rgba(22,131,199,0.5)] hover:-translate-y-0.5"
           >
-            {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
+            {t("nav.cta")}
           </Link>
           {/* Compact mobile CTA */}
           <Link
@@ -183,34 +185,34 @@ export default function Navbar() {
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
               className="lg:hidden pointer-events-auto absolute top-20 left-4 right-4 bg-surface/95 backdrop-blur-2xl border border-white/10 rounded-3xl p-5 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-2xl z-50"
-          >
-            <ul className="flex flex-col gap-2">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.id;
-                return (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
-                        isActive ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <hr className="border-white/10" />
-            <Link
-              href="#demo"
-              className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)]"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
-              {language === 'ar' ? "ابدأ مجاناً" : "Start free trial"}
-            </Link>
-          </motion.div>
+              <ul className="flex flex-col gap-2">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+                  return (
+                    <li key={link.name}>
+                      <Link
+                        href={link.href}
+                        className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
+                          isActive ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <hr className="border-white/10" />
+              <Link
+                href="#demo"
+                className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)]"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("nav.cta")}
+              </Link>
+            </motion.div>
           </>
         )}
       </AnimatePresence>

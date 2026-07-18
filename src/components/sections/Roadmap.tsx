@@ -2,12 +2,11 @@
 
 import { motion } from "framer-motion";
 import { Sparkles, Rocket } from "lucide-react";
-import { useLanguage } from "@/config/LanguageProvider";
+import { useTranslation } from "react-i18next";
 import { getRoadmapPhases, type RoadmapPhase, getPhaseStyles } from "@/data/roadmap";
 
-
 export default function Roadmap() {
-  const { t } = useLanguage();
+  const { t } = useTranslation();
   const phases = getRoadmapPhases(t);
 
   return (
