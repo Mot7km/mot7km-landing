@@ -74,14 +74,14 @@ export default function Roadmap() {
 
                   {/* Glassmorphic Card – full width on mobile, half on tablet+ */}
                   <div className={`flex-1 w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 text-start ${
-                    isEven ? "md:pr-20 md:text-end" : "md:pl-20"
+                    isEven ? "md:pr-0" : "md:pl-0"
                   }`}>
                     <div className={`relative p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] backdrop-blur-xl bg-gradient-to-br ${styles.color} border ${styles.borderColor} ${styles.glow} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl`}>
                       
                       <div className="absolute inset-0 rounded-[2rem] border border-white/10 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
                       
                       {/* Icon + Title – always left on mobile, reversed on even desktop */}
-                      <div className={`relative z-10 flex items-center gap-5 mb-5 ${isEven ? "md:flex-row-reverse" : ""}`}>
+                      <div className={`relative z-10 flex items-center gap-5 mb-5`}>
                         <div className={`w-14 h-14 rounded-2xl bg-card border border-white/5 shadow-inner flex items-center justify-center flex-shrink-0 ${styles.iconColor}`}>
                           <Icon size={28} strokeWidth={2} />
                         </div>
