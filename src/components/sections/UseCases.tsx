@@ -2,60 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Coffee, UtensilsCrossed, CupSoda, Gamepad2 } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import Image from "next/image";
+import { getUseCases, type UseCase } from "@/data/useCases";
 
 export default function UseCases() {
   const { t } = useLanguage();
   const [activeCase, setActiveCase] = useState(0);
-
-  const cases = [
-    {
-      id: "cafe",
-      icon: Coffee,
-      title: t("uc.cafe.title"),
-      desc: t("uc.cafe.desc"),
-      color: "text-primary",
-      glowColor: "rgba(22, 131, 199, 0.4)", // Primary
-      bg: "bg-primary/20",
-      border: "border-primary/20",
-      image: "/mockups/pos_terminal.png", // Café needs POS
-    },
-    {
-      id: "restaurant",
-      icon: UtensilsCrossed,
-      title: t("uc.restaurant.title"),
-      desc: t("uc.restaurant.desc"),
-      color: "text-secondary",
-      glowColor: "rgba(15, 118, 110, 0.4)", // Secondary
-      bg: "bg-secondary/20",
-      border: "border-secondary/20",
-      image: "/mockups/web_dashboard.png", // Restaurants need full admin tracking
-    },
-    {
-      id: "juice",
-      icon: CupSoda,
-      title: t("uc.juice.title"),
-      desc: t("uc.juice.desc"),
-      color: "text-accent",
-      glowColor: "rgba(6, 182, 212, 0.4)", // Accent
-      bg: "bg-accent/20",
-      border: "border-accent/20",
-      image: "/mockups/mobile_app.png", // Fast mobile tracking
-    },
-    {
-      id: "gaming",
-      icon: Gamepad2,
-      title: t("uc.gaming.title"),
-      desc: t("uc.gaming.desc"),
-      color: "text-success",
-      glowColor: "rgba(16, 185, 129, 0.4)", // Success
-      bg: "bg-success/20",
-      border: "border-success/20",
-      image: "/mockups/qr_menu.png", // Gaming lounges order directly from tables via QR
-    },
-  ];
+  const cases = getUseCases(t);
 
   return (
     <section id="use-cases" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
@@ -89,14 +43,14 @@ export default function UseCases() {
           
           {/* Left: Interactive Minimalist Tabs */}
           <div className="w-full lg:w-1/3 flex flex-col justify-center gap-2">
-            {cases.map((uc, index) => {
+            {cases.map((uc: UseCase, index: number) => {
               const isActive = activeCase === index;
               const Icon = uc.icon;
               return (
                 <button
                   key={uc.id}
                   onClick={() => setActiveCase(index)}
-                  className="relative w-full text-start group outline-none"
+                  className="relative w-full text-start group outline-none cursor-pointer"
                 >
                   {/* Active Pill Background */}
                   {isActive && (

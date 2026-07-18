@@ -5,60 +5,28 @@ import { motion } from "framer-motion";
 import { Check, X, ArrowRight, Sparkles, Zap } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
 import Link from "next/link";
+import { getPricingPlans, type PricingPlan } from "@/data/pricing";
 
 export default function Pricing() {
   const { t, language } = useLanguage();
   const [isAnnual, setIsAnnual] = useState(true);
+  const plans = getPricingPlans(t);
 
-  const mainPlans = [
-    {
-      name: t("p1.name"),
-      subtitle: t("p1.sub"),
-      description: t("p1.desc"),
-      price: "499",
-      priceNote: t("plan.month"),
-      popular: false,
-      color: "from-surface/80 to-surface/30",
-      border: "border-white/10",
-      glow: "hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]",
-      features: [t("p1.f1"), t("p1.f2"), t("p1.f3"), t("p1.f4"), t("p1.f5")],
-      missing: [t("p1.m1"), t("p1.m2")],
-    },
-    {
-      name: t("p3.name"),
-      subtitle: t("p3.sub"),
-      description: t("p3.desc"),
-      price: "1,599",
-      priceNote: t("plan.month"),
-      popular: true,
-      color: "from-primary/20 via-primary/10 to-surface/40",
-      border: "border-primary/50",
-      glow: "shadow-[0_0_50px_rgba(22,131,199,0.2)] hover:shadow-[0_0_70px_rgba(22,131,199,0.3)]",
-      features: [t("p3.f1"), t("p3.f2"), t("p3.f3"), t("p3.f4"), t("p3.f5"), t("p3.f6")],
-      missing: [t("p3.m1")],
-    },
-    {
-      name: t("p5.name"),
-      subtitle: t("p5.sub"),
-      description: t("p5.desc"),
-      price: "Custom",
-      priceNote: t("plan.custom"),
-      popular: false,
-      color: "from-surface/80 to-surface/30",
-      border: "border-white/10",
-      glow: "hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]",
-      features: [t("p5.f1"), t("p5.f2"), t("p5.f3"), t("p5.f4"), t("p5.f5")],
-      missing: [],
-    },
-  ];
+  // Helper to compute discounted price
+  const getDisplayPrice = (plan: PricingPlan) => {
+    if (plan.price === 'Custom') return plan.price;
+    const numeric = parseInt(plan.price.replace(',', ''));
+    if (isAnnual) {
+      return Math.floor(numeric * 0.8).toLocaleString();
+    }
+    return plan.price;
+  };
 
   return (
     <section id="pricing" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
-      {/* Immersive Background Glows */}
+      {/* Background Glows */}
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-accent/10 blur-[150px] rounded-full pointer-events-none" />
-      
-      {/* Subtle Grid Overlay */}
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02] mix-blend-overlay pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -87,7 +55,7 @@ export default function Pricing() {
           </motion.p>
         </div>
 
-        {/* Animated Billing Toggle */}
+        {/* Billing Toggle */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +66,9 @@ export default function Pricing() {
           <div className="relative flex items-center p-1.5 bg-surface/50 backdrop-blur-xl rounded-full border border-white/10 shadow-inner">
             <button
               onClick={() => setIsAnnual(false)}
-              className={`relative z-10 px-8 py-3 rounded-full text-sm font-bold transition-colors duration-300 ${!isAnnual ? 'text-white' : 'text-text-muted hover:text-text-primary'}`}
+              className={`relative z-10 px-8 py-3 rounded-full text-sm font-bold transition-colors duration-300 cursor-pointer ${
+                !isAnnual ? 'text-white' : 'text-text-muted hover:text-text-primary'
+              }`}
             >
               {!isAnnual && (
                 <motion.div layoutId="billingToggle" className="absolute inset-0 bg-primary rounded-full shadow-[0_0_15px_rgba(22,131,199,0.5)] -z-10" />
@@ -107,7 +77,9 @@ export default function Pricing() {
             </button>
             <button
               onClick={() => setIsAnnual(true)}
-              className={`relative z-10 px-8 py-3 rounded-full text-sm font-bold transition-colors duration-300 ${isAnnual ? 'text-white' : 'text-text-muted hover:text-text-primary'}`}
+              className={`relative z-10 px-8 py-3 rounded-full text-sm font-bold transition-colors duration-300 cursor-pointer ${
+                isAnnual ? 'text-white' : 'text-text-muted hover:text-text-primary'
+              }`}
             >
               {isAnnual && (
                 <motion.div layoutId="billingToggle" className="absolute inset-0 bg-primary rounded-full shadow-[0_0_15px_rgba(22,131,199,0.5)] -z-10" />
@@ -121,15 +93,12 @@ export default function Pricing() {
           </div>
         </motion.div>
 
-        {/* Main Plans (3 Cards) */}
+        {/* Main Plans */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto mb-16 sm:mb-20 items-center">
-          {mainPlans.map((plan, i) => {
+          {plans.map((plan, i) => {
             const isCustom = plan.price === 'Custom';
-            let displayPrice = plan.price;
-            if (isAnnual && !isCustom) {
-              const numeric = parseInt(plan.price.replace(',', ''));
-              displayPrice = Math.floor(numeric * 0.8).toLocaleString();
-            }
+            const displayPrice = getDisplayPrice(plan);
+            const originalPrice = isCustom ? null : parseInt(plan.price.replace(',', ''));
 
             return (
               <motion.div
@@ -142,7 +111,6 @@ export default function Pricing() {
                   plan.popular ? 'lg:-translate-y-6 z-20 lg:scale-105' : 'hover:-translate-y-2 z-10'
                 }`}
               >
-                {/* Internal subtle highlight */}
                 <div className="absolute inset-0 rounded-3xl md:rounded-[2.5rem] border border-white/5 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
 
                 {plan.popular && (
@@ -151,18 +119,18 @@ export default function Pricing() {
                   </div>
                 )}
                 
-                <div className="mb-8 relative z-10">
-                  <h3 className="text-2xl font-bold text-text-primary mb-2">{plan.name}</h3>
-                  <p className="text-text-secondary text-sm mb-6 min-h-[40px] leading-relaxed">{plan.description}</p>
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-text-primary">{plan.name}</h3>
+                  <p className="text-text-secondary text-sm min-h-[40px] leading-relaxed">{plan.description}</p>
                   
-                  <div className="flex items-end gap-2 mb-2">
+                  <div className="flex items-end gap-2 mt-4">
                     <span className={`font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-white/70 ${isCustom ? 'text-3xl sm:text-4xl' : 'text-5xl sm:text-6xl tracking-tighter'}`}>
                       {displayPrice}
                     </span>
                     {!isCustom && (
                       <div className="flex flex-col pb-2">
-                        {isAnnual && (
-                          <span className="text-xs text-text-muted line-through mb-0.5">{plan.price}</span>
+                        {isAnnual && originalPrice && (
+                          <span className="text-xs text-text-muted line-through mb-0.5">{originalPrice.toLocaleString()}</span>
                         )}
                         <span className="text-text-muted text-sm font-medium">{plan.priceNote}</span>
                       </div>
@@ -195,7 +163,7 @@ export default function Pricing() {
 
                 <Link href="#demo" passHref className="w-full mt-auto relative z-10">
                   <button 
-                    className={`w-full py-4 rounded-2xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 group ${
+                    className={`w-full py-4 rounded-2xl font-bold text-base transition-all duration-300 flex items-center justify-center gap-2 group cursor-pointer ${
                       plan.popular 
                         ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-[0_10px_20px_-10px_rgba(22,131,199,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(22,131,199,0.8)] hover:-translate-y-1' 
                         : 'bg-surface/50 hover:bg-white/10 text-text-primary border border-white/10 hover:border-white/30 backdrop-blur-md'
@@ -210,7 +178,7 @@ export default function Pricing() {
           })}
         </div>
 
-        {/* Ultra-Premium Free Plan Banner */}
+        {/* Free Plan Banner */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -218,42 +186,46 @@ export default function Pricing() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="max-w-5xl mx-auto"
         >
-          <div className="relative bg-gradient-to-r from-surface/80 to-surface/40 backdrop-blur-xl border border-white/10 rounded-3xl md:rounded-[2.5rem] p-5 sm:p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-10 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden group">
+          <div className="relative bg-gradient-to-r from-surface/80 to-surface/40 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2.5rem] p-4 sm:p-6 md:p-12 flex flex-col md:flex-row items-center justify-between gap-4 sm:gap-6 md:gap-8 hover:border-white/20 transition-all duration-500 shadow-2xl overflow-hidden group">
             
-            {/* Animated Background Highlight inside banner */}
+            {/* Shine effect – unchanged */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/5 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             
+            {/* Left content */}
             <div className="flex-1 relative z-10">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-white text-xs font-bold mb-6 uppercase tracking-widest shadow-inner">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 border border-white/10 text-white text-[10px] sm:text-xs font-bold mb-4 sm:mb-6 uppercase tracking-widest shadow-inner">
                 <Sparkles size={14} className="text-primary" />
                 {t("pf.name")}
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-4">
+              <h3 className="text-xl sm:text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-3 sm:mb-4">
                 {language === 'ar' ? 'هل تبحث عن منيو إلكتروني فقط؟' : 'Just looking for a Digital Menu?'}
               </h3>
-              <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl leading-relaxed">
+              <p className="text-text-secondary text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl leading-relaxed">
                 {t("pf.desc")} {language === 'ar' ? 'ابدأ مجاناً بخطوات بسيطة واعرض منتجاتك لعملائك بطريقة عصرية تليق بعلامتك التجارية.' : 'Start for free in simple steps and showcase your products modernly.'}
               </p>
               
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6">
                 {[t("pf.f1"), t("pf.f2")].map((feat, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-sm text-text-primary/90 font-bold bg-white/5 px-4 py-2 rounded-full border border-white/5 backdrop-blur-md">
-                    <Check size={16} className="text-success" />
+                  <div key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-text-primary/90 font-bold bg-white/5 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-white/5 backdrop-blur-md">
+                    <Check size={16} className="text-success shrink-0" />
                     {feat}
                   </div>
                 ))}
               </div>
             </div>
             
+            {/* Right block (price + CTA) */}
             <div className="flex flex-col items-center gap-4 shrink-0 w-full md:w-auto mt-4 md:mt-0 relative z-10">
               <div className="text-center">
-                <span className="block text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 drop-shadow-lg">{t("plan.free")}</span>
-                <span className="block text-sm text-text-muted mt-2 max-w-[200px] mx-auto">
+                <span className="block text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 drop-shadow-lg">
+                  {t("plan.free")}
+                </span>
+                <span className="block text-xs sm:text-sm text-text-muted mt-1 sm:mt-2 max-w-[200px] mx-auto">
                   {language === 'ar' ? 'مدى الحياة، متضمن إعلانات بسيطة' : 'Free forever, includes basic ads'}
                 </span>
               </div>
-              <Link href="#demo" passHref className="w-full">
-                <button className="w-full md:w-auto px-10 py-4 rounded-2xl bg-white text-black font-extrabold text-base hover:bg-gray-200 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]">
+              <Link href="#demo" passHref className="w-full md:w-auto">
+                <button className="w-full md:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl sm:rounded-2xl md:rounded-2xl bg-white text-black font-extrabold text-sm sm:text-base md:text-base hover:bg-gray-200 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] cursor-pointer">
                   {language === 'ar' ? 'ابدأ مجاناً الآن' : 'Start for Free Now'}
                 </button>
               </Link>

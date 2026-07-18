@@ -1,66 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock, Sparkles, Rocket } from "lucide-react";
+import { Sparkles, Rocket } from "lucide-react";
 import { useLanguage } from "@/components/LanguageProvider";
+import { getRoadmapPhases, type RoadmapPhase, getPhaseStyles } from "@/data/roadmap";
+
 
 export default function Roadmap() {
   const { t } = useLanguage();
-
-  const phases = [
-    {
-      id: "q1",
-      status: "current",
-      icon: CheckCircle2,
-      title: t("rm.q1.title"),
-      desc: t("rm.q1.desc"),
-      color: "from-primary/20 to-primary/5",
-      borderColor: "border-primary/30",
-      iconColor: "text-primary",
-      glow: "shadow-[0_0_30px_rgba(22,131,199,0.15)]",
-      dot: "bg-primary border-primary/30 shadow-[0_0_15px_rgba(22,131,199,0.5)]",
-    },
-    {
-      id: "q2",
-      status: "next",
-      icon: Rocket,
-      title: t("rm.q2.title"),
-      desc: t("rm.q2.desc"),
-      color: "from-secondary/20 to-secondary/5",
-      borderColor: "border-secondary/30",
-      iconColor: "text-secondary",
-      glow: "shadow-[0_0_30px_rgba(15,118,110,0.15)]",
-      dot: "bg-secondary border-secondary/30 shadow-[0_0_15px_rgba(15,118,110,0.5)]",
-    },
-    {
-      id: "q3",
-      status: "future",
-      icon: Clock,
-      title: t("rm.q3.title"),
-      desc: t("rm.q3.desc"),
-      color: "from-surface/80 to-surface/40",
-      borderColor: "border-white/5",
-      iconColor: "text-text-muted",
-      glow: "shadow-lg",
-      dot: "bg-surface border-white/10",
-    },
-    {
-      id: "q4",
-      status: "future",
-      icon: Sparkles,
-      title: t("rm.q4.title"),
-      desc: t("rm.q4.desc"),
-      color: "from-surface/80 to-surface/40",
-      borderColor: "border-white/5",
-      iconColor: "text-text-muted",
-      glow: "shadow-lg",
-      dot: "bg-surface border-white/10",
-    },
-  ];
+  const phases = getRoadmapPhases(t);
 
   return (
     <section id="roadmap" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
-      {/* Immersive Background Glow */}
+      {/* Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-[600px] bg-gradient-to-b from-primary/10 via-transparent to-transparent blur-[100px] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -90,8 +42,8 @@ export default function Roadmap() {
         </div>
 
         <div className="relative max-w-5xl mx-auto">
-          {/* Illuminated Vertical Track */}
-          <div className="absolute top-0 bottom-0 left-10 md:left-1/2 w-1 -translate-x-1/2 rounded-full bg-surface border-x border-white/5">
+          {/* Vertical Timeline Track – left on mobile, centered on tablet+ */}
+          <div className="absolute top-0 bottom-0 left-6 sm:left-8 md:left-1/2 w-1 -translate-x-1/2 rounded-full bg-surface border-x border-white/5">
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary via-secondary to-transparent blur-[2px]" />
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary via-secondary to-transparent" />
           </div>
@@ -99,6 +51,9 @@ export default function Roadmap() {
           <div className="space-y-10 sm:space-y-16">
             {phases.map((phase, i) => {
               const Icon = phase.icon;
+              const styles = getPhaseStyles(phase.status);
+              const isEven = i % 2 === 0;
+
               return (
                 <motion.div 
                   key={phase.id}
@@ -107,32 +62,32 @@ export default function Roadmap() {
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, delay: i * 0.1, type: "spring", bounce: 0.3 }}
                   className={`relative flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-20 group ${
-                    i % 2 === 0 ? "md:flex-row-reverse" : ""
+                    isEven ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  {/* Glowing Timeline Dot */}
-                  <div className={`absolute left-10 md:left-1/2 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-4 -translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-150 ${phase.dot}`}>
-                    {phase.status === 'current' && (
+                  {/* Timeline Dot – left on mobile, centered on tablet+ */}
+                  <div className={`absolute left-6 sm:left-8 md:left-1/2 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-4 -translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-150 ${styles.dot}`}>
+                    {styles.dotPing && (
                       <div className="absolute inset-0 rounded-full animate-ping bg-primary opacity-50" />
                     )}
                   </div>
 
-                  {/* Glassmorphic Content Card */}
-                  <div className={`flex-1 w-full md:w-1/2 pl-24 md:pl-0 ${
-                    i % 2 === 0 ? "md:pr-20 text-start md:text-end" : "md:pl-20 text-start"
+                  {/* Glassmorphic Card – full width on mobile, half on tablet+ */}
+                  <div className={`flex-1 w-full md:w-1/2 pl-12 sm:pl-16 md:pl-0 text-start ${
+                    isEven ? "md:pr-20 md:text-end" : "md:pl-20"
                   }`}>
-                    <div className={`relative p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] backdrop-blur-xl bg-gradient-to-br ${phase.color} border ${phase.borderColor} ${phase.glow} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl`}>
+                    <div className={`relative p-5 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] backdrop-blur-xl bg-gradient-to-br ${styles.color} border ${styles.borderColor} ${styles.glow} transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl`}>
                       
-                      {/* Subtle Internal Highlight */}
                       <div className="absolute inset-0 rounded-[2rem] border border-white/10 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
                       
-                      <div className={`relative z-10 flex items-center gap-5 mb-5 ${i % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
-                        <div className={`w-14 h-14 rounded-2xl bg-card border border-white/5 shadow-inner flex items-center justify-center flex-shrink-0 ${phase.iconColor}`}>
+                      {/* Icon + Title – always left on mobile, reversed on even desktop */}
+                      <div className={`relative z-10 flex items-center gap-5 mb-5 ${isEven ? "md:flex-row-reverse" : ""}`}>
+                        <div className={`w-14 h-14 rounded-2xl bg-card border border-white/5 shadow-inner flex items-center justify-center flex-shrink-0 ${styles.iconColor}`}>
                           <Icon size={28} strokeWidth={2} />
                         </div>
                         <div>
-                          <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${phase.status === 'current' ? 'text-primary' : phase.status === 'next' ? 'text-secondary' : 'text-text-muted'}`}>
-                            {phase.status === 'current' ? 'In Progress' : phase.status === 'next' ? 'Up Next' : 'Planned'}
+                          <div className={`text-xs font-bold uppercase tracking-widest mb-1 ${styles.labelColor}`}>
+                            {styles.statusLabel}
                           </div>
                           <h3 className="text-xl sm:text-2xl font-bold text-text-primary">{phase.title}</h3>
                         </div>
@@ -144,7 +99,7 @@ export default function Roadmap() {
                     </div>
                   </div>
 
-                  {/* Empty Space for alternate layout */}
+                  {/* Empty spacer for alternating layout on desktop */}
                   <div className="hidden md:block flex-1"></div>
 
                 </motion.div>

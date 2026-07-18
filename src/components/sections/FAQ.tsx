@@ -48,16 +48,17 @@ export default function FAQ() {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-6"
           >
-            {t("faq.title1")} <span className="text-gradient bg-accent-gradient">{t("faq.title2")}</span>
+            {t("faq.title1")}{" "}
+            <span className="text-gradient bg-accent-gradient">{t("faq.title2")}</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -84,16 +85,19 @@ export default function FAQ() {
                   setActiveCategory(cat.id);
                   setOpenIndex(0); // open first question of new category
                 }}
-                className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm transition-all duration-300 ${
-                  isActive 
-                    ? 'bg-primary text-white shadow-[0_0_20px_rgba(22,131,199,0.3)] border-transparent scale-105' 
-                    : 'bg-surface/50 text-text-muted hover:text-text-primary border border-border/50 hover:border-border hover:bg-surface'
+                className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? "bg-primary text-white shadow-[0_0_20px_rgba(22,131,199,0.3)] border-transparent scale-105"
+                    : "bg-surface/50 text-text-muted hover:text-text-primary border border-border/50 hover:border-border hover:bg-surface"
                 }`}
               >
-                <Icon size={18} className={isActive ? "text-white" : "text-text-muted"} />
+                <Icon
+                  size={18}
+                  className={isActive ? "text-white" : "text-text-muted"}
+                />
                 {cat.title}
               </motion.button>
-            )
+            );
           })}
         </div>
 
@@ -117,23 +121,33 @@ export default function FAQ() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
-                      isOpen 
-                        ? 'border-primary/40 bg-surface shadow-[0_0_30px_rgba(22,131,199,0.1)] sm:scale-[1.02] z-10 relative' 
-                        : 'border-border/50 bg-surface/50 hover:border-border hover:bg-surface'
+                      isOpen
+                        ? "border-primary/40 bg-surface shadow-[0_0_30px_rgba(22,131,199,0.1)] sm:scale-[1.02] z-10 relative"
+                        : "border-border/50 bg-surface/50 hover:border-border hover:bg-surface"
                     }`}
                   >
                     <button
-                      className="w-full px-4 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-start outline-none"
+                      className="w-full px-4 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-start outline-none cursor-pointer"
                       onClick={() => toggleOpen(index)}
                     >
-                      <span className={`font-bold text-base sm:text-lg pr-4 transition-colors ${isOpen ? 'text-primary' : 'text-text-primary'}`}>
+                      <span
+                        className={`font-bold text-base sm:text-lg pr-4 transition-colors ${
+                          isOpen ? "text-primary" : "text-text-primary"
+                        }`}
+                      >
                         {faq.q}
                       </span>
-                      <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${isOpen ? 'bg-primary/10 text-primary rotate-180' : 'bg-transparent text-text-muted'}`}>
+                      <div
+                        className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${
+                          isOpen
+                            ? "bg-primary/10 text-primary rotate-180"
+                            : "bg-transparent text-text-muted"
+                        }`}
+                      >
                         <ChevronDown size={20} />
                       </div>
                     </button>
-                    
+
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
