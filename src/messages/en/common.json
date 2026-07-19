@@ -371,31 +371,79 @@
   "usage": {
     "title": "Acceptable Use Policy",
     "lastUpdated": "Last Updated: July 2026",
-    "desc": "This Acceptable Use Policy outlines the rules and guidelines for using Mot7km services.",
+    "desc": "This Acceptable Use Policy (\"AUP\") explains the rules and standards for using Mot7km and all related services, applications, websites, APIs, and software provided by Mot7km. By using Mot7km, you agree to comply with this policy.",
     "sections": {
       "s1": {
-        "title": "1. Allowed Use",
-        "content": "You may use Mot7km services strictly for lawful business purposes, including managing your restaurant operations, processing customer orders, and displaying digital menus. You must adhere to all applicable laws and regulations."
+        "title": "1. Purpose",
+        "content": "This Acceptable Use Policy (\"AUP\") explains the rules and standards for using Mot7km and all related services, applications, websites, APIs, and software provided by Mot7km. By using Mot7km, you agree to comply with this policy."
       },
       "s2": {
-        "title": "2. Prohibited Activities",
-        "content": "You are strictly prohibited from using the platform to conduct illegal transactions, distribute malware, spam customers, reverse-engineer our software, or engage in any activity that disrupts the integrity and performance of Mot7km."
+        "title": "2. Lawful Use Only",
+        "content": "You may use Mot7km only for lawful business purposes. Users must comply with all applicable local, national, and international laws, regulations, and industry requirements. You are solely responsible for ensuring that your use of Mot7km complies with laws applicable to your business and jurisdiction."
       },
       "s3": {
-        "title": "3. Content Guidelines",
-        "content": "All content you upload, such as menu images and descriptions, must be accurate and legally owned by you. You may not upload content that is offensive, discriminatory, defamatory, or infringes on third-party intellectual property rights."
+        "title": "3. Content Responsibility",
+        "content": "Business owners are fully responsible for all content uploaded, published, or shared through Mot7km including: Product information, Menu descriptions, Images, Prices, Customer communications, Reviews and responses, Business information, and Promotional content. Mot7km does not verify, endorse, or guarantee the accuracy of user-generated content."
       },
       "s4": {
-        "title": "4. Security Rules",
-        "content": "You must not attempt to bypass security measures, access data belonging to other users, or perform vulnerability scanning on Mot7km systems. You are responsible for keeping your login credentials secure and restricting unauthorized access to your account."
+        "title": "4. Prohibited Content",
+        "content": "Users may not upload, publish, distribute, or display content that: Is illegal, Is fraudulent or deceptive, Promotes criminal activities, Violates intellectual property rights, Contains malware or malicious code, Contains harmful or dangerous materials, Infringes privacy rights, Violates consumer protection laws, or Attempts to mislead customers."
       },
       "s5": {
-        "title": "5. Enforcement Actions",
-        "content": "Mot7km reserves the right to investigate any violations of this policy. We may take appropriate enforcement actions, including temporary suspension, permanent termination of your account, or reporting to law enforcement authorities without prior notice."
+        "title": "5. Intellectual Property",
+        "content": "Users may only upload content they: Own, Have permission to use, or Have legal rights to distribute. Mot7km may remove content upon receiving legitimate copyright or ownership complaints."
       },
       "s6": {
-        "title": "6. Reporting Violations",
-        "content": "If you become aware of any violation of this Acceptable Use Policy by any user, you must immediately report it to our security team at security@mot7km.com."
+        "title": "6. No Unauthorized Access",
+        "content": "Users may not: Attempt to gain unauthorized access, Bypass security controls, Exploit vulnerabilities, Access accounts belonging to others, Reverse engineer protected systems, or Test platform security without authorization."
+      },
+      "s7": {
+        "title": "7. Service Abuse",
+        "content": "Users may not: Interfere with platform operations, Overload servers intentionally, Perform denial-of-service activities, Automate abusive traffic, Circumvent platform limitations, or Use the platform in a manner that impacts other customers."
+      },
+      "s8": {
+        "title": "8. Fraudulent Activities",
+        "content": "The following activities are prohibited: Identity impersonation, Fake businesses, Fake customer reviews, Misleading advertising, Payment fraud, Subscription abuse, Account sharing intended to bypass licensing restrictions."
+      },
+      "s9": {
+        "title": "9. User Accounts",
+        "content": "Account holders are responsible for: Maintaining password confidentiality, Managing team access, Monitoring account activity, and Ensuring authorized use of their account. Mot7km is not responsible for unauthorized access caused by user negligence."
+      },
+      "s10": {
+        "title": "10. Reviews & Customer Feedback",
+        "content": "Users may not: Manipulate review systems, Submit fake reviews, Purchase fake ratings, or Use automated tools to generate feedback. Mot7km reserves the right to moderate content that violates platform policies."
+      },
+      "s11": {
+        "title": "11. Restaurant & Business Compliance",
+        "content": "Businesses using Mot7km remain solely responsible for: Food safety compliance, Pricing accuracy, Product availability, Consumer disclosures, Taxes, Employment compliance, Regulatory approvals, and Required business licenses. Mot7km does not operate, manage, or supervise customer businesses."
+      },
+      "s12": {
+        "title": "12. Third-Party Services",
+        "content": "Users may not misuse integrations with: Payment gateways, Messaging services, Notification providers, or External APIs. All third-party services remain subject to their own terms and policies."
+      },
+      "s13": {
+        "title": "13. Data Usage",
+        "content": "Users may not: Collect customer data unlawfully, Sell customer data without authorization, Harvest information from the platform, or Use Mot7km to conduct privacy violations. Users must comply with all applicable privacy regulations."
+      },
+      "s14": {
+        "title": "14. Platform Security",
+        "content": "Users may not upload: Viruses, Trojans, Spyware, Ransomware, Malicious scripts, or Harmful automated software. Mot7km may immediately suspend accounts posing security risks."
+      },
+      "s15": {
+        "title": "15. Enforcement",
+        "content": "Mot7km may investigate suspected violations and take actions including: Content removal, Feature restrictions, Temporary suspension, Permanent account termination, or Reporting unlawful activities to authorities where legally required."
+      },
+      "s16": {
+        "title": "16. No Liability for User Content",
+        "content": "Mot7km acts solely as a technology platform. Mot7km is not responsible for: Business decisions made by users, Customer disputes, Food quality, Service quality, Pricing disputes, Employee disputes, Regulatory violations committed by users, or User-generated content. Each business remains solely responsible for its operations and activities."
+      },
+      "s17": {
+        "title": "17. Reporting Violations",
+        "content": "If you believe a user is violating this policy, contact: Email: legal@mot7km.store or Email: support@mot7km.store"
+      },
+      "s18": {
+        "title": "18. Changes to This Policy",
+        "content": "Mot7km may update this Acceptable Use Policy from time to time. Continued use of the platform after changes become effective constitutes acceptance of the updated policy."
       }
     }
   }

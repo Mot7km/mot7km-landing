@@ -9,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 export default function AcceptableUsePolicy() {
   const { t } = useTranslation();
 
-  const sections = Array.from({ length: 6 }, (_, i) => ({
+  const sections = Array.from({ length: 18 }, (_, i) => ({
     title: t(`usage.sections.s${i + 1}.title`),
     content: t(`usage.sections.s${i + 1}.content`),
   }));
