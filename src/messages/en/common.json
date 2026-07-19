@@ -546,7 +546,7 @@
     },
     "stats": {
       "offline": { "value": "100%", "label": "Offline POS Resilience" },
-      "qr": { "value": "0", "label": "App Installs Needed" },
+      "qr": { "value": "4+", "label": "Connected Platforms" },
       "sync": { "value": "Real-time", "label": "Data Synchronization" },
       "platform": { "value": "All-in-One", "label": "SaaS Platform" }
     },

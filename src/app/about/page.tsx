@@ -90,11 +90,15 @@ export default function AboutUs() {
             className="bg-black/90 dark:bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10 opacity-50" />
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 relative z-10 divide-x divide-white/10 rtl:divide-x-reverse">
+            <div className="grid grid-cols-2 md:flex md:flex-row md:justify-between md:items-center relative z-10 gap-y-8 md:gap-0">
               {['offline', 'qr', 'sync', 'platform'].map((stat, i) => (
-                <div key={stat} className="flex flex-col items-center text-center px-4">
+                <div key={stat} className="flex flex-col items-center justify-center text-center px-4 w-full relative">
+                  {/* Explicit separator for desktop to fix RTL divide-x bug */}
+                  {i !== 0 && (
+                    <div className="hidden md:block absolute top-1/2 -translate-y-1/2 left-0 rtl:left-auto rtl:right-0 w-px h-20 bg-white/10" />
+                  )}
                   <div className="text-4xl md:text-5xl font-black text-white mb-2">{t(`about.stats.${stat}.value`)}</div>
-                  <div className="text-sm md:text-base text-white/60 font-medium uppercase tracking-wider">{t(`about.stats.${stat}.label`)}</div>
+                  <div className="text-sm md:text-base text-white/60 font-medium uppercase tracking-wider max-w-[200px] leading-snug">{t(`about.stats.${stat}.label`)}</div>
                 </div>
               ))}
             </div>
