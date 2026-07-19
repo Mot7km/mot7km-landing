@@ -307,10 +307,24 @@
     "title2": "to Your Most Important Business Questions"
   },
   "value": {
-    "badge": "Data‑Driven Insights",
-    "desc": "Turn your traditional business management into a modern, data‑driven process. Mot7km answers your real‑time questions with pinpoint accuracy.",
-    "title1": "Instant Answers",
-    "title2": "to Your Most Important Business Questions"
+    "badge": "Our Core Principles",
+    "desc": "Built from the ground up to solve the real operational challenges of the F&B industry. Mot7km guarantees speed, reliability, and total control.",
+    "title1": "Engineered for",
+    "title2": "Extreme Reliability",
+    "points": {
+      "p1": {
+        "title": "Offline-First Resilience",
+        "desc": "Internet down? No problem. The POS queues your orders safely and syncs automatically when the connection returns."
+      },
+      "p2": {
+        "title": "Single Source of Truth",
+        "desc": "Manage branches, menus, employees, and deep financial analytics from one centralized cloud dashboard."
+      },
+      "p3": {
+        "title": "Frictionless QR Menu",
+        "desc": "No app installs. Customers scan a QR code to browse an interactive menu, see images, and leave feedback instantly."
+      }
+    }
   },
   "notFound": {
     "title": "Oops! Page not found",

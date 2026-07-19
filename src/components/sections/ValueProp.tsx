@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingUp, PieChart, Users, LineChart, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function ValueProp() {
@@ -52,89 +52,65 @@ export default function ValueProp() {
             className="flex-1 relative w-full perspective-[1000px]"
           >
             {/* Glass Panel - responsive sizing */}
-            <div className="relative w-full aspect-square sm:aspect-[4/3] bg-surface/40 backdrop-blur-2xl rounded-2xl sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/10 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 overflow-hidden transform-style-3d">
+            <div className="relative w-full bg-surface/40 backdrop-blur-2xl rounded-2xl sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/10 p-4 sm:p-6 md:p-8 flex flex-col gap-4 sm:gap-6 overflow-hidden transform-style-3d min-h-[400px]">
               
               {/* Internal Glow - adjusted sizes */}
               <div className="absolute -top-20 sm:-top-32 -right-20 sm:-right-32 w-40 sm:w-64 h-40 sm:h-64 bg-primary/30 blur-[40px] sm:blur-[60px] rounded-full pointer-events-none" />
               <div className="absolute -bottom-20 sm:-bottom-32 -left-20 sm:-left-32 w-40 sm:w-64 h-40 sm:h-64 bg-accent/30 blur-[40px] sm:blur-[60px] rounded-full pointer-events-none" />
 
-              {/* Header Metric */}
-              <div className="relative z-10 flex items-center justify-between bg-card/60 backdrop-blur-md border border-white/5 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl shadow-sm">
-                <div>
-                  <h4 className="text-text-muted text-[10px] sm:text-xs md:text-sm font-bold mb-0.5 sm:mb-1 uppercase tracking-wider">
-                    {t("val.stat.sales")}
-                  </h4>
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-secondary">
-                    12,450
+              <div className="relative z-10 flex flex-col gap-4 h-full justify-center">
+                
+                {/* Point 1 */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="bg-card/60 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex items-start gap-4 hover:bg-card/80 transition-colors hover:border-primary/30 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary flex-shrink-0 shadow-[0_0_15px_rgba(22,131,199,0.3)] group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 8a16.36 16.36 0 0 0-4.32-3.13"/><path d="M18.88 4.88a16.36 16.36 0 0 0-13.76 0"/><path d="M2.12 8a16.36 16.36 0 0 0 4.32 3.13"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
                   </div>
-                </div>
-                <div className="px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-lg sm:rounded-xl bg-success/10 border border-success/20 text-success text-xs sm:text-sm font-bold flex items-center gap-1 sm:gap-2 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                  <TrendingUp size={16} className="w-4 h-4 sm:w-[18px] sm:h-[18px]" strokeWidth={2.5} />
-                  +14.5%
-                </div>
-              </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors">{t("value.points.p1.title")}</h4>
+                    <p className="text-text-secondary text-sm leading-relaxed">{t("value.points.p1.desc")}</p>
+                  </div>
+                </motion.div>
 
-              {/* Abstract Animated Bar Chart - responsive spacing */}
-              <div className="relative z-10 flex-1 flex items-end justify-between gap-2 sm:gap-3 mt-2 sm:mt-4">
-                {[40, 60, 30, 80, 50, 100, 70].map((height, i) => (
-                  <div
-                    key={i}
-                    className="w-full flex flex-col justify-end items-center gap-1 sm:gap-2 h-full group"
-                  >
-                    <motion.div
-                      initial={{ height: 0 }}
-                      whileInView={{ height: `${height}%` }}
-                      viewport={{ once: true }}
-                      transition={{
-                        duration: 1.2,
-                        delay: i * 0.1,
-                        type: "spring",
-                        bounce: 0.4,
-                      }}
-                      className={`w-full rounded-t-md sm:rounded-t-xl transition-all duration-300 relative overflow-hidden ${
-                        i === 5
-                          ? "bg-gradient-to-t from-primary/80 to-primary shadow-[0_0_20px_rgba(22,131,199,0.4)]"
-                          : "bg-primary/20 group-hover:bg-primary/40"
-                      }`}
-                    >
-                      {i === 5 && (
-                        <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent opacity-50" />
-                      )}
-                    </motion.div>
+                {/* Point 2 */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="bg-card/60 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex items-start gap-4 hover:bg-card/80 transition-colors hover:border-secondary/30 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-secondary/20 border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0 shadow-[0_0_15px_rgba(15,118,110,0.3)] group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-secondary transition-colors">{t("value.points.p2.title")}</h4>
+                    <p className="text-text-secondary text-sm leading-relaxed">{t("value.points.p2.desc")}</p>
+                  </div>
+                </motion.div>
 
-              {/* Bottom Bento Boxes - responsive grid */}
-              <div className="relative z-10 grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 mt-1 sm:mt-2">
-                <div className="bg-card/60 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 flex items-center gap-3 sm:gap-4 hover:bg-card/80 transition-colors">
-                  <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0">
-                    <div className="absolute inset-0 rounded-full border-4 border-secondary/20" />
-                    <div className="absolute inset-0 rounded-full border-4 border-secondary border-r-transparent animate-spin-slow shadow-[0_0_10px_rgba(15,118,110,0.5)]" />
+                {/* Point 3 */}
+                <motion.div 
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 }}
+                  className="bg-card/60 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex items-start gap-4 hover:bg-card/80 transition-colors hover:border-success/30 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-success/20 border border-success/30 flex items-center justify-center text-success flex-shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)] group-hover:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
                   </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs font-bold text-text-muted uppercase tracking-wider">
-                      {t("val.stat.top")}
-                    </div>
-                    <div className="font-extrabold text-text-primary text-sm sm:text-base md:text-lg mt-0.5 truncate">
-                      {t("val.stat.topItem")}
-                    </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-success transition-colors">{t("value.points.p3.title")}</h4>
+                    <p className="text-text-secondary text-sm leading-relaxed">{t("value.points.p3.desc")}</p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="bg-card/60 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 flex items-center gap-3 sm:gap-4 hover:bg-card/80 transition-colors">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center text-accent flex-shrink-0 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                    <Users size={20} className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-[10px] sm:text-xs font-bold text-text-muted uppercase tracking-wider">
-                      {t("val.stat.customers")}
-                    </div>
-                    <div className="font-extrabold text-text-primary text-base sm:text-lg md:text-xl mt-0.5">
-                      142
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </motion.div>
