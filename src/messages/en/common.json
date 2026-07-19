@@ -293,5 +293,12 @@
     "desc": "Turn your traditional business management into a modern, data‑driven process. Mot7km answers your real‑time questions with pinpoint accuracy.",
     "title1": "Instant Answers",
     "title2": "to Your Most Important Business Questions"
+  },
+  "notFound": {
+    "title": "Oops! Page not found",
+    "description": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "goHome": "Go Home",
+    "contactSupport": "Contact Support",
+    "rights": "All rights reserved."
   }
 }
