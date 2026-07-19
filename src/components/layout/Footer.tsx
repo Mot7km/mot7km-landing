@@ -112,12 +112,16 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <h4 className="font-bold text-text-primary mb-6 text-lg">{t("footer.company")}</h4>
             <ul className="space-y-4">
-              {[t("footer.aboutUs"), t("footer.careers"), t("footer.blog")].map((link, i) => (
+              {[
+                { label: t("footer.aboutUs"), href: "/about" },
+                { label: t("footer.careers"), href: "#" },
+                { label: t("footer.blog"), href: "#" }
+              ].map((link, i) => (
                 <li key={i}>
-                  <a href="#" className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group font-medium">
+                  <Link href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group font-medium">
                     <span className="w-0 h-px bg-primary transition-all duration-300 group-hover:w-4" />
-                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{link}</span>
-                  </a>
+                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{link.label}</span>
+                  </Link>
                 </li>
               ))}
             </ul>

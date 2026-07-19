@@ -517,5 +517,74 @@
         "content": "For privacy-related questions or requests, contact: Mot7km Website: https://mot7km.store Email: privacy@mot7km.store Support: support@mot7km.store"
       }
     }
+  },
+  "about": {
+    "hero": {
+      "title": "About Mot7km",
+      "subtitle": "Smart Restaurant Control"
+    },
+    "story": {
+      "title": "Our Story",
+      "subtitle": "Why We Built Mot7km",
+      "content": "Restaurants and food businesses often struggle with fragmented systems, scattered data, and slow operations. We realized the industry needed a unified, seamless solution. That's why we built Mot7km—a multi-sided SaaS platform designed to centralize control, accelerate execution, and offer customers a frictionless experience without the hassle of downloading apps."
+    },
+    "mission": {
+      "title": "Mission",
+      "subtitle": "What Drives Us",
+      "content": "Our mission is to empower business owners with deep analytics and total control over their operations while giving their staff the fastest and most reliable tools to execute daily tasks."
+    },
+    "vision": {
+      "title": "Vision",
+      "subtitle": "Where We're Going",
+      "content": "We envision a world where every restaurant, café, and food business can operate at peak efficiency with zero friction. Mot7km aims to become the definitive operating system for the global F&B industry."
+    },
+    "whatWeDo": {
+      "title": "What We Do",
+      "subtitle": "Platform Capabilities",
+      "features": {
+        "owners": {
+          "title": "For Business Owners",
+          "desc": "A single source of truth. Centralized web dashboard for menus, products, reviews, sales, staff, branches, and deep analytics."
+        },
+        "managers": {
+          "title": "For Branch Managers",
+          "desc": "Lightweight mobile tools to monitor daily operations, shift statuses, and take rapid actions on the go."
+        },
+        "staff": {
+          "title": "For Cashiers & Staff",
+          "desc": "A highly reliable POS experience with offline resilience, plus simple mobile apps for attendance and tasks."
+        },
+        "customers": {
+          "title": "For Customers",
+          "desc": "A blazing-fast, app-less QR experience to browse interactive menus, view product details, and leave instant feedback."
+        }
+      }
+    },
+    "values": {
+      "title": "Core Values",
+      "items": {
+        "simplicity": {
+          "title": "Simplicity",
+          "desc": "Complex operations made intuitive and easy to use for everyone."
+        },
+        "reliability": {
+          "title": "Reliability",
+          "desc": "Systems that stay up, even when the internet goes down."
+        },
+        "innovation": {
+          "title": "Innovation",
+          "desc": "Constantly pushing the boundaries of what a modern POS can do."
+        },
+        "success": {
+          "title": "Customer Success",
+          "desc": "When your restaurant thrives, we succeed. We are built for your growth."
+        }
+      }
+    },
+    "cta": {
+      "title": "Ready to Transform Your Business?",
+      "primary": "Start Free Trial",
+      "secondary": "Contact Us"
+    }
   }
 }
