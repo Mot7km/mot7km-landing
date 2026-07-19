@@ -555,26 +555,31 @@
     "whatWeDo": {
       "title": "Platform Architecture",
       "subtitle": "Built for Every Stakeholder",
+      "learnMore": "Discover all features",
       "features": {
         "owners": {
           "title": "The Command Center",
           "badge": "Web Dashboard",
-          "desc": "A single source of truth. Manage branches, employees, deep financial analytics, and product catalogs from a centralized cloud interface."
+          "desc": "A single source of truth. Manage branches, employees, deep financial analytics, and product catalogs from a centralized cloud interface.",
+          "subFeatures": ["Menu Management", "Deep Analytics", "Branch Control", "Roles & Permissions"]
         },
         "managers": {
           "title": "On-the-Go Management",
           "badge": "Mobile App",
-          "desc": "Lightweight tools to monitor live shifts, track sales anomalies, and intervene immediately without needing a laptop."
+          "desc": "Lightweight tools to monitor live shifts, track sales anomalies, and intervene immediately without needing a laptop.",
+          "subFeatures": ["Live Shift Status", "Sales Tracking", "Quick Approvals"]
         },
         "staff": {
           "title": "Unbreakable Operations",
           "badge": "Desktop & Mobile",
-          "desc": "A highly reliable, offline-first POS experience that queues orders safely during internet outages, plus simple mobile apps for attendance."
+          "desc": "A highly reliable, offline-first POS experience that queues orders safely during internet outages, plus simple mobile apps for attendance.",
+          "subFeatures": ["Offline POS", "Auto-Sync", "Staff Attendance", "Receipt Printing"]
         },
         "customers": {
           "title": "Frictionless Browsing",
           "badge": "QR Menu",
-          "desc": "A blazing-fast web experience. Customers scan a QR code to instantly browse interactive menus and leave real-time feedback."
+          "desc": "A blazing-fast web experience. Customers scan a QR code to instantly browse interactive menus and leave real-time feedback.",
+          "subFeatures": ["No App Needed", "Instant Browse", "Live Feedback"]
         }
       }
     },

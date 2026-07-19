@@ -205,14 +205,27 @@ export default function AboutUs() {
               className="md:col-span-8 bg-surface/50 backdrop-blur-xl border border-black/5 dark:border-white/10 p-10 sm:p-12 rounded-[2.5rem] hover:bg-surface/80 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden flex flex-col justify-between"
             >
               <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all duration-700" />
-              <div className="relative z-10">
+              <div className="relative z-10 flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background border border-black/10 dark:border-white/10 text-xs font-bold text-text-secondary mb-8 shadow-sm">
                   <Store size={14} /> {t("about.whatWeDo.features.owners.badge")}
                 </div>
                 <h3 className="text-3xl sm:text-4xl font-black mb-6 text-text-primary">{t(`about.whatWeDo.features.owners.title`)}</h3>
-                <p className="text-lg text-text-secondary leading-relaxed max-w-lg">
+                <p className="text-lg text-text-secondary leading-relaxed max-w-lg mb-8">
                   {t(`about.whatWeDo.features.owners.desc`)}
                 </p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {Array.isArray(t("about.whatWeDo.features.owners.subFeatures", { returnObjects: true })) && (t("about.whatWeDo.features.owners.subFeatures", { returnObjects: true }) as string[]).map((feature, i) => (
+                    <span key={i} className="px-4 py-1.5 bg-background border border-black/5 dark:border-white/10 rounded-full text-xs font-bold text-text-primary shadow-sm hover:border-primary/30 transition-colors">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="relative z-10 mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <Link href="/features#owners" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors group/btn">
+                  {t("about.whatWeDo.learnMore")} 
+                  <ArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0 group-hover/btn:translate-x-1 rtl:group-hover/btn:-translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
 
@@ -224,14 +237,27 @@ export default function AboutUs() {
               transition={{ delay: 0.1 }}
               className="md:col-span-4 bg-gradient-to-br from-primary/10 to-accent/5 backdrop-blur-xl border border-black/5 dark:border-white/10 p-10 sm:p-12 rounded-[2.5rem] hover:border-primary/40 transition-all duration-500 group flex flex-col justify-between"
             >
-              <div>
+              <div className="flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background border border-black/10 dark:border-white/10 text-xs font-bold text-primary mb-8 shadow-sm">
                   <Users size={14} /> {t("about.whatWeDo.features.customers.badge")}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black mb-6 text-text-primary">{t(`about.whatWeDo.features.customers.title`)}</h3>
-                <p className="text-base text-text-secondary leading-relaxed">
+                <p className="text-base text-text-secondary leading-relaxed mb-8">
                   {t(`about.whatWeDo.features.customers.desc`)}
                 </p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {Array.isArray(t("about.whatWeDo.features.customers.subFeatures", { returnObjects: true })) && (t("about.whatWeDo.features.customers.subFeatures", { returnObjects: true }) as string[]).map((feature, i) => (
+                    <span key={i} className="px-4 py-1.5 bg-background border border-black/5 dark:border-white/10 rounded-full text-xs font-bold text-text-primary shadow-sm hover:border-primary/30 transition-colors">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <Link href="/features#customers" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors group/btn">
+                  {t("about.whatWeDo.learnMore")} 
+                  <ArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0 group-hover/btn:translate-x-1 rtl:group-hover/btn:-translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
 
@@ -243,14 +269,27 @@ export default function AboutUs() {
               transition={{ delay: 0.2 }}
               className="md:col-span-5 bg-surface/50 backdrop-blur-xl border border-black/5 dark:border-white/10 p-10 sm:p-12 rounded-[2.5rem] hover:bg-surface/80 hover:border-primary/30 transition-all duration-500 group flex flex-col justify-between"
             >
-              <div>
+              <div className="flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background border border-black/10 dark:border-white/10 text-xs font-bold text-text-secondary mb-8 shadow-sm">
                   <Smartphone size={14} /> {t("about.whatWeDo.features.managers.badge")}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black mb-4 text-text-primary">{t(`about.whatWeDo.features.managers.title`)}</h3>
-                <p className="text-base text-text-secondary leading-relaxed">
+                <p className="text-base text-text-secondary leading-relaxed mb-8">
                   {t(`about.whatWeDo.features.managers.desc`)}
                 </p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {Array.isArray(t("about.whatWeDo.features.managers.subFeatures", { returnObjects: true })) && (t("about.whatWeDo.features.managers.subFeatures", { returnObjects: true }) as string[]).map((feature, i) => (
+                    <span key={i} className="px-4 py-1.5 bg-background border border-black/5 dark:border-white/10 rounded-full text-xs font-bold text-text-primary shadow-sm hover:border-primary/30 transition-colors">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <Link href="/features#managers" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors group/btn">
+                  {t("about.whatWeDo.learnMore")} 
+                  <ArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0 group-hover/btn:translate-x-1 rtl:group-hover/btn:-translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
 
@@ -263,14 +302,27 @@ export default function AboutUs() {
               className="md:col-span-7 bg-surface/50 backdrop-blur-xl border border-black/5 dark:border-white/10 p-10 sm:p-12 rounded-[2.5rem] hover:bg-surface/80 hover:border-primary/30 transition-all duration-500 group relative overflow-hidden flex flex-col justify-between"
             >
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 group-hover:bg-accent/20 transition-all duration-700" />
-              <div className="relative z-10">
+              <div className="relative z-10 flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-background border border-black/10 dark:border-white/10 text-xs font-bold text-text-secondary mb-8 shadow-sm">
                   <MonitorSmartphone size={14} /> {t("about.whatWeDo.features.staff.badge")}
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-black mb-4 text-text-primary">{t(`about.whatWeDo.features.staff.title`)}</h3>
-                <p className="text-base text-text-secondary leading-relaxed max-w-lg">
+                <p className="text-base text-text-secondary leading-relaxed max-w-lg mb-8">
                   {t(`about.whatWeDo.features.staff.desc`)}
                 </p>
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {Array.isArray(t("about.whatWeDo.features.staff.subFeatures", { returnObjects: true })) && (t("about.whatWeDo.features.staff.subFeatures", { returnObjects: true }) as string[]).map((feature, i) => (
+                    <span key={i} className="px-4 py-1.5 bg-background border border-black/5 dark:border-white/10 rounded-full text-xs font-bold text-text-primary shadow-sm hover:border-primary/30 transition-colors">
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="relative z-10 mt-auto pt-6 border-t border-black/5 dark:border-white/10">
+                <Link href="/features#staff" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors group/btn">
+                  {t("about.whatWeDo.learnMore")} 
+                  <ArrowLeft className="w-4 h-4 rotate-180 rtl:rotate-0 group-hover/btn:translate-x-1 rtl:group-hover/btn:-translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
           </div>
