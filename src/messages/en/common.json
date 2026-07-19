@@ -57,8 +57,8 @@
       "longDesc": "No need to be at the restaurant all the time. The manager app puts every detail in your hands: live sales, order cancellation alerts, and shift performance tracking directly from your phone.",
       "review": "The app saves me from being at the branches. I can see peak sales and who the best cashier is from anywhere.",
       "reviewer": "Khaled A. - Investor",
-      "short": "App",
-      "title": "Management Apps (Mobile)"
+      "short": "Execution",
+      "title": "Mobile App: Execution & Speed"
     },
     "pos": {
       "b1": "Offline‑first support",
@@ -68,8 +68,8 @@
       "longDesc": "A POS designed for speed and reliability. Works even in the worst internet conditions (Offline‑first), with a cashier‑friendly interface that prevents order errors and speeds up customer service.",
       "review": "The POS response is excellent – we no longer worry about internet outages; the system keeps everything and syncs automatically.",
       "reviewer": "Sara M. - Cafe Manager",
-      "short": "POS",
-      "title": "Point of Sale (POS)"
+      "short": "Reliability",
+      "title": "Desktop POS: Reliability & Ops"
     },
     "qr": {
       "b1": "High‑resolution images & pro design",
@@ -79,8 +79,8 @@
       "longDesc": "The digital menu is not just a food list – it's a smart sales tool. Showcase your dishes with appealing images, and drive customers to order more through smart suggestions and cross‑selling.",
       "review": "Our sales increased noticeably because customers now see dish images and easily add extras from their own phones.",
       "reviewer": "Mohamed A. - Lounge Owner",
-      "short": "Menu",
-      "title": "Digital Menu (QR)"
+      "short": "Frictionless",
+      "title": "QR Menu: Frictionless Browsing"
     },
     "web": {
       "b1": "Live detailed financial reports",
@@ -90,8 +90,8 @@
       "longDesc": "Full control of your revenue and expenses through a cloud dashboard with a modern design that highlights key metrics. Track branch sales, manage inventory and shifts precisely, and get detailed staff performance analysis with one click.",
       "review": "The dashboard saved us from chaos! With one click I see sales of all branches and make quick decisions based on accurate numbers.",
       "reviewer": "Ahmed K. - Restaurant Chain Founder",
-      "short": "Web",
-      "title": "Management Dashboard (Web)"
+      "short": "Thinking",
+      "title": "Web: Thinking & Control"
     }
   },
   "footer": {
@@ -118,15 +118,17 @@
     "usage": "Acceptable Use Policy"
   },
   "hero": {
-    "badge": "The Smartest System for Restaurants and Cafes",
+    "badge": "Smart Business Control",
     "cta1": "Start Your Free Trial",
-    "cta2": "See the System",
-    "desc": "A complete cloud‑based operating system (SaaS) designed specifically for cafes, restaurants, juice bars, and gaming lounges. Easily manage sales, branches, and staff.",
-    "stat1": "Comprehensive Dashboard",
-    "stat2": "Management Apps",
-    "title1": "Smart and Full",
-    "title2": "Control of Your Restaurant in One Place",
-    "trusted": "Trusted by over 100+ brands"
+    "cta2": "See the Ecosystem",
+    "desc": "A multi-sided SaaS platform designed to give business owners centralized control, managers fast operational tools, and customers a frictionless QR experience.",
+    "stat1": "Web Dashboard",
+    "stat2": "Mobile Apps",
+    "stat3": "Offline POS",
+    "stat4": "Smart QR Menu",
+    "title1": "Think & Control.",
+    "title2": "Execute & Speed.",
+    "trusted": "Trusted by over 100+ businesses"
   },
   "nav": {
     "demo": "Request a Demo",

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, MonitorPlay, Smartphone } from "lucide-react";
+import { ArrowLeft, ArrowRight, MonitorPlay, Smartphone, Store, QrCode } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 
@@ -114,6 +114,14 @@ export default function Hero() {
               <div className="flex items-center gap-2 bg-surface/30 backdrop-blur-sm px-4 py-2.5 rounded-xl border border-white/5 shadow-inner">
                 <Smartphone size={18} className="text-accent" />
                 <span>{t("hero.stat2")}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-surface/30 backdrop-blur-sm px-4 py-2.5 rounded-xl border border-white/5 shadow-inner">
+                <Store size={18} className="text-primary-light" />
+                <span>{t("hero.stat3")}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-surface/30 backdrop-blur-sm px-4 py-2.5 rounded-xl border border-white/5 shadow-inner">
+                <QrCode size={18} className="text-success" />
+                <span>{t("hero.stat4")}</span>
               </div>
             </motion.div>
           </div>
