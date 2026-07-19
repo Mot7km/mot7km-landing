@@ -15,8 +15,14 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Mot7km - Smart Business Control | تحكم ذكي بأعمالك",
-  description: "A comprehensive SaaS platform to digitize operations, monitor performance remotely, and elevate the customer experience for any modern business.",
+  title: "Mot7km (متحكم) - Smart Business Control | تحكم ذكي بأعمالك",
+  description: "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات والأعمال. A comprehensive SaaS platform to digitize operations, monitor performance, and elevate the customer experience.",
+  keywords: [
+    "متحكم", "Mot7km", "نظام مطاعم", "restaurant pos", "QR menu", "ERP", 
+    "نظام نقاط بيع", "إدارة المطاعم", "برنامج كاشير", "كاشير مطاعم", 
+    "منيو الكتروني", "نظام سحابي للمطاعم", "إدارة الكافيهات", 
+    "cloud pos", "digital menu", "restaurant management software"
+  ],
 };
 
 import SplashScreen from "@/components/layout/SplashScreen";
