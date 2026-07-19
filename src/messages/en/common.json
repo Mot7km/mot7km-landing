@@ -268,18 +268,22 @@
   "uc": {
     "cafe": {
       "desc": "Fast order entry, interactive digital menu, and inventory tracking.",
+      "roles": ["Owner", "Manager", "Cashier", "Barista", "Customer"],
       "title": "Cafes & Coffee Shops"
     },
     "gaming": {
       "desc": "Digital menu for direct table orders for an uninterrupted gaming experience.",
+      "roles": ["Owner", "Manager", "Customer"],
       "title": "Gaming Lounges"
     },
     "juice": {
       "desc": "Quick order screen and easy management of multiple add‑ons and flavours.",
+      "roles": ["Owner", "Cashier", "Customer"],
       "title": "Juice & Ice Cream Shops"
     },
     "restaurant": {
       "desc": "Table management, kitchen display system, and detailed shift & staff management.",
+      "roles": ["Owner", "Manager", "Cashier", "Chef", "Customer"],
       "title": "Restaurants"
     }
   },

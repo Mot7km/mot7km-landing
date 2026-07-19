@@ -159,10 +159,28 @@ export default function UseCases() {
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.5 }}
-                      className="text-base md:text-xl text-text-secondary leading-relaxed font-medium"
+                      className="text-base md:text-xl text-text-secondary leading-relaxed font-medium mb-6"
                     >
                       {cases[activeCase].desc}
                     </motion.p>
+                    
+                    {cases[activeCase].roles && cases[activeCase].roles.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                        className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-2"
+                      >
+                        {cases[activeCase].roles.map((role: string, i: number) => (
+                          <span
+                            key={i}
+                            className="px-3 py-1 rounded-full bg-surface/50 border border-white/10 text-xs font-semibold text-text-primary backdrop-blur-md shadow-sm"
+                          >
+                            {role}
+                          </span>
+                        ))}
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               </motion.div>
