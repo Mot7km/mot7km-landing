@@ -8,8 +8,7 @@ import Link from "next/link";
 import { getPricingPlans, type PricingPlan } from "@/data/pricing";
 
 export default function Pricing() {
-  const { t, i18n } = useTranslation();
-  const language = i18n.language;
+  const { t } = useTranslation();
   const [isAnnual, setIsAnnual] = useState(true);
   const plans = getPricingPlans(t);
 
@@ -34,7 +33,7 @@ export default function Pricing() {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/5 text-text-secondary text-sm font-bold mb-6 backdrop-blur-md shadow-lg">
             <Zap size={16} className="text-primary" />
-            <span>{language === 'ar' ? 'أسعار شفافة وبسيطة' : 'Simple, Transparent Pricing'}</span>
+            <span>{t("pricing.badge")}</span>
           </div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -74,7 +73,7 @@ export default function Pricing() {
               {!isAnnual && (
                 <motion.div layoutId="billingToggle" className="absolute inset-0 bg-primary rounded-full shadow-[0_0_15px_rgba(22,131,199,0.5)] -z-10" />
               )}
-              {language === 'ar' ? 'شهري' : 'Monthly'}
+              {t("pricing.monthly")}
             </button>
             <button
               onClick={() => setIsAnnual(true)}
@@ -85,12 +84,12 @@ export default function Pricing() {
               {isAnnual && (
                 <motion.div layoutId="billingToggle" className="absolute inset-0 bg-primary rounded-full shadow-[0_0_15px_rgba(22,131,199,0.5)] -z-10" />
               )}
-              {language === 'ar' ? 'سنوي' : 'Annually'}
+              {t("pricing.annually")}
             </button>
           </div>
           <div className="px-4 py-1.5 bg-gradient-to-r from-success/20 to-success/10 border border-success/30 text-success text-xs font-bold rounded-full flex items-center gap-1.5 shadow-[0_0_15px_rgba(34,197,94,0.2)] animate-pulse">
             <Sparkles size={14} />
-            {language === 'ar' ? 'وفر 20% سنوياً' : 'Save 20% Annually'}
+            {t("pricing.save")}
           </div>
         </motion.div>
 
@@ -199,10 +198,10 @@ export default function Pricing() {
                 {t("pf.name")}
               </div>
               <h3 className="text-xl sm:text-2xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-3 sm:mb-4">
-                {language === 'ar' ? 'هل تبحث عن منيو إلكتروني فقط؟' : 'Just looking for a Digital Menu?'}
+                {t("pf.heading")}
               </h3>
               <p className="text-text-secondary text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl leading-relaxed">
-                {t("pf.desc")} {language === 'ar' ? 'ابدأ مجاناً بخطوات بسيطة واعرض منتجاتك لعملائك بطريقة عصرية تليق بعلامتك التجارية.' : 'Start for free in simple steps and showcase your products modernly.'}
+                {t("pf.desc")}
               </p>
               
               <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6">
@@ -222,12 +221,12 @@ export default function Pricing() {
                   {t("plan.free")}
                 </span>
                 <span className="block text-xs sm:text-sm text-text-muted mt-1 sm:mt-2 max-w-[200px] mx-auto">
-                  {language === 'ar' ? 'مدى الحياة، متضمن إعلانات بسيطة' : 'Free forever, includes basic ads'}
+                  {t("pf.freeNote")}
                 </span>
               </div>
               <Link href="#demo" passHref className="w-full md:w-auto">
                 <button className="w-full md:w-auto px-6 sm:px-8 md:px-10 py-3 sm:py-3.5 md:py-4 rounded-xl sm:rounded-2xl md:rounded-2xl bg-white text-black font-extrabold text-sm sm:text-base md:text-base hover:bg-gray-200 transition-colors shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] cursor-pointer">
-                  {language === 'ar' ? 'ابدأ مجاناً الآن' : 'Start for Free Now'}
+                  {t("pf.cta")}
                 </button>
               </Link>
             </div>

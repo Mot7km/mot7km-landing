@@ -1,5 +1,5 @@
-// data/roadmap.ts
 import { CheckCircle2, Clock, Sparkles, Rocket, type LucideIcon } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export interface RoadmapPhase {
   id: string;
@@ -40,7 +40,7 @@ export const getRoadmapPhases = (t: (key: string) => string): RoadmapPhase[] => 
   },
 ];
 
-export const getPhaseStyles = (status: RoadmapPhase['status']) => {
+export const getPhaseStyles = (status: RoadmapPhase['status'], t: (key: string) => string) => {
   switch (status) {
     case 'current':
       return {
@@ -50,7 +50,7 @@ export const getPhaseStyles = (status: RoadmapPhase['status']) => {
         glow: "shadow-[0_0_30px_rgba(22,131,199,0.15)]",
         dot: "bg-primary border-primary/30 shadow-[0_0_15px_rgba(22,131,199,0.5)]",
         dotPing: true,
-        statusLabel: "In Progress",
+        statusLabel: t("roadmap.status.current"),
         labelColor: "text-primary",
       };
     case 'next':
@@ -61,7 +61,7 @@ export const getPhaseStyles = (status: RoadmapPhase['status']) => {
         glow: "shadow-[0_0_30px_rgba(15,118,110,0.15)]",
         dot: "bg-secondary border-secondary/30 shadow-[0_0_15px_rgba(15,118,110,0.5)]",
         dotPing: false,
-        statusLabel: "Up Next",
+        statusLabel: t("roadmap.status.next"),
         labelColor: "text-secondary",
       };
     case 'future':
@@ -73,7 +73,7 @@ export const getPhaseStyles = (status: RoadmapPhase['status']) => {
         glow: "shadow-lg",
         dot: "bg-surface border-white/10",
         dotPing: false,
-        statusLabel: "Planned",
+        statusLabel: t("roadmap.status.future"),
         labelColor: "text-text-muted",
       };
   }

@@ -14,7 +14,7 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
   const [activeSection, setActiveSection] = useState("");
-  const { t, i18n } = useTranslation(); // i18n instance
+  const { t, i18n } = useTranslation();
   const language = i18n.language;
 
   useEffect(() => {
@@ -33,6 +33,7 @@ export default function Navbar() {
         setScrollProgress(0);
       }
 
+      // Detect active section
       const sections = document.querySelectorAll("section[id]");
       let current = "";
       sections.forEach((section) => {
@@ -68,13 +69,16 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300">
-      <div className={`pointer-events-auto flex items-center justify-between transition-all duration-300 rounded-full border border-white/10 shadow-2xl bg-surface/80 backdrop-blur-xl max-w-6xl w-full relative overflow-hidden ${isScrolled ? 'p-2' : 'p-3'}`}>
-        
+      <div
+        className={`pointer-events-auto flex items-center justify-between transition-all duration-300 rounded-full border border-white/10 shadow-2xl bg-surface/80 backdrop-blur-xl max-w-6xl w-full relative overflow-hidden ${
+          isScrolled ? "p-2" : "p-3"
+        }`}
+      >
         {/* Left: Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0 pl-2">
-          <img 
-            src="/assets/logo/mot7km_logo%20(2).png" 
-            alt="Mot7km Logo" 
+          <img
+            src="/assets/logo/mot7km_logo%20(2).png"
+            alt="Mot7km Logo"
             className="h-8 w-auto"
           />
           <span className="font-bold text-lg tracking-tight text-white hidden md:block">
@@ -109,10 +113,11 @@ export default function Navbar() {
 
         {/* Right: Controls & CTA */}
         <div className="flex items-center gap-1.5 sm:gap-2 pr-1 shrink-0">
+          {/* Theme Toggle – with cursor-pointer */}
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={toggleTheme}
-            className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/5 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9"
+            className="p-2 text-white/60 hover:text-white transition-colors rounded-full hover:bg-white/5 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 cursor-pointer"
             aria-label="Toggle Theme"
           >
             {mounted && (
@@ -126,31 +131,35 @@ export default function Navbar() {
               </motion.div>
             )}
           </motion.button>
-          <motion.button 
+
+          {/* Language Toggle – with cursor-pointer */}
+          <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={toggleLanguage}
-            className="px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wider rounded-full hover:bg-white/5"
+            className="px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-semibold text-white/60 hover:text-white transition-colors uppercase tracking-wider rounded-full hover:bg-white/5 cursor-pointer"
           >
             {language === "en" ? "AR" : "EN"}
           </motion.button>
 
+          {/* Desktop CTA */}
           <Link
             href="#demo"
-            className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_rgba(22,131,199,0.3)] hover:shadow-[0_0_25px_rgba(22,131,199,0.5)] hover:-translate-y-0.5"
+            className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-[0_0_15px_rgba(22,131,199,0.3)] hover:shadow-[0_0_25px_rgba(22,131,199,0.5)] hover:-translate-y-0.5 cursor-pointer"
           >
             {t("nav.cta")}
           </Link>
+
           {/* Compact mobile CTA */}
           <Link
             href="#demo"
-            className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r from-primary to-primary-light text-white shadow-[0_0_12px_rgba(22,131,199,0.3)]"
+            className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r from-primary to-primary-light text-white shadow-[0_0_12px_rgba(22,131,199,0.3)] cursor-pointer"
           >
             <ArrowRight size={16} />
           </Link>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="lg:hidden p-2 text-white/80 hover:text-white rounded-full hover:bg-white/5"
+            className="lg:hidden p-2 text-white/80 hover:text-white rounded-full hover:bg-white/5 cursor-pointer"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -194,7 +203,9 @@ export default function Navbar() {
                       <Link
                         href={link.href}
                         className={`block px-4 py-3 rounded-xl font-medium transition-colors ${
-                          isActive ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
+                          isActive
+                            ? "bg-white/10 text-white"
+                            : "text-white/60 hover:text-white hover:bg-white/5"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
@@ -207,7 +218,7 @@ export default function Navbar() {
               <hr className="border-white/10" />
               <Link
                 href="#demo"
-                className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)]"
+                className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-[0_0_15px_rgba(22,131,199,0.3)] cursor-pointer"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {t("nav.cta")}

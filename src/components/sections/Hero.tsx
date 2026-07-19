@@ -8,9 +8,9 @@ import { useTranslation } from "react-i18next";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 
 export default function Hero() {
-  const { t, i18n } = useTranslation(); // i18n instance gives us language
-  const language = i18n.language;
-  const ArrowIcon = language === "en" ? ArrowRight : ArrowLeft;
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.dir() === "rtl";
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   const {
     handleMouseMove,
@@ -86,7 +86,7 @@ export default function Hero() {
                 <span>{t("hero.cta1")}</span>
                 <motion.span
                   className="inline-block"
-                  animate={{ x: language === "en" ? [0, 5, 0] : [0, -5, 0] }}
+                  animate={{ x: isRTL ? [0, -5, 0] : [0, 5, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5, repeatDelay: 1 }}
                 >
                   <ArrowIcon size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -133,7 +133,7 @@ export default function Hero() {
               style={{
                 x: dashboardX,
                 y: dashboardY,
-                rotateY: language === "ar" ? 15 : -15,
+                rotateY: isRTL ? 15 : -15,
                 rotateX: 5,
               }}
               className="absolute left-0 lg:-left-20 top-10 w-[85%] md:w-[75%] rounded-[1.5rem] md:rounded-[2rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.6)] overflow-hidden bg-surface/80 backdrop-blur-xl z-10"
@@ -156,7 +156,7 @@ export default function Hero() {
               style={{
                 x: posX,
                 y: posY,
-                rotateY: language === "ar" ? -10 : 10,
+                rotateY: isRTL ? -10 : 10,
                 rotateX: -5,
               }}
               className="absolute right-0 lg:-right-10 top-32 w-[60%] md:w-[50%] rounded-2xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden bg-surface backdrop-blur-2xl z-20"
@@ -200,9 +200,7 @@ export default function Hero() {
           className="pt-6 sm:pt-8 md:pt-12 border-t border-white/5 mt-8 sm:mt-10 md:mt-16"
         >
           <p className="text-center text-sm font-bold text-text-muted mb-6 sm:mb-8 uppercase tracking-[0.2em]">
-            {language === "ar"
-              ? "موثوق من قبل أكثر من +100 علامة تجارية"
-              : "Trusted by over 100+ brands"}
+            {t("hero.trusted")}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-10 md:gap-20 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
             <div className="flex items-center gap-2 font-black text-base md:text-xl text-white hover:scale-105 transition-transform">

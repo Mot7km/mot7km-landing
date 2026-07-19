@@ -18,7 +18,7 @@ export default function Roadmap() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 md:mb-24">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-white/5 text-text-secondary text-sm font-bold mb-6 backdrop-blur-md">
             <Rocket size={16} className="text-accent" />
-            <span>The Future of Mot7km</span>
+            <span>{t("roadmap.badge")}</span>
           </div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -50,7 +50,7 @@ export default function Roadmap() {
           <div className="space-y-10 sm:space-y-16">
             {phases.map((phase, i) => {
               const Icon = phase.icon;
-              const styles = getPhaseStyles(phase.status);
+              const styles = getPhaseStyles(phase.status, t);
               const isEven = i % 2 === 0;
 
               return (

@@ -8,8 +8,7 @@ import Image from "next/image";
 import { getFeaturesTabs, getFeaturesContent, type TabId } from "@/data/features";
 
 export default function Features() {
-  const { t, i18n } = useTranslation();
-  const language = i18n.language;
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<TabId>("web");
 
   const tabs = useMemo(() => getFeaturesTabs(t), [t]);
@@ -33,7 +32,7 @@ export default function Features() {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface/80 border border-white/10 text-white text-xs font-bold mb-6 backdrop-blur-md shadow-lg uppercase tracking-widest">
             <Sparkles size={14} className="text-primary" />
-            <span>{language === "ar" ? "تعمق في المزايا" : "Deep Dive"}</span>
+            <span>{t("features.badge")}</span>
           </div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -59,7 +58,7 @@ export default function Features() {
         </div>
 
         {/* Sticky Tab Bar */}
-        <div className="sticky top-[72px] md:top-24 z-50 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0  ">
+        <div className="sticky top-[72px] md:top-24 z-50 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0">
           <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
             {tabs.map((tab) => {
               const isActive = activeTab === tab.id;
@@ -67,7 +66,7 @@ export default function Features() {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex items-center px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center ${
+                  className={`relative flex items-center px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center cursor-pointer ${
                     isActive
                       ? "text-white gap-1.5 sm:gap-2"
                       : "text-text-muted hover:text-white hover:bg-white/5 gap-1.5 sm:gap-2"
@@ -80,7 +79,6 @@ export default function Features() {
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                  {/* Icon – always visible */}
                   <span
                     className={`relative z-10 ${
                       isActive
@@ -90,13 +88,9 @@ export default function Features() {
                   >
                     {tab.icon}
                   </span>
-
-                  {/* Desktop label – always visible on md and up */}
                   <span className="relative z-10 hidden md:inline">
                     {tab.titleDesktop}
                   </span>
-
-                  {/* Mobile label – visible only for the active tab */}
                   {isActive && (
                     <span className="relative z-10 md:hidden">
                       {tab.titleMobile}
@@ -121,7 +115,6 @@ export default function Features() {
             >
               {/* Text Side */}
               <div className="flex flex-col relative z-20 order-1 lg:order-none">
-                {/* Icon + Title inline */}
                 <div className="flex items-center gap-3 mb-4 sm:mb-6">
                   <span
                     className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${currentContent.gradient} border border-white/10 shadow-lg text-white shrink-0`}
@@ -159,32 +152,34 @@ export default function Features() {
 
               {/* Image & Review Side */}
               <div className="relative z-10 order-2 lg:order-none w-full">
-                <div className="relative w-full aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-auto lg:h-[600px] flex items-center justify-center">
+                <div className="relative w-full flex flex-col items-center">
                   <div
                     className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] ${currentContent.glowColor} blur-[100px] rounded-full pointer-events-none opacity-50`}
                   />
 
-                  <div className="relative w-full h-full max-h-[300px] sm:max-h-[400px] md:max-h-[500px] lg:max-h-none bg-surface/30 backdrop-blur-md rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
-                    <Image
-                      src={currentContent.image}
-                      alt={currentContent.title}
-                      fill
-                      className="object-cover object-top opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
-                      unoptimized
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                  <div className="relative w-full bg-surface/30 backdrop-blur-md rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
+                    <div className="aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-[4/3] relative">
+                      <Image
+                        src={currentContent.image}
+                        alt={currentContent.title}
+                        fill
+                        className="object-cover object-top opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
+                        unoptimized
+                        priority
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                    </div>
                   </div>
 
                   <motion.div
                     initial={{ opacity: 0, y: 30, rotate: -2 }}
                     animate={{ opacity: 1, y: 0, rotate: 0 }}
                     transition={{ delay: 0.4, type: "spring" }}
-                    className="relative lg:absolute lg:bottom-8 xl:bottom-12 lg:-left-8 xl:-left-12 mt-4 sm:mt-6 lg:mt-0 w-full max-w-[280px] sm:max-w-sm mx-auto lg:mx-0 bg-surface/90 backdrop-blur-3xl border border-white/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-2xl z-30"
+                    className="relative z-30 w-full max-w-sm sm:max-w-md lg:max-w-md -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 mx-auto lg:mx-0 lg:ml-0 bg-surface/90 backdrop-blur-3xl border border-white/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-2xl"
                   >
                     <Quote size={24} className={`${currentContent.accent} opacity-50 mb-2 sm:mb-3`} />
                     <p className="text-white text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4 italic drop-shadow-md">
-                      "{currentContent.review}"
+                      {currentContent.review}
                     </p>
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-white/20 to-white/5 border border-white/10 flex items-center justify-center text-white font-bold text-sm sm:text-base">
