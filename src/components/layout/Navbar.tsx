@@ -16,7 +16,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const { t, i18n } = useTranslation();
   const language = i18n.language;
-  const isSignedIn = false;
+  const isSignedIn = true;
 
   useEffect(() => {
     setMounted(true);
@@ -242,7 +242,7 @@ export default function Navbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <User size={18} />
-                  <span>Profile</span>
+                  <span>{t("nav.profile")}</span>
                 </Link>
               ) : (
                 <Link

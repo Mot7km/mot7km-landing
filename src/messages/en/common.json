@@ -127,7 +127,8 @@
     "product": "Product",
     "roadmap": "Roadmap",
     "useCases": "Use Cases",
-    "cta":  "Get Started"
+    "cta":  "Get Started",
+    "profile": "Profile"
   },
   "p1": {
     "desc": "Ideal for building a professional digital identity without ads.",
