@@ -21,8 +21,21 @@ export const metadata: Metadata = {
     "متحكم", "Mot7km", "نظام مطاعم", "restaurant pos", "QR menu", "ERP", 
     "نظام نقاط بيع", "إدارة المطاعم", "برنامج كاشير", "كاشير مطاعم", 
     "منيو الكتروني", "نظام سحابي للمطاعم", "إدارة الكافيهات", 
-    "cloud pos", "digital menu", "restaurant management software"
+    "cloud pos", "digital menu", "restaurant management software", "تطبيق متحكم"
   ],
+  openGraph: {
+    title: "Mot7km (متحكم) - Smart Business Control",
+    description: "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات ونقاط البيع السحابية (Cloud POS).",
+    url: "https://mot7km.store",
+    siteName: "Mot7km (متحكم)",
+    locale: "ar_SA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mot7km (متحكم)",
+    description: "نظام متكامل لإدارة مطعمك ونقاط البيع السحابية",
+  },
 };
 
 import SplashScreen from "@/components/layout/SplashScreen";
@@ -33,11 +46,34 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // JSON-LD structured data to explicitly tell Google about the brand "Mot7km / متحكم"
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "متحكم Mot7km",
+    "alternateName": "Mot7km",
+    "operatingSystem": "Web, iOS, Android",
+    "applicationCategory": "BusinessApplication",
+    "description": "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات والأعمال ونقاط البيع السحابية.",
+    "url": "https://mot7km.store",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "SAR"
+    }
+  };
+
   return (
     <html
       className={`${cairo.variable} ${roboto.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-text-primary overflow-x-hidden">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <I18nProvider>
