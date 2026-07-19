@@ -521,70 +521,89 @@
   "about": {
     "hero": {
       "title": "About Mot7km",
-      "subtitle": "Smart Restaurant Control"
+      "subtitle": "The Next Generation of Restaurant Control",
+      "desc": "Mot7km isn't just a POS. It's the central nervous system for your entire food business, bridging the gap between web control, mobile execution, and customer experience."
+    },
+    "stats": {
+      "offline": { "value": "100%", "label": "Offline POS Resilience" },
+      "qr": { "value": "0", "label": "App Installs Needed" },
+      "sync": { "value": "Real-time", "label": "Data Synchronization" },
+      "platform": { "value": "All-in-One", "label": "SaaS Platform" }
     },
     "story": {
-      "title": "Our Story",
-      "subtitle": "Why We Built Mot7km",
-      "content": "Restaurants and food businesses often struggle with fragmented systems, scattered data, and slow operations. We realized the industry needed a unified, seamless solution. That's why we built Mot7km—a multi-sided SaaS platform designed to centralize control, accelerate execution, and offer customers a frictionless experience without the hassle of downloading apps."
+      "title": "Our Journey",
+      "subtitle": "Reimagining the Industry Standard",
+      "problem": {
+        "title": "The Problem",
+        "content": "For years, restaurants have been plagued by fragmented tools: one system for the cashier, another for the digital menu, and messy spreadsheets for management. When the internet drops, operations halt. When the menu changes, it takes hours to update everywhere."
+      },
+      "solution": {
+        "title": "Our Solution",
+        "content": "We built Mot7km from the ground up as a multi-sided ecosystem. We separated planning (Web) from execution (Mobile & Desktop). We made the POS offline-first. And we turned the customer QR menu into an instantaneous, app-less browsing and feedback engine."
+      }
     },
     "mission": {
-      "title": "Mission",
-      "subtitle": "What Drives Us",
-      "content": "Our mission is to empower business owners with deep analytics and total control over their operations while giving their staff the fastest and most reliable tools to execute daily tasks."
+      "title": "Our Mission",
+      "subtitle": "Absolute Control. Zero Friction.",
+      "content": "To empower business owners with deep analytics and total operational control, while equipping their staff with the fastest, most reliable tools to execute daily tasks seamlessly."
     },
     "vision": {
-      "title": "Vision",
-      "subtitle": "Where We're Going",
-      "content": "We envision a world where every restaurant, café, and food business can operate at peak efficiency with zero friction. Mot7km aims to become the definitive operating system for the global F&B industry."
+      "title": "Our Vision",
+      "subtitle": "The Global Standard",
+      "content": "We envision a future where every food business, from the smallest café to the largest restaurant chain, can operate at peak efficiency. Mot7km aims to be the definitive operating system for the global F&B industry."
     },
     "whatWeDo": {
-      "title": "What We Do",
-      "subtitle": "Platform Capabilities",
+      "title": "Platform Architecture",
+      "subtitle": "Built for Every Stakeholder",
       "features": {
         "owners": {
-          "title": "For Business Owners",
-          "desc": "A single source of truth. Centralized web dashboard for menus, products, reviews, sales, staff, branches, and deep analytics."
+          "title": "The Command Center",
+          "badge": "Web Dashboard",
+          "desc": "A single source of truth. Manage branches, employees, deep financial analytics, and product catalogs from a centralized cloud interface."
         },
         "managers": {
-          "title": "For Branch Managers",
-          "desc": "Lightweight mobile tools to monitor daily operations, shift statuses, and take rapid actions on the go."
+          "title": "On-the-Go Management",
+          "badge": "Mobile App",
+          "desc": "Lightweight tools to monitor live shifts, track sales anomalies, and intervene immediately without needing a laptop."
         },
         "staff": {
-          "title": "For Cashiers & Staff",
-          "desc": "A highly reliable POS experience with offline resilience, plus simple mobile apps for attendance and tasks."
+          "title": "Unbreakable Operations",
+          "badge": "Desktop & Mobile",
+          "desc": "A highly reliable, offline-first POS experience that queues orders safely during internet outages, plus simple mobile apps for attendance."
         },
         "customers": {
-          "title": "For Customers",
-          "desc": "A blazing-fast, app-less QR experience to browse interactive menus, view product details, and leave instant feedback."
+          "title": "Frictionless Browsing",
+          "badge": "QR Menu",
+          "desc": "A blazing-fast web experience. Customers scan a QR code to instantly browse interactive menus and leave real-time feedback."
         }
       }
     },
     "values": {
-      "title": "Core Values",
+      "title": "Our DNA",
       "items": {
         "simplicity": {
-          "title": "Simplicity",
-          "desc": "Complex operations made intuitive and easy to use for everyone."
+          "title": "Radical Simplicity",
+          "desc": "We distill complex enterprise workflows into intuitive, beautiful interfaces that require zero training."
         },
         "reliability": {
-          "title": "Reliability",
-          "desc": "Systems that stay up, even when the internet goes down."
+          "title": "Unshakeable Reliability",
+          "desc": "In the restaurant business, every second counts. Our offline-first architecture ensures you never miss a sale."
         },
         "innovation": {
-          "title": "Innovation",
-          "desc": "Constantly pushing the boundaries of what a modern POS can do."
+          "title": "Continuous Innovation",
+          "desc": "We don't just follow trends; we set them. From advanced analytics to automated sync engines."
         },
         "success": {
-          "title": "Customer Success",
-          "desc": "When your restaurant thrives, we succeed. We are built for your growth."
+          "title": "Partnered Success",
+          "desc": "We don't just sell software. We partner with restaurants to guarantee operational growth and profitability."
         }
       }
     },
     "cta": {
-      "title": "Ready to Transform Your Business?",
+      "title": "Ready to take control?",
+      "subtitle": "Join the modern era of restaurant management today.",
       "primary": "Start Free Trial",
-      "secondary": "Contact Us"
+      "secondary": "Contact Sales"
     }
   }
 }
