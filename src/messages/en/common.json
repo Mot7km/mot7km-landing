@@ -26,8 +26,8 @@
         "p2": "You can upgrade your plan at any time directly from your dashboard with one click.",
         "p3": "The free menu plan is for trial purposes and will display small, non‑intrusive ads to customers. To enjoy an ad‑free menu with your own branding, upgrade to the Starter plan.",
         "t1": "Yes, our system is built with Offline‑first technology, so sales and printing continue even if the internet goes down, and data will sync automatically when it returns.",
-        "t2": "No, Mot7km runs as a Web & App on most smart devices and tablets (iPad, Android, laptop), saving you hardware costs.",
-        "t3": "Your data is fully encrypted and stored on highly secure global cloud servers. Only you and your authorized staff can access it."
+        "t2": "No, the QR menu is completely frictionless. Customers just scan and browse instantly via their mobile web browser without installing anything.",
+        "t3": "Yes, the web dashboard acts as a single source of truth, allowing you to manage menus, employees, and view consolidated reports across all your branches."
       },
       "g1": "Is Mot7km suitable for my business?",
       "g2": "Can I try the system before paying?",
@@ -36,8 +36,8 @@
       "p2": "How can I upgrade or change my plan?",
       "p3": "What does 'menu ads' in the free plan mean?",
       "t1": "Does the POS work if the internet goes down?",
-      "t2": "Do I need to buy expensive POS hardware?",
-      "t3": "Is my financial and customer data secure?"
+      "t2": "Do my customers need to install an app to view the menu?",
+      "t3": "Can I manage multiple branches from one account?"
     },
     "title1": "Frequently",
     "title2": "Asked Questions"
@@ -231,20 +231,20 @@
   },
   "rm": {
     "q1": {
-      "desc": "A complete digital menu with a dashboard, reviews, and a quick management app.",
-      "title": "Smart Menu (Now)"
+      "title": "Phase 1: Smart Menu (Currently Available)",
+      "desc": "A complete digital QR menu, quick order screen, and basic web dashboard for menu management."
     },
     "q2": {
-      "desc": "Offline‑first POS with employee apps for attendance and sales tracking.",
-      "title": "POS & Apps (Soon)"
+      "title": "Phase 2: POS & Owner App (Up Next)",
+      "desc": "Offline-first Point of Sale for cashiers and a comprehensive mobile app for the business owner."
     },
     "q3": {
-      "desc": "Precise expense tracking, simplified inventory management, and apps for branch managers.",
-      "title": "Advanced Operations Management"
+      "title": "Phase 3: Dashboard & Staff Apps (Planned)",
+      "desc": "Complete web dashboard for deep management, alongside dedicated apps for staff."
     },
     "q4": {
-      "desc": "Sales forecasting, employee performance analysis, and proactive AI‑driven reports.",
-      "title": "AI Analytics"
+      "title": "Phase 4: Advanced Ops & Analytics (Future)",
+      "desc": "Deep financial reporting, AI-driven analytics, and multi-branch advanced control."
     }
   },
   "roadmap": {

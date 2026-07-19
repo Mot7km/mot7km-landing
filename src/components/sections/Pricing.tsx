@@ -107,11 +107,14 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 100 }}
-                className={`relative flex flex-col rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 border backdrop-blur-2xl transition-all duration-500 bg-gradient-to-b ${plan.color} ${plan.border} ${plan.glow} ${
-                  plan.popular ? 'lg:-translate-y-6 z-20 lg:scale-105' : 'hover:-translate-y-2 z-10'
+                className={`group relative flex flex-col rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 border backdrop-blur-2xl transition-all duration-500 bg-gradient-to-b ${plan.color} ${plan.border} ${plan.glow} ${
+                  plan.popular ? 'lg:-translate-y-6 z-20 lg:scale-105 shadow-[0_30px_60px_rgba(22,131,199,0.15)] hover:shadow-[0_40px_80px_rgba(22,131,199,0.25)]' : 'hover:-translate-y-3 z-10 hover:shadow-2xl hover:border-white/20'
                 }`}
               >
-                <div className="absolute inset-0 rounded-3xl md:rounded-[2.5rem] border border-white/5 pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
+                {/* Subtle shine effect on hover */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/5 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[inherit]" />
+                
+                <div className="absolute inset-0 rounded-3xl md:rounded-[2.5rem] border border-white/5 group-hover:border-white/10 transition-colors pointer-events-none" style={{ maskImage: 'linear-gradient(to bottom, white, transparent)' }} />
 
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-accent text-white px-6 py-1.5 rounded-full text-sm font-bold shadow-[0_0_20px_rgba(22,131,199,0.5)] whitespace-nowrap z-30">
