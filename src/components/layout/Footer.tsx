@@ -185,9 +185,9 @@ export default function Footer() {
               {t("footer.rights")}
             </p>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-text-muted font-medium">
-              <a href="#" className="hover:text-primary transition-colors">{t("footer.terms")}</a>
-              <a href="#" className="hover:text-primary transition-colors">{t("footer.privacy")}</a>
-              <a href="#" className="hover:text-primary transition-colors">{t("footer.usage")}</a>
+              <Link href="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link>
+              <Link href="#" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link>
+              <Link href="#" className="hover:text-primary transition-colors">{t("footer.usage")}</Link>
             </div>
           </div>
         </div>

@@ -312,5 +312,60 @@
     "goHome": "Go Home",
     "contactSupport": "Contact Support",
     "rights": "All rights reserved."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last Updated: July 2026",
+    "desc": "Please read these Terms of Service carefully before using Mot7km. By accessing or using our services, you agree to be bound by these terms.",
+    "sections": {
+      "s1": {
+        "title": "1. Acceptance of Terms",
+        "content": "By accessing, registering, or using the Mot7km platform (including the web dashboard, mobile apps, POS systems, and digital QR menus), you confirm your acceptance of these Terms of Service. If you do not agree to these terms, you must not use our services."
+      },
+      "s2": {
+        "title": "2. Eligibility",
+        "content": "You must be at least 18 years old or the legal age of majority in your jurisdiction to use Mot7km. By creating an account, you represent and warrant that you have the legal capacity to enter into a binding agreement."
+      },
+      "s3": {
+        "title": "3. Account Registration",
+        "content": "To access certain features, you must create an account. You agree to provide accurate, current, and complete information during registration and keep it updated. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account."
+      },
+      "s4": {
+        "title": "4. Subscription Plans",
+        "content": "Mot7km offers various subscription plans (Free, Starter, Business, Pro, Premium, Enterprise). Fees, features, and limits depend on the selected plan. We reserve the right to modify pricing and features with prior notice. Subscriptions are billed according to your chosen billing cycle (monthly or annually) and are generally non-refundable."
+      },
+      "s5": {
+        "title": "5. User Responsibilities",
+        "content": "You are solely responsible for the content you upload, including menu items, pricing, images, and customer data. You must ensure that your use of Mot7km complies with all applicable local laws, regulations, and industry standards, including data protection laws."
+      },
+      "s6": {
+        "title": "6. Prohibited Activities",
+        "content": "You agree not to use Mot7km for any illegal or unauthorized purpose. Prohibited activities include but are not limited to: uploading malicious code, attempting to bypass security features, scraping data, selling illicit products, or infringing on the intellectual property of others."
+      },
+      "s7": {
+        "title": "7. Intellectual Property",
+        "content": "The Mot7km platform, including its software, designs, logos, and features, is the exclusive property of Mot7km. You are granted a limited, non-exclusive, non-transferable license to use the system for your business operations. You may not copy, reverse-engineer, or resell the platform."
+      },
+      "s8": {
+        "title": "8. Account Suspension & Termination",
+        "content": "We reserve the right to suspend or terminate your account at our sole discretion, without notice, for conduct that violates these Terms or is harmful to other users, us, or third parties. Upon termination, your right to use the platform will immediately cease."
+      },
+      "s9": {
+        "title": "9. Service Availability",
+        "content": "While we strive for 99.9% uptime, we do not guarantee uninterrupted access to our cloud services due to maintenance, updates, or unforeseen technical issues. However, our Offline-first POS guarantees continued local operation during internet outages."
+      },
+      "s10": {
+        "title": "10. Limitation of Liability",
+        "content": "To the maximum extent permitted by law, Mot7km shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or goodwill, arising out of your use or inability to use the service."
+      },
+      "s11": {
+        "title": "11. Changes to the Service",
+        "content": "We regularly update and improve Mot7km. We may add or remove functionalities or features, and we may suspend or stop a service altogether. We will notify you of any material changes to these Terms of Service."
+      },
+      "s12": {
+        "title": "12. Contact Information",
+        "content": "If you have any questions or concerns about these Terms of Service, please contact our support team at support@mot7km.com."
+      }
+    }
   }
 }
