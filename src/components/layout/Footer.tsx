@@ -85,9 +85,14 @@ export default function Footer() {
             </p>
             {/* Social Icons */}
             <div className="flex items-center gap-4">
-              {[XIcon, Instagram, Facebook, Linkedin].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-12 h-12 rounded-2xl bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-white hover:bg-primary hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-sm">
-                  <Icon width={20} height={20} />
+              {[
+                { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61591358790071" },
+                { Icon: Instagram, href: "https://www.instagram.com/mot7km" },
+                { Icon: XIcon, href: "#" },
+                { Icon: Linkedin, href: "#" }
+              ].map((item, idx) => (
+                <a key={idx} href={item.href} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-white hover:bg-primary hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-sm">
+                  <item.Icon width={20} height={20} />
                 </a>
               ))}
             </div>
@@ -163,11 +168,11 @@ export default function Footer() {
                 </a>
               </li>
               <li className="w-full max-w-xs">
-                <a href="mailto:support@mot7km.com" className="flex items-center gap-4 p-3 rounded-2xl bg-surface border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group">
+                <a href="mailto:mot7km@gmail.com" className="flex items-center gap-4 p-3 rounded-2xl bg-surface border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group">
                   <div className="bg-background rounded-xl p-2.5 text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all shadow-sm">
                     <Mail size={18} />
                   </div>
-                  <span className="text-text-primary font-medium text-sm">support@mot7km.com</span>
+                  <span className="text-text-primary font-medium text-sm">mot7km@gmail.com</span>
                 </a>
               </li>
             </ul>
