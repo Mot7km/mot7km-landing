@@ -157,9 +157,13 @@ export default function Features() {
                 >
                   <Link
                     href={`/features/${activeTab}`}
+                    aria-label={`${t("features.learnMore")} ${currentContent.title}`}
                     className={`relative overflow-hidden inline-flex items-center w-fit gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium transition-all hover:scale-105 group`}
                   >
-                    <span className="relative z-10">{t("features.learnMore")}</span>
+                    <span className="relative z-10">
+                      {t("features.learnMore")}
+                      <span className="sr-only"> {currentContent.title}</span>
+                    </span>
                     <ArrowRight size={18} className={`relative z-10 rtl:rotate-180 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${currentContent.accent}`} />
                     
                     <motion.div

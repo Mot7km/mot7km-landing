@@ -69,10 +69,10 @@ export default function ValueProp() {
                   className="bg-card/60 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex items-start gap-4 hover:bg-card/80 transition-colors hover:border-primary/30 group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary/20 border border-primary/30 flex items-center justify-center text-primary flex-shrink-0 shadow-[0_0_15px_rgba(22,131,199,0.3)] group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 8a16.36 16.36 0 0 0-4.32-3.13"/><path d="M18.88 4.88a16.36 16.36 0 0 0-13.76 0"/><path d="M2.12 8a16.36 16.36 0 0 0 4.32 3.13"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 8a16.36 16.36 0 0 0-4.32-3.13"/><path d="M18.88 4.88a16.36 16.36 0 0 0-13.76 0"/><path d="M2.12 8a16.36 16.36 0 0 0 4.32 3.13"/><path d="M12 20h.01"/><path d="M2 2l20 20"/></svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors">{t("value.points.p1.title")}</h4>
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors">{t("value.points.p1.title")}</h3>
                     <p className="text-text-secondary text-sm leading-relaxed">{t("value.points.p1.desc")}</p>
                   </div>
                 </motion.div>
@@ -86,10 +86,10 @@ export default function ValueProp() {
                   className="bg-card/60 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex items-start gap-4 hover:bg-card/80 transition-colors hover:border-secondary/30 group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-secondary/20 border border-secondary/30 flex items-center justify-center text-secondary flex-shrink-0 shadow-[0_0_15px_rgba(15,118,110,0.3)] group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-secondary transition-colors">{t("value.points.p2.title")}</h4>
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-secondary transition-colors">{t("value.points.p2.title")}</h3>
                     <p className="text-text-secondary text-sm leading-relaxed">{t("value.points.p2.desc")}</p>
                   </div>
                 </motion.div>
@@ -103,10 +103,10 @@ export default function ValueProp() {
                   className="bg-card/60 backdrop-blur-md border border-white/5 rounded-2xl p-5 flex items-start gap-4 hover:bg-card/80 transition-colors hover:border-success/30 group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-success/20 border border-success/30 flex items-center justify-center text-success flex-shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)] group-hover:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="5" height="5" x="3" y="3" rx="1"/><rect width="5" height="5" x="16" y="3" rx="1"/><rect width="5" height="5" x="3" y="16" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-1 group-hover:text-success transition-colors">{t("value.points.p3.title")}</h4>
+                    <h3 className="text-lg font-bold text-white mb-1 group-hover:text-success transition-colors">{t("value.points.p3.title")}</h3>
                     <p className="text-text-secondary text-sm leading-relaxed">{t("value.points.p3.desc")}</p>
                   </div>
                 </motion.div>
