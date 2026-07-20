@@ -2,9 +2,10 @@
 
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, CheckCircle2, Quote } from "lucide-react";
+import { Sparkles, CheckCircle2, Quote, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import { getFeaturesTabs, getFeaturesContent, type TabId } from "@/data/features";
 
 export default function Features() {
@@ -121,7 +122,7 @@ export default function Features() {
                   >
                     {tabs.find((t) => t.id === activeTab)?.icon}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight drop-shadow-sm">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 drop-shadow-sm pb-1">
                     {currentContent.title}
                   </h3>
                 </div>
@@ -148,17 +149,39 @@ export default function Features() {
                     </motion.li>
                   ))}
                 </ul>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <Link
+                    href={`/features/${activeTab}`}
+                    className={`relative overflow-hidden inline-flex items-center w-fit gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white font-medium transition-all hover:scale-105 group`}
+                  >
+                    <span className="relative z-10">{t("features.learnMore")}</span>
+                    <ArrowRight size={18} className={`relative z-10 rtl:rotate-180 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${currentContent.accent}`} />
+                    
+                    <motion.div
+                      animate={{ x: ["-200%", "200%"] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 z-0 w-1/2"
+                    />
+                  </Link>
+                </motion.div>
               </div>
 
               {/* Image & Review Side */}
               <div className="relative z-10 order-2 lg:order-none w-full">
-                <div className="relative w-full flex flex-col items-center">
+                <div className={`relative w-full flex flex-col items-center ${activeTab === 'mobile' || activeTab === 'qr' ? 'mt-8 lg:mt-0' : ''}`}>
                   <div
                     className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] ${currentContent.glowColor} blur-[100px] rounded-full pointer-events-none opacity-50`}
                   />
 
-                  <div className="relative w-full bg-surface/30 backdrop-blur-md rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
-                    <div className="aspect-[4/3] sm:aspect-[3/2] md:aspect-[4/3] lg:aspect-[4/3] relative">
+                  {activeTab === 'mobile' || activeTab === 'qr' ? (
+                    <div className="relative w-[240px] sm:w-[280px] lg:w-[320px] aspect-[1/2.1] bg-[#0c0c0c] rounded-[2.5rem] sm:rounded-[3rem] border-[6px] sm:border-[8px] border-surface shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
+                      {/* Mobile Notch */}
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-5 sm:h-6 bg-surface rounded-b-xl z-20" />
                       <Image
                         src={currentContent.image}
                         alt={currentContent.title}
@@ -167,15 +190,39 @@ export default function Features() {
                         unoptimized
                         priority
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent opacity-60 pointer-events-none z-10" />
                     </div>
-                  </div>
+                  ) : (
+                    <div className="relative w-full bg-[#0c0c0c] rounded-xl sm:rounded-2xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group flex flex-col">
+                      {/* Browser Header */}
+                      <div className="h-8 sm:h-10 bg-surface/80 backdrop-blur-md border-b border-white/5 flex items-center px-4 gap-2 shrink-0 z-20 relative">
+                        <div className="flex gap-1.5 sm:gap-2">
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80" />
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500/80" />
+                          <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500/80" />
+                        </div>
+                        <div className="absolute left-1/2 -translate-x-1/2 h-4 sm:h-5 w-1/3 bg-white/5 rounded-full" />
+                      </div>
+                      <div className="aspect-[4/3] sm:aspect-[16/10] relative">
+                        <Image
+                          src={currentContent.image}
+                          alt={currentContent.title}
+                          fill
+                          className="object-cover object-top opacity-90 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700"
+                          unoptimized
+                          priority
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent opacity-60 pointer-events-none z-10" />
+                      </div>
+                    </div>
+                  )}
 
                   <motion.div
                     initial={{ opacity: 0, y: 30, rotate: -2 }}
                     animate={{ opacity: 1, y: 0, rotate: 0 }}
                     transition={{ delay: 0.4, type: "spring" }}
-                    className="relative z-30 w-full max-w-sm sm:max-w-md lg:max-w-md -mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 mx-auto lg:mx-0 lg:ml-0 bg-surface/90 backdrop-blur-3xl border border-white/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-2xl"
+                    className={`relative z-30 w-full max-w-sm sm:max-w-md lg:max-w-md ${(activeTab === 'mobile' || activeTab === 'qr') ? '-mt-16 sm:-mt-24 mx-auto' : '-mt-8 sm:-mt-10 md:-mt-12 lg:-mt-16 mx-auto lg:mx-0 lg:ml-0'} bg-surface/60 backdrop-blur-3xl border border-white/20 rounded-2xl p-4 sm:p-5 md:p-6 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.8)] ring-1 ring-white/10`}
+                    style={{ boxShadow: '0 30px 60px -15px rgba(0,0,0,0.8), inset 0 1px 1px rgba(255,255,255,0.2)' }}
                   >
                     <Quote size={24} className={`${currentContent.accent} opacity-50 mb-2 sm:mb-3`} />
                     <p className="text-white text-xs sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-4 italic drop-shadow-md">

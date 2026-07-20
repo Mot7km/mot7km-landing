@@ -42,11 +42,142 @@
     "title1": "Frequently",
     "title2": "Asked Questions"
   },
+  "featurePages": {
+    "web": {
+      "hero": {
+        "badge": "Web Dashboard",
+        "title": "The Central Command Center",
+        "subtitle": "Control every detail of your branches, analyze sales performance, and manage team permissions from one integrated dashboard."
+      },
+      "overview": "The dashboard is designed to be the mastermind of your business, where you can think, plan, and make strategic decisions with complete ease.",
+      "cap1": {
+        "title": "Advanced Settings",
+        "desc": "Full management of menus and products with a click."
+      },
+      "cap2": {
+        "title": "Analytical Reports",
+        "desc": "Comprehensive view of sales and daily performance."
+      },
+      "cap3": {
+        "title": "Staff Management",
+        "desc": "Distribute permissions and control team tasks."
+      },
+      "cap4": {
+        "title": "Chain Management",
+        "desc": "Manage all branches and unify operations."
+      },
+      "dd1": {
+        "title": "Deep Insights with Accurate Numbers",
+        "desc": "No more guessing. Track your sales performance through detailed analytics showing top-selling products and daily customer trends."
+      },
+      "dd2": {
+        "title": "Full Menu Control",
+        "desc": "Add items, modify prices, and instantly activate or hide products across all POS devices and customer apps with a single click."
+      }
+    },
+    "pos": {
+      "hero": {
+        "badge": "Point of Sale",
+        "title": "Smart Cashier for All Conditions",
+        "subtitle": "Ultra-fast performance without interruption, fully supporting offline-first operation to ensure your business never stops."
+      },
+      "overview": "The POS is built for absolute speed and reliability, designed to handle peak hours while fully protecting your sales data.",
+      "cap1": {
+        "title": "Offline Ready",
+        "desc": "Complete sales even when the connection drops."
+      },
+      "cap2": {
+        "title": "Fast Printing",
+        "desc": "Full compatibility with various receipt printers."
+      },
+      "cap3": {
+        "title": "Protection & Reliability",
+        "desc": "Automatic sync when connection is restored."
+      },
+      "cap4": {
+        "title": "Hardware Independent",
+        "desc": "Run on desktop or mobile (POS Lite) to save on hardware costs."
+      },
+      "dd1": {
+        "title": "Internet Down? No Problem",
+        "desc": "Continue taking orders and printing receipts normally. The POS will securely store data and sync in the background once online."
+      },
+      "dd2": {
+        "title": "Easy Shift Management",
+        "desc": "Open and close shifts, reconcile cash super fast, ensuring accuracy when handing over cash to managers."
+      }
+    },
+    "mobile": {
+      "hero": {
+        "badge": "Mobile App",
+        "title": "Instant Management in Your Hand",
+        "subtitle": "Keep an eye on your business from anywhere, and receive real-time alerts about sales and branch performance with one touch."
+      },
+      "overview": "The Manager App is your quick tool to execute tasks and receive alerts without needing to be physically present at the branch.",
+      "cap1": {
+        "title": "Live Alerts",
+        "desc": "Receive instant sales and cancellation notifications."
+      },
+      "cap2": {
+        "title": "Sales Tracking",
+        "desc": "View branch performance summaries anytime."
+      },
+      "cap3": {
+        "title": "Time Management",
+        "desc": "Seamlessly record staff attendance."
+      },
+      "cap4": {
+        "title": "Quick Execution",
+        "desc": "Light and fast operational interventions."
+      },
+      "dd1": {
+        "title": "Business Pulse in Your Hands",
+        "desc": "Monitor live sales, peak hours, and shift statistics moment by moment to always stay informed."
+      },
+      "dd2": {
+        "title": "Staff Tasks & Attendance",
+        "desc": "Track your team's attendance via internal QR scans, and effectively review completed daily tasks."
+      }
+    },
+    "qr": {
+      "hero": {
+        "badge": "Digital Menu",
+        "title": "Smart Ordering Experience",
+        "subtitle": "An interactive digital menu that boosts your sales and makes it easy for your customers to browse products with a quick QR scan."
+      },
+      "overview": "The Digital Menu acts as your business storefront for customers, requiring no app downloads, with the highest standards of attractive design.",
+      "cap1": {
+        "title": "High-Res Images",
+        "desc": "Showcase your products perfectly to encourage orders."
+      },
+      "cap2": {
+        "title": "Product Ratings",
+        "desc": "Collect your customers' feedback on every item."
+      },
+      "cap3": {
+        "title": "Smart Search",
+        "desc": "Easily find items and ingredients."
+      },
+      "cap4": {
+        "title": "No Downloads",
+        "desc": "Instant and seamless browsing experience."
+      },
+      "dd1": {
+        "title": "Unmatched Product Showcase",
+        "desc": "Provide your customers with attractive images and precise details for every dish, highlighting add-ons and ingredients that increase order desire."
+      },
+      "dd2": {
+        "title": "Transparent & Live Ratings",
+        "desc": "Get instant customer impressions on dishes to improve your service quality and select the most successful dishes in the future."
+      }
+    }
+  },
   "features": {
     "badge": "Deep Dive",
     "desc": "One system, multiple interfaces. We didn't build one app, but a complete operating system providing the right interface for the right person at the right time.",
     "title1": "One System,",
-    "title2": "Multiple Interfaces"
+    "title2": "Multiple Interfaces",
+    "learnMore": "Learn More"
   },
   "feat": {
     "mobile": {
