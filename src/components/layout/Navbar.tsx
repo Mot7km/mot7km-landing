@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Moon, Sun, ArrowRight, User, Languages } from "lucide-react";
+import { Menu, X, Moon, Sun, ArrowRight, Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
@@ -18,7 +18,6 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const { t, i18n } = useTranslation();
   const language = i18n.language;
-  const isSignedIn = true;
 
   useEffect(() => {
     setMounted(true);
@@ -99,7 +98,7 @@ export default function Navbar() {
               className="h-8 w-auto relative z-10 group-hover:rotate-12 transition-transform duration-300"
             />
           </div>
-          <span className="font-extrabold text-lg tracking-tight text-text-primary hidden md:block group-hover:translate-x-0.5 transition-transform duration-300">
+          <span className="font-extrabold text-lg tracking-tight text-text-primary group-hover:translate-x-0.5 transition-transform duration-300">
             Mot7km
           </span>
         </Link>
@@ -210,41 +209,21 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* Desktop CTA or Profile Icon */}
-          {isSignedIn ? (
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/profile"
-                className="hidden sm:flex items-center justify-center w-10 h-10 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-text-secondary hover:text-text-primary transition-all duration-300 border border-black/10 dark:border-white/10 hover:border-primary cursor-pointer"
-              >
-                <User size={18} />
-              </Link>
-            </motion.div>
-          ) : (
-            <Link
-              href="#demo"
-              className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-md shadow-primary/20 dark:shadow-[0_0_15px_rgba(22,131,199,0.4)] hover:shadow-lg hover:shadow-primary/30 dark:hover:shadow-[0_0_25px_rgba(22,131,199,0.6)] hover:-translate-y-0.5 cursor-pointer"
-            >
-              {t("nav.cta")}
-            </Link>
-          )}
+          {/* Desktop CTA */}
+          <Link
+            href="#demo"
+            className="hidden sm:flex px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-primary-light hover:to-accent text-white font-bold text-sm transition-all duration-300 shadow-md shadow-primary/20 dark:shadow-[0_0_15px_rgba(22,131,199,0.4)] hover:shadow-lg hover:shadow-primary/30 dark:hover:shadow-[0_0_25px_rgba(22,131,199,0.6)] hover:-translate-y-0.5 cursor-pointer"
+          >
+            {t("nav.cta")}
+          </Link>
 
-          {/* Compact mobile CTA or Profile Icon */}
-          {isSignedIn ? (
-            <Link
-              href="/profile"
-              className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-text-secondary hover:text-text-primary transition-all duration-300 border border-black/10 dark:border-white/10 hover:border-primary cursor-pointer"
-            >
-              <User size={16} />
-            </Link>
-          ) : (
-            <Link
-              href="#demo"
-              className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r from-primary to-primary-light text-white shadow-md shadow-primary/20 dark:shadow-[0_0_12px_rgba(22,131,199,0.4)] cursor-pointer"
-            >
-              <ArrowRight size={16} />
-            </Link>
-          )}
+          {/* Compact mobile CTA */}
+          <Link
+            href="#demo"
+            className="sm:hidden flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-r from-primary to-primary-light text-white shadow-md shadow-primary/20 dark:shadow-[0_0_12px_rgba(22,131,199,0.4)] cursor-pointer"
+          >
+            <ArrowRight size={16} />
+          </Link>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -305,24 +284,13 @@ export default function Navbar() {
                 })}
               </ul>
               <hr className="border-black/10 dark:border-white/10" />
-              {isSignedIn ? (
-                <Link
-                  href="/profile"
-                  className="w-full flex items-center justify-center gap-3 py-3.5 sm:py-4 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-text-primary font-medium transition-all border border-black/10 dark:border-white/10 hover:border-primary cursor-pointer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <User size={18} />
-                  <span>{t("nav.profile")}</span>
-                </Link>
-              ) : (
-                <Link
-                  href="#demo"
-                  className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-md shadow-primary/20 dark:shadow-[0_0_15px_rgba(22,131,199,0.4)] cursor-pointer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {t("nav.cta")}
-                </Link>
-              )}
+              <Link
+                href="#demo"
+                className="w-full text-center py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-primary to-primary-light text-white font-bold transition-all shadow-md shadow-primary/20 dark:shadow-[0_0_15px_rgba(22,131,199,0.4)] cursor-pointer"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t("nav.cta")}
+              </Link>
             </motion.div>
           </>
         )}
