@@ -11,6 +11,8 @@ export interface UseCase {
   bg: string;         // Tailwind bg-* class
   border: string;     // Tailwind border-* class
   image: string;
+  metricValue: string;
+  metricLabel: string;
 }
 
 export const getUseCases = (t: (key: string, options?: any) => any): UseCase[] => [
@@ -25,6 +27,8 @@ export const getUseCases = (t: (key: string, options?: any) => any): UseCase[] =
     bg: "bg-primary/20",
     border: "border-primary/20",
     image: "/mockups/pos_terminal.png",
+    metricValue: "⚡ 3s",
+    metricLabel: t("uc.cafe.metricLabel")
   },
   {
     id: "restaurant",
@@ -37,6 +41,8 @@ export const getUseCases = (t: (key: string, options?: any) => any): UseCase[] =
     bg: "bg-secondary/20",
     border: "border-secondary/20",
     image: "/mockups/web_dashboard.png",
+    metricValue: "100%",
+    metricLabel: t("uc.restaurant.metricLabel")
   },
   {
     id: "juice",
@@ -49,6 +55,8 @@ export const getUseCases = (t: (key: string, options?: any) => any): UseCase[] =
     bg: "bg-accent/20",
     border: "border-accent/20",
     image: "/mockups/mobile_app.png",
+    metricValue: "+40%",
+    metricLabel: t("uc.juice.metricLabel")
   },
   {
     id: "gaming",
@@ -61,5 +69,7 @@ export const getUseCases = (t: (key: string, options?: any) => any): UseCase[] =
     bg: "bg-success/20",
     border: "border-success/20",
     image: "/mockups/qr_menu.png",
+    metricValue: "0 min",
+    metricLabel: t("uc.gaming.metricLabel")
   },
 ];

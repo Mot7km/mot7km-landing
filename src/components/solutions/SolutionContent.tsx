@@ -5,14 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
-import { FeaturePageData } from "@/data/featurePages";
-import { ArrowRight, ArrowLeft, Languages } from "lucide-react";
+import { SolutionPageData } from "@/data/solutionPages";
+import { 
+  ArrowRight, ArrowLeft, Zap, Coffee, QrCode, 
+  PieChart, UtensilsCrossed, Users, ShieldCheck, 
+  Printer, CupSoda, Star, Clock, Gamepad2, Bell, CheckCircle2, Languages 
+} from "lucide-react";
 
-interface FeatureHeroProps {
-  data: FeaturePageData;
+const IconMap: Record<string, any> = {
+  Zap, Coffee, QrCode, PieChart, UtensilsCrossed, 
+  Users, ShieldCheck, Printer, CupSoda, Star, Clock, Gamepad2, Bell
+};
+
+interface SolutionContentProps {
+  data: SolutionPageData;
 }
 
-export default function FeatureHero({ data }: FeatureHeroProps) {
+export default function SolutionContent({ data }: SolutionContentProps) {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "ar";
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
@@ -32,19 +41,18 @@ export default function FeatureHero({ data }: FeatureHeroProps) {
   };
 
   return (
-    <section className="relative pt-8 pb-20 md:pt-12 md:pb-32 bg-background">
-      {/* Background Glows */}
+    <div className="relative pt-8 pb-24 md:pt-12 md:pb-36 bg-background">
+      {/* Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[800px] blur-[150px] rounded-full opacity-20" />
-        <div className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] blur-[120px] rounded-full opacity-30 ${data.glowColor}`} />
+        <div className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] blur-[160px] rounded-full opacity-25 ${data.glowColor}`} />
       </div>
       
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         
-        {/* Sticky Floating Action Bar */}
+        {/* Sticky Floating Action Bar (Back + Language Switcher Dropdown) */}
         <div className="sticky top-6 md:top-8 z-40 mb-8 md:mb-12 flex items-center justify-between gap-4">
           <Link 
-            href="/#features" 
+            href="/#use-cases" 
             className="inline-flex items-center gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-surface/80 backdrop-blur-2xl border border-white/10 text-xs sm:text-sm font-bold text-text-secondary hover:text-white hover:border-white/20 hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,0,0,0.5)] group"
           >
             {isRtl ? (
@@ -52,7 +60,7 @@ export default function FeatureHero({ data }: FeatureHeroProps) {
             ) : (
               <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1 text-primary" />
             )}
-            <span>{isRtl ? "العودة للمميزات" : "Back to Features"}</span>
+            <span>{t("solutions.back") || "العودة لحالات الاستخدام"}</span>
           </Link>
 
           {/* Language Dropdown */}
@@ -105,91 +113,139 @@ export default function FeatureHero({ data }: FeatureHeroProps) {
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-          {/* Text Content */}
-          <div className="w-full lg:w-1/2 text-center lg:text-start">
+        {/* Solution Hero */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 md:mb-28">
+          
+          <div className="lg:col-span-6 text-center lg:text-start">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface/80 border border-white/10 text-white text-xs font-bold mb-6 backdrop-blur-md shadow-lg tracking-widest ${data.themeColor}`}
+              className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface/80 border border-white/10 text-white text-xs font-bold mb-6 backdrop-blur-md shadow-md tracking-widest ${data.themeColor}`}
             >
               <span>{t(data.hero.badgeKey)}</span>
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 mb-6 leading-[1.1] drop-shadow-sm pb-2"
+              transition={{ delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight"
             >
               {t(data.hero.titleKey)}
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-text-secondary leading-relaxed mb-10 max-w-2xl mx-auto lg:mx-0"
+              transition={{ delay: 0.2 }}
+              className="text-lg sm:text-xl text-text-secondary leading-relaxed mb-10"
             >
               {t(data.hero.subtitleKey)}
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
               <Link
-                href="#demo"
+                href="/#demo"
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-white text-background font-bold text-base transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
               >
                 {t("nav.cta")}
               </Link>
               <Link
                 href="/#pricing"
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-surface border border-white/10 text-white font-bold text-base transition-all duration-300 hover:bg-white/5 hover:border-white/20"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-surface border border-white/10 text-white font-bold text-base transition-all duration-300 hover:bg-white/5"
               >
                 {t("nav.pricing")}
               </Link>
             </motion.div>
           </div>
 
-          {/* Hero Image/Mockup */}
+          {/* Hero Image Mockup */}
           <motion.div
-            initial={{ opacity: 0, x: isRtl ? -40 : 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="w-full lg:w-1/2 flex justify-center lg:justify-end perspective-1000"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-6 relative flex justify-center"
           >
-            <div className={`relative ${data.hero.frameType === 'mobile' ? 'w-[280px] sm:w-[320px] aspect-[1/2.1]' : 'w-full max-w-2xl aspect-[16/10]'} rotate-y-[-10deg] rotate-x-[5deg] hover:rotate-y-0 hover:rotate-x-0 transition-transform duration-700 ease-out`}>
-              
-              {data.hero.frameType === 'mobile' ? (
-                <div className="absolute inset-0 bg-[#0c0c0c] rounded-[3rem] border-[8px] border-surface/50 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden">
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-6 bg-surface/50 rounded-b-2xl z-20 backdrop-blur-md" />
-                  <Image src={data.hero.image} alt="Feature Mockup" fill className="object-cover object-top" unoptimized priority />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2.5rem] pointer-events-none z-30" />
-                </div>
-              ) : (
-                <div className="absolute inset-0 bg-[#0c0c0c] rounded-2xl border border-white/10 shadow-[0_30px_100px_-20px_rgba(0,0,0,0.8)] overflow-hidden flex flex-col">
-                  <div className="h-8 bg-surface/80 backdrop-blur-md border-b border-white/5 flex items-center px-4 gap-2 shrink-0 z-20 relative">
-                    <div className="flex gap-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                    </div>
-                  </div>
-                  <div className="relative flex-1">
-                    <Image src={data.hero.image} alt="Feature Mockup" fill className="object-cover object-top" unoptimized priority />
-                  </div>
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none z-30" />
-                </div>
-              )}
+            <div className="relative w-full max-w-lg aspect-[16/11] rounded-3xl bg-[#0c0c0c] border border-white/15 shadow-[0_30px_90px_rgba(0,0,0,0.8)] overflow-hidden group">
+              <Image
+                src={data.hero.image}
+                alt={t(data.hero.titleKey)}
+                fill
+                className="object-cover object-top opacity-95 group-hover:scale-105 transition-transform duration-700"
+                unoptimized
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0c0c0c] via-transparent to-transparent opacity-60" />
             </div>
           </motion.div>
+
         </div>
+
+        {/* Key Metrics Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 md:mb-28 max-w-5xl mx-auto">
+          {data.metrics.map((m, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="p-8 rounded-3xl bg-surface/40 backdrop-blur-md border border-white/10 text-center shadow-lg"
+            >
+              <span className={`text-4xl sm:text-5xl font-black mb-3 block ${data.themeColor}`}>
+                {m.value}
+              </span>
+              <span className="text-sm sm:text-base font-bold text-white/90">
+                {t(m.labelKey)}
+              </span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Benefits Grid */}
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+              {isRtl ? "المزايا الفنية والتطبيقية للنشاط" : "Key Solution Features"}
+            </h2>
+            <p className="text-text-secondary text-base sm:text-lg max-w-2xl mx-auto">
+              {t(data.overviewKey)}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {data.benefits.map((b, idx) => {
+              const Icon = IconMap[b.icon] || Zap;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="p-8 rounded-3xl bg-surface/50 border border-white/10 backdrop-blur-md hover:border-white/20 transition-all group"
+                >
+                  <div className={`w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 ${data.themeColor} group-hover:scale-110 transition-transform`}>
+                    <Icon size={28} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    {t(b.titleKey)}
+                  </h3>
+                  <p className="text-text-secondary text-sm leading-relaxed">
+                    {t(b.descKey)}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
   );
 }

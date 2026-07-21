@@ -74,7 +74,6 @@ export default async function FeaturePage({ params }: { params: Promise<{ id: st
 
   return (
     <>
-      <Navbar />
       <main className="min-h-screen">
         <FeatureHero data={data} />
         <FeatureCapabilities data={data} />

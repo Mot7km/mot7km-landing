@@ -400,28 +400,89 @@
     "cafe": {
       "desc": "Fast order entry, interactive digital menu, and inventory tracking.",
       "roles": ["Owner", "Manager", "Cashier", "Barista", "Customer"],
-      "title": "Cafes & Coffee Shops"
+      "title": "Cafes & Coffee Shops",
+      "metricLabel": "Order entry speed"
     },
     "gaming": {
       "desc": "Digital menu for direct table orders for an uninterrupted gaming experience.",
       "roles": ["Owner", "Manager", "Customer"],
-      "title": "Gaming Lounges"
+      "title": "Gaming Lounges",
+      "metricLabel": "Direct table ordering"
     },
     "juice": {
       "desc": "Quick order screen and easy management of multiple add‑ons and flavours.",
       "roles": ["Owner", "Cashier", "Customer"],
-      "title": "Juice & Ice Cream Shops"
+      "title": "Juice & Ice Cream Shops",
+      "metricLabel": "Flavor & toppings customization"
     },
     "restaurant": {
       "desc": "Table management, kitchen display system, and detailed shift & staff management.",
       "roles": ["Owner", "Manager", "Cashier", "Chef", "Customer"],
-      "title": "Restaurants"
+      "title": "Restaurants",
+      "metricLabel": "Kitchen & cashier sync"
+    }
+  },
+  "solutions": {
+    "explore": "Explore Full Solution Features",
+    "back": "Back to Use Cases",
+    "rolesTitle": "Beneficiaries in this Business Model",
+    "cafe": {
+      "badge": "Café & Coffee Shop Solutions",
+      "title": "Seamless & Fast Management for Cafés and Baristas",
+      "subtitle": "Dedicated POS system for fast drink ordering, instant QR menu, and real-time inventory tracking with coffee bean consumption monitoring.",
+      "overview": "Designed specifically for peak rush hours, providing a fast cashier interface supporting drink customization and add-ons in one click.",
+      "m1": "Order entry in 3 seconds",
+      "m2": "Zero waste in beans & ingredients",
+      "m3": "Increased table turnover rate",
+      "b1": { "title": "Quick Order & Customization", "desc": "Add milk, syrups, and sugar options in one touch without delay." },
+      "b2": { "title": "Barista Stock Tracking", "desc": "Automatic deduction of beans and milk per cup sold." },
+      "b3": { "title": "Tabletop Fast QR Menu", "desc": "Browse without app downloads and pick drinks instantly." },
+      "b4": { "title": "Top-Selling Item Insights", "desc": "Identify popular drinks per hour of the day." }
+    },
+    "restaurant": {
+      "badge": "Integrated Restaurant Solutions",
+      "title": "Complete Control Over Tables, Kitchen, and Sales",
+      "subtitle": "Real-time sync between cashier and Kitchen Display System (KDS), split billing, table management, and precise meal tracking.",
+      "overview": "Restaurant solutions ensure total harmony between floor staff and kitchen chefs, reducing order errors and boosting customer satisfaction.",
+      "m1": "Real-time Kitchen & Floor Sync",
+      "m2": "Reduced Meal Prep Time",
+      "m3": "Multi-Branch Support",
+      "b1": { "title": "Kitchen Display System (KDS)", "desc": "Instantly route orders from cashier or table to kitchen stations (grill, drinks, pantry)." },
+      "b2": { "title": "Table Management & Split Billing", "desc": "Track table status (vacant, occupied, reserved) and merge or split bills easily." },
+      "b3": { "title": "Shift Control & Cash Audit", "desc": "Accurate shift handovers and drawer reconciliation with reduced cash errors." },
+      "b4": { "title": "Kitchen Ticket & Receipt Printing", "desc": "Automated fast printing of kitchen tickets and customer receipts." }
+    },
+    "juice": {
+      "badge": "Juice & Ice Cream Solutions",
+      "title": "Fast Interface for Orders & Flavor Customization",
+      "subtitle": "Allows cashiers to select sizes, flavors, and toppings in seconds with sticker printing support.",
+      "overview": "Built for heavy rush and high speed, supporting size modifications and add-ons smoothly.",
+      "m1": "Ultra-Fast Re-Ordering",
+      "m2": "Higher Average Ticket Value",
+      "m3": "Cup Sticker Printing",
+      "b1": { "title": "Flavor & Size Selection Screen", "desc": "Select fruits, sugar levels, and sizes (small, medium, large) in a single click." },
+      "b2": { "title": "Peak Hour Ultra-Fast POS", "desc": "Simplified cashier interface allowing order completion and sticker printing in seconds." },
+      "b3": { "title": "Cup Sticker Printing", "desc": "Print custom stickers per cup with customer name and recipe modifications." },
+      "b4": { "title": "Real-Time Fruit & Ingredient Stock", "desc": "Automatic deduction of fruit, milk, and cup inventory with every sale." }
+    },
+    "gaming": {
+      "badge": "PlayStation & Gaming Lounge Solutions",
+      "title": "Direct Tabletop QR Menu for Uninterrupted Play",
+      "subtitle": "Allow gamers to order drinks and snacks directly from their gaming station via QR scan without pausing the game.",
+      "overview": "Boosts average snack and beverage sales in gaming lounges by providing self-service ordering without calling staff.",
+      "m1": "Increased Beverage Sales",
+      "m2": "Zero Order Wait Time",
+      "m3": "Superior Gaming Experience",
+      "b1": { "title": "Station Tabletop QR Ordering", "desc": "Scan QR at the gaming station to browse and order without leaving the game." },
+      "b2": { "title": "Seamless Station Kitchen Routing", "desc": "Send snack and drink orders directly to the snack bar with station number." },
+      "b3": { "title": "Runner & Order Alerts", "desc": "Instant alert to floor runners specifying which station placed the order." },
+      "b4": { "title": "Gaming Lounge Sales Analytics", "desc": "Identify peak gaming hours and top-selling snacks and beverages." }
     }
   },
   "useCases": {
-    "desc": "A flexible system that adapts to your business, whether you run a small café or a restaurant chain.",
-    "title1": "Designed Specifically",
-    "title2": "for Your Business"
+    "desc": "A flexible system that adapts to your workflow, whether you run a small café or a restaurant chain.",
+    "title1": "Tailored Specifically",
+    "title2": "For Your Business"
   },
   "val": {
     "q1": "How much did I sell today?",
