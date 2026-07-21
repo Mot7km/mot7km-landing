@@ -2,7 +2,15 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, CreditCard, Settings } from "lucide-react";
+import { 
+  ChevronDown, 
+  HelpCircle, 
+  CreditCard, 
+  ShieldCheck, 
+  Monitor, 
+  QrCode, 
+  Sparkles 
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export default function FAQ() {
@@ -12,8 +20,10 @@ export default function FAQ() {
 
   const categories = [
     { id: 0, key: "general", icon: HelpCircle, title: t("faq.cat.general") },
-    { id: 1, key: "pricing", icon: CreditCard, title: t("faq.cat.pricing") },
-    { id: 2, key: "tech", icon: Settings, title: t("faq.cat.tech") },
+    { id: 1, key: "pos", icon: Monitor, title: t("faq.cat.pos") },
+    { id: 2, key: "pricing", icon: CreditCard, title: t("faq.cat.pricing") },
+    { id: 3, key: "qr", icon: QrCode, title: t("faq.cat.qr") },
+    { id: 4, key: "tech", icon: ShieldCheck, title: t("faq.cat.tech") },
   ];
 
   const faqs = {
@@ -21,56 +31,85 @@ export default function FAQ() {
       { q: t("faq.q.g1"), a: t("faq.a.g1") },
       { q: t("faq.q.g2"), a: t("faq.a.g2") },
       { q: t("faq.q.g3"), a: t("faq.a.g3") },
+      { q: t("faq.q.g4"), a: t("faq.a.g4") },
+    ],
+    pos: [
+      { q: t("faq.q.pos1"), a: t("faq.a.pos1") },
+      { q: t("faq.q.pos2"), a: t("faq.a.pos2") },
+      { q: t("faq.q.pos3"), a: t("faq.a.pos3") },
+      { q: t("faq.q.pos4"), a: t("faq.a.pos4") },
     ],
     pricing: [
       { q: t("faq.q.p1"), a: t("faq.a.p1") },
       { q: t("faq.q.p2"), a: t("faq.a.p2") },
       { q: t("faq.q.p3"), a: t("faq.a.p3") },
+      { q: t("faq.q.p4"), a: t("faq.a.p4") },
+    ],
+    qr: [
+      { q: t("faq.q.qr1"), a: t("faq.a.qr1") },
+      { q: t("faq.q.qr2"), a: t("faq.a.qr2") },
+      { q: t("faq.q.qr3"), a: t("faq.a.qr3") },
+      { q: t("faq.q.qr4"), a: t("faq.a.qr4") },
     ],
     tech: [
       { q: t("faq.q.t1"), a: t("faq.a.t1") },
       { q: t("faq.q.t2"), a: t("faq.a.t2") },
       { q: t("faq.q.t3"), a: t("faq.a.t3") },
+      { q: t("faq.q.t4"), a: t("faq.a.t4") },
     ],
   };
 
-  const currentFaqs = faqs[categories[activeCategory].key as keyof typeof faqs];
+  const currentCategoryKey = categories[activeCategory]?.key as keyof typeof faqs;
+  const currentFaqs = faqs[currentCategoryKey] || [];
 
   const toggleOpen = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="py-16 sm:py-24 bg-background relative overflow-hidden">
+    <section id="faq" className="py-16 sm:py-24 md:py-32 bg-background relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-secondary/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary/5 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-secondary/5 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs sm:text-sm font-bold mb-4 shadow-sm"
+          >
+            <Sparkles size={16} />
+            <span>{t("faq.badge") || "الأسئلة الشائعة"}</span>
+          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-6"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-black text-text-primary mb-6 tracking-tight"
           >
             {t("faq.title1")}{" "}
-            <span className="text-gradient bg-accent-gradient">{t("faq.title2")}</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-primary bg-300% animate-gradient">
+              {t("faq.title2")}
+            </span>
           </motion.h2>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-lg text-text-secondary leading-relaxed"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-base sm:text-lg md:text-xl text-text-secondary leading-relaxed"
           >
             {t("faq.desc")}
           </motion.p>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-4 mb-12">
           {categories.map((cat, i) => {
             const Icon = cat.icon;
             const isActive = activeCategory === cat.id;
@@ -80,22 +119,22 @@ export default function FAQ() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.1 }}
+                transition={{ duration: 0.3, delay: i * 0.05 }}
                 onClick={() => {
                   setActiveCategory(cat.id);
                   setOpenIndex(0); // open first question of new category
                 }}
-                className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-2xl font-bold text-sm transition-all duration-300 cursor-pointer ${
+                className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? "bg-primary text-white shadow-[0_0_20px_rgba(22,131,199,0.3)] border-transparent scale-105"
-                    : "bg-surface/50 text-text-muted hover:text-text-primary border border-border/50 hover:border-border hover:bg-surface"
+                    ? "bg-primary text-white shadow-[0_10px_25px_rgba(22,131,199,0.35)] scale-105"
+                    : "bg-surface/60 text-text-secondary hover:text-white border border-white/10 hover:border-white/20 hover:bg-surface"
                 }`}
               >
                 <Icon
                   size={18}
-                  className={isActive ? "text-white" : "text-text-muted"}
+                  className={isActive ? "text-white" : "text-primary"}
                 />
-                {cat.title}
+                <span>{cat.title}</span>
               </motion.button>
             );
           })}
@@ -106,9 +145,9 @@ export default function FAQ() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory} // forces re-render/animation on category change
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.3 }}
               className="space-y-4"
             >
@@ -119,19 +158,19 @@ export default function FAQ() {
                     key={index}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
                     className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
                       isOpen
-                        ? "border-primary/40 bg-surface shadow-[0_0_30px_rgba(22,131,199,0.1)] sm:scale-[1.02] z-10 relative"
-                        : "border-border/50 bg-surface/50 hover:border-border hover:bg-surface"
+                        ? "border-primary/40 bg-surface/90 shadow-[0_10px_30px_rgba(0,0,0,0.3)] sm:scale-[1.01] z-10 relative"
+                        : "border-white/10 bg-surface/40 hover:border-white/20 hover:bg-surface/60"
                     }`}
                   >
                     <button
-                      className="w-full px-4 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-start outline-none cursor-pointer"
+                      className="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-start outline-none cursor-pointer"
                       onClick={() => toggleOpen(index)}
                     >
                       <span
-                        className={`font-bold text-base sm:text-lg pr-4 transition-colors ${
+                        className={`font-bold text-sm sm:text-base md:text-lg pr-4 rtl:pr-0 rtl:pl-4 transition-colors ${
                           isOpen ? "text-primary" : "text-text-primary"
                         }`}
                       >
@@ -140,11 +179,11 @@ export default function FAQ() {
                       <div
                         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 ${
                           isOpen
-                            ? "bg-primary/10 text-primary rotate-180"
-                            : "bg-transparent text-text-muted"
+                            ? "bg-primary/20 text-primary rotate-180"
+                            : "bg-surface/80 border border-white/10 text-text-secondary"
                         }`}
                       >
-                        <ChevronDown size={20} />
+                        <ChevronDown size={18} />
                       </div>
                     </button>
 
@@ -156,7 +195,7 @@ export default function FAQ() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.3, ease: "easeInOut" }}
                         >
-                          <div className="px-6 pb-6 text-text-secondary leading-relaxed">
+                          <div className="px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm md:text-base text-text-secondary leading-relaxed border-t border-white/5 pt-4">
                             {faq.a}
                           </div>
                         </motion.div>
@@ -168,6 +207,7 @@ export default function FAQ() {
             </motion.div>
           </AnimatePresence>
         </div>
+
       </div>
     </section>
   );

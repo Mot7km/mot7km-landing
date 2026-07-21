@@ -1,46 +1,60 @@
 {
   "faq": {
-    "a": {
-      "g1": "Yes, the system is very flexible and designed to suit various activities such as restaurants, cafes, juice bars, salons, and retail stores.",
-      "g2": "Absolutely, you can start with the free plan (Digital Menu) or request a demo to experience the full POS and dashboard.",
-      "g3": "The digital menu allows your customers to view your products via QR. The POS is the comprehensive system used by your staff to record orders, print invoices, and manage inventory.",
-      "p1": "There are no hidden fees or setup charges. You only pay the subscription fee shown in your chosen plan, monthly or annually.",
-      "p2": "You can upgrade your plan at any time directly from your dashboard with one click.",
-      "p3": "The free menu plan is for trial purposes and will display small, non‑intrusive ads to customers. To enjoy an ad‑free menu with your own branding, upgrade to the Starter plan.",
-      "t1": "Yes, our system is built with Offline‑first technology, so sales and printing continue even if the internet goes down, and data will sync automatically when it returns.",
-      "t2": "No, Mot7km runs as a Web & App on most smart devices and tablets (iPad, Android, laptop), saving you hardware costs.",
-      "t3": "Your data is fully encrypted and stored on highly secure global cloud servers. Only you and your authorized staff can access it."
-    },
+    "badge": "Frequently Asked Questions",
+    "title1": "Frequently Asked",
+    "title2": "Questions & Answers",
+    "desc": "Everything you need to know about the Mot7km platform, POS capabilities, digital QR menu, and pricing.",
     "cat": {
-      "general": "General",
-      "pricing": "Pricing & Subscriptions",
-      "tech": "Technology & Operations"
+      "general": "General Questions",
+      "pos": "POS & Operations",
+      "pricing": "Plans & Pricing",
+      "qr": "Digital QR Menu",
+      "tech": "Security & Tech Support"
     },
-    "desc": "Everything you need to know about Mot7km and how it can serve your business.",
     "q": {
-      "a": {
-        "g1": "Yes, the system is very flexible and designed to suit various activities such as restaurants, cafes, juice bars, salons, and retail stores.",
-        "g2": "Absolutely, you can start with the free plan (Digital Menu) or request a demo to experience the full POS and dashboard.",
-        "g3": "The digital menu allows your customers to view your products via QR. The POS is the comprehensive system used by your staff to record orders, print invoices, and manage inventory.",
-        "p1": "There are no hidden fees or setup charges. You only pay the subscription fee shown in your chosen plan, monthly or annually.",
-        "p2": "You can upgrade your plan at any time directly from your dashboard with one click.",
-        "p3": "The free menu plan is for trial purposes and will display small, non‑intrusive ads to customers. To enjoy an ad‑free menu with your own branding, upgrade to the Starter plan.",
-        "t1": "Yes, our system is built with Offline‑first technology, so sales and printing continue even if the internet goes down, and data will sync automatically when it returns.",
-        "t2": "No, the QR menu is completely frictionless. Customers just scan and browse instantly via their mobile web browser without installing anything.",
-        "t3": "Yes, the web dashboard acts as a single source of truth, allowing you to manage menus, employees, and view consolidated reports across all your branches."
-      },
-      "g1": "Is Mot7km suitable for my business?",
-      "g2": "Can I try the system before paying?",
-      "g3": "What is the difference between the digital menu and the POS system?",
-      "p1": "Are there setup fees or hidden charges?",
-      "p2": "How can I upgrade or change my plan?",
-      "p3": "What does 'menu ads' in the free plan mean?",
-      "t1": "Does the POS work if the internet goes down?",
-      "t2": "Do my customers need to install an app to view the menu?",
-      "t3": "Can I manage multiple branches from one account?"
+      "g1": "What is Mot7km and who is it designed for?",
+      "g2": "How does Mot7km differ from traditional legacy POS systems?",
+      "g3": "Is the system cloud-based or installed on local servers?",
+      "g4": "Can I test the platform for free before subscribing?",
+      "pos1": "Does the Cashier POS app work if the internet drops?",
+      "pos2": "Which receipt and kitchen printers are supported?",
+      "pos3": "How does cashier shift closing and cash reconciliation work?",
+      "pos4": "Can cashiers quickly customize drinks and dish modifiers?",
+      "p1": "Are there any hidden setup fees or hardware lock-in costs?",
+      "p2": "How do monthly and annual billing cycles work?",
+      "p3": "Can I upgrade or downgrade my subscription plan at any time?",
+      "p4": "What happens after my free plan or trial period ends?",
+      "qr1": "Do customers need an app to scan and view the QR menu?",
+      "qr2": "Can customers leave ratings and reviews on menu items?",
+      "qr3": "What happens when an item goes out of stock?",
+      "qr4": "Can I customize the QR menu with my restaurant branding?",
+      "t1": "Is my sales and financial data secure in the cloud?",
+      "t2": "How are staff permissions managed across roles?",
+      "t3": "Can I manage multiple branches from one single account?",
+      "t4": "How can I access priority technical support when needed?"
     },
-    "title1": "Frequently",
-    "title2": "Asked Questions"
+    "a": {
+      "g1": "Mot7km is an end-to-end cloud platform for restaurants, cafes, and food businesses. It provides owners with a cloud web dashboard, staff with a fast POS cashier app, and diners with a digital QR menu.",
+      "g2": "Legacy systems require expensive local servers, proprietary hardware, and IT maintenance. Mot7km runs in the cloud on any device (laptop, tablet, phone) with zero setup fees, instant sync, and free updates.",
+      "g3": "Mot7km combines cloud intelligence with local execution (Offline-First). Your data is safely stored in the cloud while POS devices operate continuously even without internet connection.",
+      "g4": "Yes! You can start with our free plan for digital menus or request a live demo to test the full POS and admin dashboard before purchasing.",
+      "pos1": "Yes, 100%. The POS cashier is built with Offline-First resilience, allowing cashiers to take orders and print receipts offline. Data automatically syncs back once connection is restored.",
+      "pos2": "Mot7km supports all standard thermal receipt printers connected via USB, Ethernet/Wi-Fi network, or Bluetooth.",
+      "pos3": "The POS allows starting and closing cashier shifts with detailed audit reports comparing expected drawer cash vs. actual cash counted.",
+      "pos4": "Yes, cashiers can select sizes (Small, Medium, Large) and customize modifiers (milk type, syrups, toppings) in one tap with automatic inventory deduction.",
+      "p1": "No hidden fees or setup costs whatsoever. You only pay the listed subscription price and can use your existing hardware without buying proprietary devices.",
+      "p2": "We offer monthly and annual billing options. Annual subscriptions come with a 20% discount compared to monthly payments.",
+      "p3": "Yes, you can upgrade your plan or add new branches at any time directly from your cloud control panel.",
+      "p4": "Your data and menus remain completely safe. You can upgrade to any operational plan anytime without losing any configured menu items or settings.",
+      "qr1": "No! The digital menu opens directly in any mobile web browser without requiring app downloads. Scanning takes under 1 second.",
+      "qr2": "Yes! Diners can submit ratings and reviews per item, which owners can review and moderate directly from the web dashboard.",
+      "qr3": "When an item is marked as Sold Out from the POS or dashboard, the QR menu updates instantly across all tables to prevent invalid orders.",
+      "qr4": "Yes! You can upload your logo, cover image, and customize theme colors to match your brand identity from system settings.",
+      "t1": "Yes! All data is encrypted with bank-grade encryption (SSL/TLS) and backed up daily in secure cloud infrastructure.",
+      "t2": "Mot7km features a role-based permissions matrix so owners can grant exact access rights to managers, accountants, and cashiers.",
+      "t3": "Yes! Mot7km lets you connect and manage multiple branches, comparing sales metrics and menu availability from one central web dashboard.",
+      "t4": "Our support team is available 24/7 via live chat, phone, and WhatsApp to help you with setup and operational queries."
+    }
   },
   "featurePages": {
     "web": {
