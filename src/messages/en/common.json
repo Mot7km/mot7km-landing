@@ -499,22 +499,73 @@
     "title2": "to Your Most Important Business Questions"
   },
   "value": {
-    "badge": "Our Core Principles",
-    "desc": "Built from the ground up to solve the real operational challenges of the F&B industry. Mot7km guarantees speed, reliability, and total control.",
-    "title1": "Engineered for",
-    "title2": "Extreme Reliability",
-    "points": {
-      "p1": {
-        "title": "Offline-First Resilience",
-        "desc": "Internet down? No problem. The POS queues your orders safely and syncs automatically when the connection returns."
+    "badge": "The Mot7km Experience",
+    "title1": "An End-to-End Platform",
+    "title2": "Built for Your Whole Team",
+    "desc": "Select your role to see how Mot7km streamlines daily tasks and boosts operational efficiency with zero friction.",
+    "personas": {
+      "owner": "Business Owner",
+      "cashier": "Cashier & Staff",
+      "manager": "Branch Manager",
+      "customer": "End Diner"
+    },
+    "guarantees": {
+      "setup": "5-Min Instant Onboarding",
+      "setupSub": "Zero setup fees",
+      "offline": "Always-On POS Engine",
+      "offlineSub": "Auto-syncs on reconnect",
+      "security": "Bank-Grade Data Security",
+      "securitySub": "Encrypted sales data",
+      "support": "24/7 Priority Support",
+      "supportSub": "Dedicated team ready"
+    },
+    "mockup": {
+      "branchName": "Main Cafe Branch - Ismailia",
+      "menuSubtitle": "Express Beverages & Pastries Menu",
+      "autoImport": "+ Auto Import",
+      "available": "In Stock",
+      "setupSuccess": "Menu uploaded & tax invoicing activated successfully",
+      "posToggle": "Smart POS Cashier",
+      "qrToggle": "Interactive QR Menu",
+      "posTitle": "Dine-in POS (Offline Mode)",
+      "synced": "Synced",
+      "orderSample": "Order #1048 - Table 4",
+      "kitchenPrinter": "Kitchen Printer",
+      "printed": "Printed",
+      "offlineEngine": "Operates 100% smoothly offline",
+      "qrTitle": "Interactive QR Menu",
+      "noApp": "No App Needed",
+      "scanOrder": "Scan & Order Instantly",
+      "feedbackSupport": "Direct feedback & ordering support",
+      "fastResponse": "Ultra-fast response",
+      "todaySales": "Real-time Sales Today",
+      "shiftAudit": "Morning shift auto-closed & cash reconciled",
+      "auditMatch": "100% Matched",
+      "item1": "Flat White",
+      "item2": "Single Espresso",
+      "item3": "Butter Croissant"
+    },
+    "steps": {
+      "s1": {
+        "stepNumber": "01",
+        "badge": "Instant Setup",
+        "title": "Account & Menu Onboarding in Under 5 Minutes",
+        "desc": "Create your account, upload menus, set pricing and modifiers, and assign staff permissions across branches with one click.",
+        "highlight": "No setup fees or proprietary hardware"
       },
-      "p2": {
-        "title": "Single Source of Truth",
-        "desc": "Manage branches, menus, employees, and deep financial analytics from one centralized cloud dashboard."
+      "s2": {
+        "stepNumber": "02",
+        "badge": "Flexible Operation",
+        "title": "Offline-First POS + Instant QR Menu for Diners",
+        "desc": "Issue orders and print receipts from any POS or phone without worrying about internet drops, while diners order directly via QR.",
+        "highlight": "Offline-First Engine auto-syncs data"
       },
-      "p3": {
-        "title": "Frictionless QR Menu",
-        "desc": "No app installs. Customers scan a QR code to browse an interactive menu, see images, and leave feedback instantly."
+      "s3": {
+        "stepNumber": "03",
+        "badge": "Cloud Intelligence",
+        "title": "Real-Time Sales, Inventory, and Shift Audit",
+        "desc": "Track live sales reports, automatic stock deductions, and shift cash drawer closings from anywhere on mobile or web.",
+        "highlight": "Total clarity on numbers as they happen"
       }
     }
   },
