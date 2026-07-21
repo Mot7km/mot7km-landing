@@ -12,6 +12,7 @@ import {
   Sparkles 
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SegmentedTabbar from "@/components/ui/SegmentedTabbar";
 
 export default function FAQ() {
   const { t } = useTranslation();
@@ -108,37 +109,24 @@ export default function FAQ() {
           </motion.p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2.5 sm:gap-4 mb-12">
-          {categories.map((cat, i) => {
+        {/* Category Tab Bar using Reusable SegmentedTabbar */}
+        <SegmentedTabbar
+          sticky={false}
+          tabs={categories.map((cat) => {
             const Icon = cat.icon;
-            const isActive = activeCategory === cat.id;
-            return (
-              <motion.button
-                key={cat.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                onClick={() => {
-                  setActiveCategory(cat.id);
-                  setOpenIndex(0); // open first question of new category
-                }}
-                className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-2xl font-bold text-xs sm:text-sm transition-all duration-300 cursor-pointer ${
-                  isActive
-                    ? "bg-primary text-white shadow-[0_10px_25px_rgba(22,131,199,0.35)] scale-105"
-                    : "bg-surface/60 text-text-secondary hover:text-white border border-white/10 hover:border-white/20 hover:bg-surface"
-                }`}
-              >
-                <Icon
-                  size={18}
-                  className={isActive ? "text-white" : "text-primary"}
-                />
-                <span>{cat.title}</span>
-              </motion.button>
-            );
+            return {
+              id: cat.id,
+              title: cat.title,
+              icon: <Icon size={18} />
+            };
           })}
-        </div>
+          activeTab={activeCategory}
+          onChange={(id) => {
+            setActiveCategory(id as number);
+            setOpenIndex(0);
+          }}
+          layoutId="activeFaqCategoryTab"
+        />
 
         {/* FAQ Accordion */}
         <div className="max-w-3xl mx-auto">

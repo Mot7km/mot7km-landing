@@ -24,6 +24,8 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import SegmentedTabbar from "@/components/ui/SegmentedTabbar";
+
 export default function ValueProp() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "ar";
@@ -137,40 +139,28 @@ export default function ValueProp() {
             {t("value.desc")}
           </motion.p>
 
-          {/* Persona Switcher Segmented Pills (Clean SVG Icons, no Emojis) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="inline-flex flex-wrap items-center justify-center p-1.5 rounded-2xl sm:rounded-full bg-surface/80 border border-white/10 backdrop-blur-2xl shadow-xl gap-1 max-w-full"
-          >
-            {personas.map((p) => {
+          {/* Reusable Persona Switcher Tabbar */}
+          <SegmentedTabbar
+            sticky={false}
+            tabs={personas.map((p) => {
               const Icon = p.icon;
-              const isSelected = activePersona === p.id;
-              return (
-                <button
-                  key={p.id}
-                  onClick={() => {
-                    setActivePersona(p.id);
-                    // Match step view for persona
-                    if (p.id === "owner") setActiveStep(0);
-                    else if (p.id === "cashier") setActiveStep(1);
-                    else if (p.id === "customer") setActiveStep(1);
-                    else if (p.id === "manager") setActiveStep(2);
-                  }}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                    isSelected
-                      ? "bg-primary text-white shadow-lg shadow-primary/30 scale-105"
-                      : "text-text-secondary hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <Icon size={16} />
-                  <span>{t(p.labelKey)}</span>
-                </button>
-              );
+              return {
+                id: p.id,
+                title: t(p.labelKey),
+                icon: <Icon size={16} />
+              };
             })}
-          </motion.div>
+            activeTab={activePersona}
+            onChange={(id) => {
+              const strId = String(id);
+              setActivePersona(strId);
+              if (strId === "owner") setActiveStep(0);
+              else if (strId === "cashier") setActiveStep(1);
+              else if (strId === "customer") setActiveStep(1);
+              else if (strId === "manager") setActiveStep(2);
+            }}
+            layoutId="activeValuePropPersonaTab"
+          />
         </div>
 
         {/* Main 2-Column Grid */}

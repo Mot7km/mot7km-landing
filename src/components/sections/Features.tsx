@@ -1,5 +1,6 @@
 "use client";
 
+import SegmentedTabbar from "@/components/ui/SegmentedTabbar";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, CheckCircle2, Quote, ArrowRight } from "lucide-react";
@@ -58,50 +59,18 @@ export default function Features() {
           </motion.p>
         </div>
 
-        {/* Sticky Tab Bar */}
-        <div className="sticky top-[72px] md:top-24 z-50 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0">
-          <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
-            {tabs.map((tab) => {
-              const isActive = activeTab === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`relative flex items-center px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center cursor-pointer ${
-                    isActive
-                      ? "text-white gap-1.5 sm:gap-2"
-                      : "text-text-muted hover:text-white hover:bg-white/5 gap-1.5 sm:gap-2"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeFeatureTab"
-                      className="absolute inset-0 md:bg-primary/20 bg-gradient-to-r from-primary/30 to-primary/10 border md:border-primary/50 border-primary/40 rounded-full shadow-[0_0_20px_rgba(22,131,199,0.3)] md:shadow-[0_0_15px_rgba(22,131,199,0.3)] -z-10 backdrop-blur-md md:backdrop-blur-none"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span
-                    className={`relative z-10 ${
-                      isActive
-                        ? "md:text-primary-light drop-shadow-[0_0_8px_rgba(34,211,238,0.8)] md:drop-shadow-md text-primary-light"
-                        : ""
-                    }`}
-                  >
-                    {tab.icon}
-                  </span>
-                  <span className="relative z-10 hidden md:inline">
-                    {tab.titleDesktop}
-                  </span>
-                  {isActive && (
-                    <span className="relative z-10 md:hidden">
-                      {tab.titleMobile}
-                    </span>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {/* Reusable Sticky Tab Bar */}
+        <SegmentedTabbar
+          tabs={tabs.map((tab) => ({
+            id: tab.id,
+            title: tab.titleDesktop,
+            titleMobile: tab.titleMobile,
+            icon: tab.icon
+          }))}
+          activeTab={activeTab}
+          onChange={setActiveTab}
+          layoutId="activeFeatureTab"
+        />
 
         {/* Content */}
         <div className="max-w-7xl mx-auto overflow-hidden">

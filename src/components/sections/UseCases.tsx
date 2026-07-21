@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getUseCases, type UseCase } from "@/data/useCases";
 import { ArrowRight, ArrowLeft, Sparkles, CheckCircle } from "lucide-react";
+import SegmentedTabbar from "@/components/ui/SegmentedTabbar";
 
 export default function UseCases() {
   const { t, i18n } = useTranslation();
@@ -63,41 +64,21 @@ export default function UseCases() {
           </motion.p>
         </div>
 
-        {/* Sticky Tab Bar matching Features section style */}
-        <div className="sticky top-[72px] md:top-24 z-40 flex justify-center mb-10 sm:mb-14 md:mb-16 w-full py-3 md:py-0">
-          <div className="flex flex-nowrap md:flex-wrap items-center justify-start md:justify-center gap-1.5 sm:gap-2 p-1.5 sm:p-2 bg-surface/80 md:bg-surface/50 backdrop-blur-2xl md:backdrop-blur-md border border-white/10 rounded-full shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] w-fit max-w-full mx-auto overflow-x-auto snap-x snap-mandatory hide-scrollbar">
-            {cases.map((uc: UseCase, index: number) => {
-              const isActive = activeCase === index;
-              const Icon = uc.icon;
-
-              return (
-                <button
-                  key={uc.id}
-                  onClick={() => setActiveCase(index)}
-                  className={`relative flex items-center px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full text-xs sm:text-sm font-bold transition-all duration-300 z-10 whitespace-nowrap shrink-0 snap-center cursor-pointer ${
-                    isActive
-                      ? "text-white gap-1.5 sm:gap-2"
-                      : "text-text-muted hover:text-white hover:bg-white/5 gap-1.5 sm:gap-2"
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeUseCaseTab"
-                      className="absolute inset-0 md:bg-primary/20 bg-gradient-to-r from-primary/30 to-primary/10 border md:border-primary/50 border-primary/40 rounded-full shadow-[0_0_20px_rgba(22,131,199,0.3)] md:shadow-[0_0_15px_rgba(22,131,199,0.3)] -z-10 backdrop-blur-md md:backdrop-blur-none"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                  <span className={`relative z-10 ${isActive ? `${uc.color} drop-shadow-md` : ""}`}>
-                    <Icon size={18} />
-                  </span>
-                  <span className="relative z-10">
-                    {uc.title}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {/* Reusable Sticky Tab Bar */}
+        <SegmentedTabbar
+          tabs={cases.map((uc: UseCase, index: number) => {
+            const Icon = uc.icon;
+            return {
+              id: index,
+              title: uc.title,
+              icon: <Icon size={18} />,
+              activeColorClass: uc.color
+            };
+          })}
+          activeTab={activeCase}
+          onChange={(id) => setActiveCase(id as number)}
+          layoutId="activeUseCaseTab"
+        />
 
         {/* Dynamic Interactive Stage (SaaS Stage Showcase) */}
         <div className="max-w-6xl mx-auto">
