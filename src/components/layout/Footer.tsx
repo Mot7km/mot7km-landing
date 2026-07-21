@@ -1,7 +1,21 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  ArrowRight, 
+  ArrowUp, 
+  Sparkles, 
+  CheckCircle2, 
+  ShieldCheck, 
+  Zap,
+  Star,
+  Store
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const XIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -23,156 +37,300 @@ const Linkedin = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === "ar";
+  
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email && email.includes("@")) {
+      setSubscribed(true);
+      setEmail("");
+      setTimeout(() => setSubscribed(false), 5000);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
-    <footer className="relative bg-surface/50 border-t border-white/5 pt-20 sm:pt-32 pb-6 overflow-hidden z-0">
-      {/* Premium Background Elements */}
+    <footer className="relative bg-surface/60 border-t border-white/10 pt-20 sm:pt-28 md:pt-32 pb-8 overflow-hidden z-0">
+      {/* Background Lighting Orbs & Mesh */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] opacity-[0.05] pointer-events-none -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary via-accent to-transparent blur-[120px] rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[450px] opacity-[0.07] pointer-events-none -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-primary via-accent to-transparent blur-[140px] rounded-full" />
       </div>
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary/5 blur-[140px] rounded-full pointer-events-none -z-10" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         
-        {/* Ultra-Modern Floating CTA */}
-        <div className="relative mb-24 p-10 md:p-14 rounded-[2.5rem] bg-surface/40 border border-white/10 backdrop-blur-xl shadow-2xl overflow-hidden group">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10 opacity-50 group-hover:opacity-100 transition-opacity duration-700" />
+        {/* Masterpiece Premium SaaS Banner CTA */}
+        <div className="relative mb-20 md:mb-28 p-8 sm:p-12 md:p-14 rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-[#0c1626] via-[#09111e] to-[#0d1c30] border border-white/15 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] overflow-hidden group">
           
-          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-10">
-            <div className="max-w-2xl text-center lg:text-start">
-              <h3 className="text-3xl md:text-5xl font-extrabold text-text-primary mb-4 tracking-tight">
-                {t("footer.ctaTitle")}
+          {/* Futuristic Ambient Orbs & Geometric Dot Pattern */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-primary/30 transition-all duration-700" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none group-hover:bg-emerald-500/25 transition-all duration-700" />
+          
+          {/* Subtle Grid SVG Overlay */}
+          <div 
+            className="absolute inset-0 opacity-[0.04] pointer-events-none" 
+            style={{
+              backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
+              backgroundSize: "24px 24px"
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14">
+            
+            {/* Left Content Column */}
+            <div className="max-w-2xl text-center lg:text-start flex flex-col items-center lg:items-start">
+              
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-extrabold mb-5 shadow-sm backdrop-blur-md">
+                <Sparkles size={14} className="text-primary animate-pulse" />
+                <span className="tracking-wider uppercase">Mot7km SaaS Platform v1.1</span>
+              </div>
+
+              <h3 className="text-2xl sm:text-4xl md:text-5xl font-black text-white mb-4 tracking-tight leading-[1.2]">
+                {t("footer.ctaTitle").split("؟")[0]}
+                <span className="block sm:inline text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-emerald-400">
+                  {isRtl ? " في مكان واحد؟" : "?"}
+                </span>
               </h3>
-              <p className="text-text-secondary text-base md:text-lg">
+              
+              <p className="text-text-secondary text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 {t("footer.ctaDesc")}
               </p>
+
+              {/* Glassmorphic Trust Badge Pills */}
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs font-bold">
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 backdrop-blur-md shadow-sm">
+                  <CheckCircle2 size={16} />
+                  <span>{t("footer.trustBadge1")}</span>
+                </div>
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-primary/10 border border-primary/20 text-primary-light backdrop-blur-md shadow-sm">
+                  <Zap size={16} />
+                  <span>{t("footer.trustBadge2")}</span>
+                </div>
+                <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 backdrop-blur-md shadow-sm">
+                  <ShieldCheck size={16} />
+                  <span>{t("footer.trustBadge3")}</span>
+                </div>
+              </div>
+
             </div>
-            <div className="flex w-full lg:w-auto flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder={t("footer.emailPlaceholder")}
-                className="w-full sm:w-72 bg-background/80 border border-white/10 rounded-full px-6 py-4 text-base focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-text-muted"
-              />
-              <button className="bg-primary hover:bg-primary-light text-white px-8 py-4 rounded-full font-bold transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_40px_-10px_rgba(var(--color-primary),0.8)]">
-                {t("footer.subscribe")}
-                <ArrowRight size={18} className="rtl:rotate-180" />
-              </button>
+
+            {/* Right Interactive Unified Email Form Container */}
+            <div className="flex flex-col w-full lg:w-auto min-w-[300px] sm:min-w-[420px] max-w-full">
+              
+              {/* Single Integrated Pill Container */}
+              <form onSubmit={handleSubscribe} className="relative p-2 rounded-2xl bg-surface/80 border border-white/20 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all duration-300 flex items-center">
+                <div className="pl-3 rtl:pl-0 rtl:pr-3 text-text-muted flex-shrink-0">
+                  <Mail size={20} />
+                </div>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder={t("footer.emailPlaceholder")}
+                  required
+                  className="w-full bg-transparent border-none outline-none text-sm text-text-primary px-3 py-2.5 placeholder:text-text-muted flex-1"
+                />
+                <button 
+                  type="submit"
+                  className="bg-gradient-to-r from-primary to-accent hover:from-primary-light hover:to-primary text-white font-bold px-6 py-3.5 rounded-xl text-xs sm:text-sm flex items-center gap-2 shadow-[0_0_25px_rgba(22,131,199,0.4)] transition-all hover:scale-[1.03] active:scale-95 cursor-pointer whitespace-nowrap flex-shrink-0"
+                >
+                  <span>{t("footer.subscribe")}</span>
+                  <ArrowRight size={16} className="rtl:rotate-180" />
+                </button>
+              </form>
+
+              {/* Social Proof & Rating Note */}
+              <div className="flex items-center justify-between mt-4 px-2 text-xs text-text-secondary">
+                <div className="flex items-center gap-1.5">
+                  <div className="flex -space-x-2 rtl:space-x-reverse">
+                    <div className="w-6 h-6 rounded-full bg-primary/30 border border-white/20 flex items-center justify-center text-[10px] font-bold text-white">
+                      ☕
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-secondary/30 border border-white/20 flex items-center justify-center text-[10px] font-bold text-white">
+                      🍕
+                    </div>
+                    <div className="w-6 h-6 rounded-full bg-emerald-500/30 border border-white/20 flex items-center justify-center text-[10px] font-bold text-white">
+                      🧃
+                    </div>
+                  </div>
+                  <span className="font-semibold text-text-secondary/90 ml-1 rtl:mr-1">
+                    {isRtl ? "انضم لـ 500+ مطعم وكافيه" : "Join 500+ food businesses"}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1 text-amber-400 font-bold">
+                  <Star size={13} className="fill-amber-400" />
+                  <span>4.9/5</span>
+                </div>
+              </div>
+
+              <AnimatePresence>
+                {subscribed && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="mt-3 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold text-center"
+                  >
+                    {t("footer.subSuccess")}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
+
           </div>
         </div>
 
-        {/* Main Footer Links & Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-6 mb-16">
+        {/* Main Footer Content Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
           
           {/* Brand Column */}
-          <div className="md:col-span-2 lg:col-span-3 flex flex-col items-center lg:items-start text-center lg:text-start">
-            <Link href="/" className="flex items-center gap-3 mb-6 group">
+          <div className="sm:col-span-2 lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-start">
+            <Link href="/" className="flex items-center gap-3 mb-5 group">
               <div className="relative">
-                <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full group-hover:bg-primary/40 transition-colors" />
+                <div className="absolute inset-0 bg-primary/30 blur-xl rounded-full group-hover:bg-primary/50 transition-colors" />
                 <img 
                   src="/assets/logo/mot7km_logo%20(2).png" 
                   alt="Mot7km Logo" 
-                  className="h-12 w-auto relative z-10 group-hover:scale-110 transition-transform duration-500"
+                  className="h-11 sm:h-12 w-auto relative z-10 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <span className="font-extrabold text-3xl tracking-tighter text-text-primary">
+              <span className="font-black text-2xl sm:text-3xl tracking-tight text-text-primary">
                 Mot7km
               </span>
             </Link>
-            <p className="text-text-secondary mb-8 leading-relaxed max-w-sm">
+            
+            <p className="text-text-secondary text-sm leading-relaxed mb-6 max-w-sm">
               {t("footer.desc")}
             </p>
-            {/* Social Icons */}
-            <div className="flex items-center gap-4">
+
+            {/* Live System Status Badge */}
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-6">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+              </span>
+              <span>{t("footer.statusOperational")}</span>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-3">
               {[
-                { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61591358790071" },
-                { Icon: Instagram, href: "https://www.instagram.com/mot7km" },
-                { Icon: XIcon, href: "#" },
-                { Icon: Linkedin, href: "#" }
+                { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61591358790071", label: "Facebook" },
+                { Icon: Instagram, href: "https://www.instagram.com/mot7km", label: "Instagram" },
+                { Icon: XIcon, href: "#", label: "X" },
+                { Icon: Linkedin, href: "#", label: "LinkedIn" }
               ].map((item, idx) => (
-                <a key={idx} href={item.href} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-surface border border-border flex items-center justify-center text-text-secondary hover:text-white hover:bg-primary hover:border-primary hover:-translate-y-2 transition-all duration-300 shadow-sm">
-                  <item.Icon width={20} height={20} />
+                <a 
+                  key={idx} 
+                  href={item.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label={item.label}
+                  className="w-10 h-10 rounded-xl bg-surface/80 border border-white/10 flex items-center justify-center text-text-secondary hover:text-white hover:bg-primary hover:border-primary/50 hover:-translate-y-1 transition-all duration-300 shadow-sm"
+                >
+                  <item.Icon width={18} height={18} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Links Columns */}
-          <div className="lg:col-span-2 lg:col-start-4">
-            <h4 className="font-bold text-text-primary mb-6 text-lg">{t("footer.links")}</h4>
-            <ul className="space-y-4">
-              {[t("nav.howItWorks"), t("nav.features"), t("nav.faq")].map((link, i) => (
+          {/* Product Column */}
+          <div className="lg:col-span-2 sm:col-span-1">
+            <h4 className="font-bold text-text-primary mb-5 text-base tracking-wide uppercase text-xs text-primary">
+              {t("footer.links")}
+            </h4>
+            <ul className="space-y-3 text-sm font-medium">
+              {[
+                { label: t("nav.howItWorks"), href: "#how-it-works" },
+                { label: t("nav.features"), href: "#features" },
+                { label: t("nav.pricing"), href: "#pricing" },
+                { label: t("nav.faq"), href: "#faq" }
+              ].map((link, i) => (
                 <li key={i}>
-                  <a href="#" className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group font-medium">
-                    <span className="w-0 h-px bg-primary transition-all duration-300 group-hover:w-4" />
-                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{link}</span>
+                  <a href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
+                    <span>{link.label}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company Column */}
-          <div className="lg:col-span-2">
-            <h4 className="font-bold text-text-primary mb-6 text-lg">{t("footer.company")}</h4>
-            <ul className="space-y-4">
+          {/* Solutions Column */}
+          <div className="lg:col-span-2 sm:col-span-1">
+            <h4 className="font-bold text-text-primary mb-5 text-base tracking-wide uppercase text-xs text-primary">
+              {t("footer.solutions")}
+            </h4>
+            <ul className="space-y-3 text-sm font-medium">
               {[
-                { label: t("footer.aboutUs"), href: "/about" },
-                { label: t("footer.careers"), href: "#" },
-                { label: t("footer.blog"), href: "#" }
+                { label: t("footer.solutionCafe"), href: "/solutions/cafe" },
+                { label: t("footer.solutionGaming"), href: "/solutions/gaming" },
+                { label: t("footer.solutionJuice"), href: "/solutions/juice" },
+                { label: t("footer.solutionRestaurant"), href: "/solutions/restaurant" }
               ].map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group font-medium">
-                    <span className="w-0 h-px bg-primary transition-all duration-300 group-hover:w-4" />
-                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{link.label}</span>
+                  <Link href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
+                    <span>{link.label}</span>
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Support Column */}
-          <div className="lg:col-span-2">
-            <h4 className="font-bold text-text-primary mb-6 text-lg">{t("footer.support")}</h4>
-            <ul className="space-y-4">
-              {[t("footer.helpCenter"), t("footer.contactSupport"), t("footer.systemStatus")].map((link, i) => (
+          {/* Company Column */}
+          <div className="lg:col-span-2 sm:col-span-1">
+            <h4 className="font-bold text-text-primary mb-5 text-base tracking-wide uppercase text-xs text-primary">
+              {t("footer.company")}
+            </h4>
+            <ul className="space-y-3 text-sm font-medium">
+              {[
+                { label: t("footer.aboutUs"), href: "/about" },
+                { label: t("footer.terms"), href: "/terms" },
+                { label: t("footer.privacy"), href: "/privacy" },
+                { label: t("footer.usage"), href: "/usage" }
+              ].map((link, i) => (
                 <li key={i}>
-                  <a href="#" className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group font-medium">
-                    <span className="w-0 h-px bg-primary transition-all duration-300 group-hover:w-4" />
-                    <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform">{link}</span>
-                  </a>
+                  <Link href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
+                    <span>{link.label}</span>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact info - Interactive Pills */}
-          <div className="md:col-span-2 lg:col-span-3">
-            <h4 className="font-bold text-text-primary mb-6 text-lg text-center lg:text-start">{t("footer.contact")}</h4>
-            <ul className="flex flex-col gap-4 items-center lg:items-start">
-              <li className="w-full max-w-xs">
-                <a href="#" className="flex items-center gap-4 p-3 rounded-2xl bg-surface border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group">
-                  <div className="bg-background rounded-xl p-2.5 text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all shadow-sm">
-                    <MapPin size={18} />
-                  </div>
-                  <span className="text-text-primary font-medium text-sm">{t("footer.address")}</span>
+          {/* Contact Column */}
+          <div className="lg:col-span-2 sm:col-span-1">
+            <h4 className="font-bold text-text-primary mb-5 text-base tracking-wide uppercase text-xs text-primary">
+              {t("footer.contact")}
+            </h4>
+            <ul className="space-y-3 text-xs sm:text-sm font-medium">
+              <li>
+                <a href="#" className="flex items-center gap-2.5 text-text-secondary hover:text-primary transition-colors">
+                  <MapPin size={16} className="text-primary flex-shrink-0" />
+                  <span>{t("footer.address")}</span>
                 </a>
               </li>
-              <li className="w-full max-w-xs">
-                <a href="tel:+966501234567" className="flex items-center gap-4 p-3 rounded-2xl bg-surface border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group">
-                  <div className="bg-background rounded-xl p-2.5 text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all shadow-sm">
-                    <Phone size={18} />
-                  </div>
-                  <span dir="ltr" className="text-text-primary font-medium text-sm">+966 50 123 4567</span>
+              <li>
+                <a href="tel:+966501234567" className="flex items-center gap-2.5 text-text-secondary hover:text-primary transition-colors">
+                  <Phone size={16} className="text-primary flex-shrink-0" />
+                  <span dir="ltr">+966 50 123 4567</span>
                 </a>
               </li>
-              <li className="w-full max-w-xs">
-                <a href="mailto:mot7km@gmail.com" className="flex items-center gap-4 p-3 rounded-2xl bg-surface border border-border hover:border-primary/50 hover:bg-primary/5 transition-all group">
-                  <div className="bg-background rounded-xl p-2.5 text-text-secondary group-hover:text-primary group-hover:scale-110 transition-all shadow-sm">
-                    <Mail size={18} />
-                  </div>
-                  <span className="text-text-primary font-medium text-sm">mot7km@gmail.com</span>
+              <li>
+                <a href="mailto:mot7km@gmail.com" className="flex items-center gap-2.5 text-text-secondary hover:text-primary transition-colors">
+                  <Mail size={16} className="text-primary flex-shrink-0" />
+                  <span>mot7km@gmail.com</span>
                 </a>
               </li>
             </ul>
@@ -180,26 +338,33 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar with integrated watermark */}
-        <div className="relative flex flex-col items-center justify-center mt-8 pt-8 border-t border-white/5">
-          {/* Massive Background Typography (Absolute to avoid pushing content) */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden w-full flex justify-center -z-10 opacity-40">
+        {/* Bottom Utility Bar with integrated watermark */}
+        <div className="relative pt-8 border-t border-white/10">
+          
+          {/* Subtle Watermark Typography */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden w-full flex justify-center -z-10 opacity-30">
             <h1 className="text-[16vw] md:text-[14vw] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent tracking-tighter translate-y-1/4">
               MOT7KM
             </h1>
           </div>
           
-          <div className="flex flex-col md:flex-row items-center justify-between w-full relative z-10 gap-4">
-            <p className="text-text-muted text-sm font-medium tracking-wide">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
+            <p className="text-text-muted text-xs sm:text-sm font-medium">
               {t("footer.rights")}
             </p>
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-text-muted font-medium">
-              <Link href="/terms" className="hover:text-primary transition-colors">{t("footer.terms")}</Link>
-              <Link href="/privacy" className="hover:text-primary transition-colors">{t("footer.privacy")}</Link>
-              <Link href="/usage" className="hover:text-primary transition-colors">{t("footer.usage")}</Link>
+
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={scrollToTop}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface/80 border border-white/10 text-text-secondary hover:text-white hover:bg-primary/20 hover:border-primary/40 transition-all text-xs font-bold cursor-pointer"
+              >
+                <span>{t("footer.backToTop")}</span>
+                <ArrowUp size={14} />
+              </button>
             </div>
           </div>
         </div>
+
       </div>
     </footer>
   );
