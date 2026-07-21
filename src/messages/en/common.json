@@ -296,7 +296,9 @@
     "product": "Product",
     "roadmap": "Roadmap",
     "useCases": "Use Cases",
-    "cta":  "Get Started",
+    "solutions": "Solutions",
+    "solutionsDesc": "Tailored software solutions for your specific industry",
+    "cta": "Get Started",
     "profile": "Profile"
   },
   "p1": {
