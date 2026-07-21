@@ -196,6 +196,9 @@ export default function Pricing() {
                   plan.popular || isAutoRecommended ? 'lg:-translate-y-6 z-20 lg:scale-105 shadow-xl shadow-primary/20 dark:shadow-[0_0_50px_rgba(22,131,199,0.3)] ring-2 ring-primary' : 'hover:-translate-y-2 z-10 shadow-md hover:shadow-xl'
                 }`}
               >
+                {/* Sleek Top-Scoped Metallic Glass Reflection Glow */}
+                <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-white/30 via-white/5 to-transparent dark:from-white/15 dark:via-white/[0.02] dark:to-transparent pointer-events-none rounded-t-[inherit] z-0" />
+
                 {(plan.popular || isAutoRecommended) && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-accent text-white px-6 py-1.5 rounded-full text-xs sm:text-sm font-extrabold shadow-md shadow-primary/30 whitespace-nowrap z-30 tracking-wide">
                     {isAutoRecommended ? (isRtl ? "🎯 الباقة المرشحة لفروعك" : "🎯 Recommended For You") : t("plan.popular")}
