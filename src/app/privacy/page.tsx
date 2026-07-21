@@ -2,9 +2,8 @@
 
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import Footer from "@/components/layout/Footer";
+import SubpageHeader from "@/components/layout/SubpageHeader";
 
 export default function PrivacyPolicy() {
   const { t } = useTranslation();
@@ -16,16 +15,10 @@ export default function PrivacyPolicy() {
 
   return (
     <main className="min-h-screen max-w-screen bg-background text-text-primary overflow-x-hidden flex flex-col">
-      <div className="flex-1 pt-12 pb-20 px-4 md:px-8 relative z-10">
-        {/* Back Button */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors font-medium px-4 py-2 rounded-full hover:bg-black/5 dark:hover:bg-white/5"
-          >
-            <ArrowLeft size={20} className="rtl:rotate-180" />
-            <span>{t("notFound.goHome")}</span>
-          </Link>
+      <div className="flex-1 pt-4 pb-20 px-4 md:px-8 relative z-10">
+        {/* Sticky Action Header */}
+        <div className="max-w-4xl mx-auto">
+          <SubpageHeader backHref="/" backLabel={t("notFound.goHome")} />
         </div>
 
         {/* Background Decorative Elements */}

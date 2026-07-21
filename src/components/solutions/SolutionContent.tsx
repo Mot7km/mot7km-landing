@@ -1,15 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { SolutionPageData } from "@/data/solutionPages";
+import SubpageHeader from "@/components/layout/SubpageHeader";
 import { 
-  ArrowRight, ArrowLeft, Zap, Coffee, QrCode, 
-  PieChart, UtensilsCrossed, Users, ShieldCheck, 
-  Printer, CupSoda, Star, Clock, Gamepad2, Bell, CheckCircle2, Languages 
+  Zap, Coffee, QrCode, PieChart, UtensilsCrossed, 
+  Users, ShieldCheck, Printer, CupSoda, Star, Clock, Gamepad2, Bell 
 } from "lucide-react";
 
 const IconMap: Record<string, any> = {
@@ -24,24 +23,9 @@ interface SolutionContentProps {
 export default function SolutionContent({ data }: SolutionContentProps) {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "ar";
-  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (!isLangMenuOpen) return;
-    const closeMenu = () => setIsLangMenuOpen(false);
-    window.addEventListener("click", closeMenu);
-    return () => window.removeEventListener("click", closeMenu);
-  }, [isLangMenuOpen]);
-
-  const changeLang = (newLang: string) => {
-    i18n.changeLanguage(newLang);
-    document.cookie = `NEXT_LOCALE=${newLang}; path=/; max-age=31536000`;
-    document.documentElement.lang = newLang;
-    document.documentElement.dir = newLang === "ar" ? "rtl" : "ltr";
-  };
 
   return (
-    <div className="relative pt-8 pb-24 md:pt-12 md:pb-36 bg-background">
+    <div className="relative pt-4 pb-24 md:pt-6 md:pb-36 bg-background">
       {/* Background Orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className={`absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[600px] blur-[160px] rounded-full opacity-25 ${data.glowColor}`} />
@@ -49,69 +33,8 @@ export default function SolutionContent({ data }: SolutionContentProps) {
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         
-        {/* Sticky Floating Action Bar (Back + Language Switcher Dropdown) */}
-        <div className="sticky top-6 md:top-8 z-40 mb-8 md:mb-12 flex items-center justify-between gap-4">
-          <Link 
-            href="/#use-cases" 
-            className="inline-flex items-center gap-2.5 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-surface/80 backdrop-blur-2xl border border-white/10 text-xs sm:text-sm font-bold text-text-secondary hover:text-white hover:border-white/20 hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,0,0,0.5)] group"
-          >
-            {isRtl ? (
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1 text-primary" />
-            ) : (
-              <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1 text-primary" />
-            )}
-            <span>{t("solutions.back") || "العودة لحالات الاستخدام"}</span>
-          </Link>
-
-          {/* Language Dropdown */}
-          <div className="relative">
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsLangMenuOpen(!isLangMenuOpen);
-              }}
-              className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-surface/80 backdrop-blur-2xl border border-white/10 text-xs sm:text-sm font-bold text-text-secondary hover:text-white hover:border-white/20 hover:scale-105 transition-all shadow-[0_10px_30px_rgba(0,0,0,0.5)] cursor-pointer"
-            >
-              <Languages size={16} className="text-primary" />
-              <span>{isRtl ? "العربية" : "English"}</span>
-            </button>
-
-            <AnimatePresence>
-              {isLangMenuOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute right-0 rtl:left-0 rtl:right-auto mt-2 w-32 bg-surface/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl py-1.5 z-50 overflow-hidden"
-                >
-                  <button
-                    onClick={() => {
-                      if (i18n.language !== "ar") changeLang("ar");
-                      setIsLangMenuOpen(false);
-                    }}
-                    className={`w-full text-start px-4 py-2 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 hover:bg-white/5 cursor-pointer ${
-                      isRtl ? "text-primary font-bold" : "text-text-secondary"
-                    }`}
-                  >
-                    <span>العربية</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      if (i18n.language !== "en") changeLang("en");
-                      setIsLangMenuOpen(false);
-                    }}
-                    className={`w-full text-start px-4 py-2 text-xs sm:text-sm font-semibold transition-colors flex items-center gap-2 hover:bg-white/5 cursor-pointer ${
-                      !isRtl ? "text-primary font-bold" : "text-text-secondary"
-                    }`}
-                  >
-                    <span>English</span>
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
+        {/* Reusable Sticky Action Bar */}
+        <SubpageHeader backHref="/#use-cases" backLabel={t("solutions.back") || "العودة لحالات الاستخدام"} />
 
         {/* Solution Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 md:mb-28">

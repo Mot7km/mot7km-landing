@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
 import { 
-  ArrowLeft, 
+  ArrowLeft,
   Target, 
   Eye, 
   Store, 
@@ -21,6 +21,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
+import SubpageHeader from "@/components/layout/SubpageHeader";
 
 export default function AboutUs() {
   const { t } = useTranslation();
@@ -41,18 +42,10 @@ export default function AboutUs() {
       <div className="absolute top-[20%] -left-64 w-[600px] h-[600px] bg-primary/20 rounded-full mix-blend-multiply filter blur-[150px] opacity-50 animate-pulse pointer-events-none -z-10" />
       <div className="absolute top-[30%] -right-64 w-[500px] h-[500px] bg-accent/20 rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-pulse animation-delay-2000 pointer-events-none -z-10" />
 
-      <div className="flex-1 pt-8 pb-24 px-4 sm:px-6 md:px-8 relative z-10 w-full max-w-[1400px] mx-auto">
+      <div className="flex-1 pt-4 pb-24 px-4 sm:px-6 md:px-8 relative z-10 w-full max-w-[1400px] mx-auto">
         
         {/* Navigation */}
-        <div className="mb-16">
-          <Link 
-            href="/"
-            className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors font-medium px-5 py-2.5 rounded-full hover:bg-black/5 dark:hover:bg-white/5 backdrop-blur-md border border-transparent hover:border-black/10 dark:hover:border-white/10"
-          >
-            <ArrowLeft size={18} className="rtl:rotate-180" />
-            <span className="text-sm tracking-wide">{t("notFound.goHome")}</span>
-          </Link>
-        </div>
+        <SubpageHeader backHref="/" backLabel={t("notFound.goHome")} />
 
         {/* 1. Hero Section - Ultra Premium */}
         <div className="flex flex-col items-center text-center mb-24 md:mb-32 mt-12 relative">
