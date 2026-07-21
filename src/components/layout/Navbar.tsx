@@ -167,7 +167,6 @@ export default function Navbar() {
     },
     gaming: {
       title: isRtl ? "منيو طاولة اللعب الرقمي" : "Gaming Table QR Ordering",
-      titleIcon: Gamepad2,
       sub: isRtl ? "طلب مباشر من الطاولة دون قطع اللعب" : "Seamless in-game QR table service",
       metric: "0% App",
       metricText: isRtl ? "بدون تطبيق أو تسجيل" : "App-less Instant QR",
