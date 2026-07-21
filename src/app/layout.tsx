@@ -15,13 +15,14 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Mot7km (متحكم) - Smart Business Control | تحكم ذكي بأعمالك",
-  description: "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات والأعمال. A comprehensive SaaS platform to digitize operations, monitor performance, and elevate the customer experience.",
+  title: "متحكم (Mot7km) - نظام سحابي لإدارة المطاعم والكافيهات | Smart Business Control",
+  description: "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم، الكافيهات، نقاط البيع الكاشير (POS)، المنيو الإلكتروني (QR)، ومتابعة المبيعات فورياً.",
   keywords: [
-    "متحكم", "Mot7km", "نظام مطاعم", "restaurant pos", "QR menu", "ERP", 
+    "متحكم", "منصة متحكم", "نظام متحكم", "تطبيق متحكم", "برنامج متحكم", "متحكم مطاعم", "متحكم كاشير",
+    "Mot7km", "mot7km.store", "نظام مطاعم", "restaurant pos", "QR menu", "ERP", 
     "نظام نقاط بيع", "إدارة المطاعم", "برنامج كاشير", "كاشير مطاعم", 
     "منيو الكتروني", "نظام سحابي للمطاعم", "إدارة الكافيهات", 
-    "cloud pos", "digital menu", "restaurant management software", "تطبيق متحكم"
+    "cloud pos", "digital menu", "restaurant management software"
   ],
   icons: {
     icon: [
@@ -32,16 +33,16 @@ export const metadata: Metadata = {
     apple: "/assets/logo/mot7km_logo%20(2).png",
   },
   openGraph: {
-    title: "Mot7km (متحكم) - Smart Business Control",
+    title: "متحكم (Mot7km) - نظام إدارة المطاعم والكافيهات الذكي",
     description: "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات ونقاط البيع السحابية (Cloud POS).",
     url: "https://mot7km.store",
-    siteName: "Mot7km (متحكم)",
+    siteName: "متحكم (Mot7km)",
     images: [
       {
         url: "https://mot7km.store/assets/logo/mot7km_logo%20(2).png",
         width: 800,
         height: 800,
-        alt: "Mot7km Logo",
+        alt: "لوحة تحكم منصة متحكم Mot7km",
       },
     ],
     locale: "ar_SA",
@@ -49,7 +50,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mot7km (متحكم)",
+    title: "متحكم (Mot7km)",
     description: "نظام متكامل لإدارة مطعمك ونقاط البيع السحابية",
     images: ["https://mot7km.store/assets/logo/mot7km_logo%20(2).png"],
   },
@@ -63,27 +64,49 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // JSON-LD structured data to explicitly tell Google about the brand "Mot7km / متحكم"
+  // JSON-LD structured data to explicitly tell Google about the brand "متحكم / Mot7km"
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "متحكم Mot7km",
-    "alternateName": "Mot7km",
-    "operatingSystem": "Web, iOS, Android",
-    "applicationCategory": "BusinessApplication",
-    "description": "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات والأعمال ونقاط البيع السحابية.",
-    "url": "https://mot7km.store",
-    "logo": "https://mot7km.store/assets/logo/mot7km_logo%20(2).png",
-    "image": "https://mot7km.store/assets/logo/mot7km_logo%20(2).png",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "SAR"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mot7km.store/#organization",
+        "name": "متحكم",
+        "alternateName": ["Mot7km", "منصة متحكم", "نظام متحكم"],
+        "url": "https://mot7km.store",
+        "logo": "https://mot7km.store/assets/logo/mot7km_logo%20(2).png",
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61591358790071",
+          "https://www.instagram.com/mot7km"
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://mot7km.store/#application",
+        "name": "متحكم - Mot7km",
+        "alternateName": ["متحكم", "Mot7km", "تطبيق متحكم"],
+        "operatingSystem": "Web, iOS, Android, Windows",
+        "applicationCategory": "BusinessApplication",
+        "description": "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم والكافيهات والأعمال ونقاط البيع السحابية.",
+        "url": "https://mot7km.store",
+        "logo": "https://mot7km.store/assets/logo/mot7km_logo%20(2).png",
+        "image": "https://mot7km.store/assets/logo/mot7km_logo%20(2).png",
+        "author": {
+          "@id": "https://mot7km.store/#organization"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "SAR"
+        }
+      }
+    ]
   };
 
   return (
     <html
+      lang="ar"
+      dir="rtl"
       className={`${cairo.variable} ${roboto.variable} h-full antialiased`}
       suppressHydrationWarning
     >
