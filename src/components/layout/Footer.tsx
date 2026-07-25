@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { 
   Mail, 
   Phone, 
@@ -43,6 +43,17 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
+  const footerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: footerRef,
+    offset: ["start end", "end end"]
+  });
+
+  // Jisr-style scroll unveil transform for MOT7KM background watermark
+  const watermarkY = useTransform(scrollYProgress, [0.1, 1], ["80px", "0px"]);
+  const watermarkOpacity = useTransform(scrollYProgress, [0.1, 0.6, 1], [0.05, 0.25, 0.45]);
+  const watermarkScale = useTransform(scrollYProgress, [0.1, 1], [0.9, 1.05]);
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (email && email.includes("@")) {
@@ -57,24 +68,37 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-surface/60 border-t border-white/10 pt-20 sm:pt-28 md:pt-32 pb-8 overflow-hidden z-0">
-      {/* Background Lighting Orbs & Mesh */}
+    <footer ref={footerRef} className="relative bg-[#060c18] border-t border-white/10 pt-16 sm:pt-24 md:pt-28 pb-8 overflow-hidden z-0">
+      
+      {/* Background Lighting Orbs */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[450px] opacity-[0.07] pointer-events-none -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-accent to-transparent blur-[140px] rounded-full" />
       </div>
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-secondary/5 blur-[140px] rounded-full pointer-events-none -z-10" />
 
+      {/* JISR-STYLE GIANT BACKDROP WATERMARK "MOT7KM" (Placed behind links and unveiled on scroll) */}
+      <motion.div 
+        style={{ 
+          y: watermarkY, 
+          opacity: watermarkOpacity, 
+          scale: watermarkScale 
+        }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden w-full flex justify-center z-0"
+      >
+        <h1 className="text-[22vw] sm:text-[20vw] md:text-[18vw] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white/30 via-white/10 to-transparent tracking-tighter drop-shadow-[0_20px_50px_rgba(22,131,199,0.35)]">
+          MOT7KM
+        </h1>
+      </motion.div>
+
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         
         {/* Masterpiece Premium SaaS Banner CTA */}
-        <div className="relative mb-20 md:mb-28 p-8 sm:p-12 md:p-14 rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-[#0c1626] via-[#09111e] to-[#0d1c30] border border-white/15 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] overflow-hidden group">
+        <div className="relative mb-16 md:mb-24 p-8 sm:p-12 md:p-14 rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-[#0c1626] via-[#09111e] to-[#0d1c30] border border-white/15 backdrop-blur-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] overflow-hidden group">
           
-          {/* Futuristic Ambient Orbs & Geometric Dot Pattern */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 blur-[100px] rounded-full pointer-events-none group-hover:bg-primary/30 transition-all duration-700" />
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/15 blur-[100px] rounded-full pointer-events-none group-hover:bg-emerald-500/25 transition-all duration-700" />
           
-          {/* Subtle Grid SVG Overlay */}
           <div 
             className="absolute inset-0 opacity-[0.04] pointer-events-none" 
             style={{
@@ -85,7 +109,6 @@ export default function Footer() {
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14">
             
-            {/* Left Content Column */}
             <div className="max-w-2xl text-center lg:text-start flex flex-col items-center lg:items-start">
               
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary text-xs font-extrabold mb-5 shadow-sm backdrop-blur-md">
@@ -104,7 +127,6 @@ export default function Footer() {
                 {t("footer.ctaDesc")}
               </p>
 
-              {/* Glassmorphic Trust Badge Pills */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 text-xs font-bold">
                 <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 backdrop-blur-md shadow-sm">
                   <CheckCircle2 size={16} />
@@ -122,10 +144,8 @@ export default function Footer() {
 
             </div>
 
-            {/* Right Interactive Unified Email Form Container */}
             <div className="flex flex-col w-full lg:w-auto min-w-[300px] sm:min-w-[420px] max-w-full">
               
-              {/* Single Integrated Pill Container */}
               <form onSubmit={handleSubscribe} className="relative p-2 rounded-2xl bg-surface/80 border border-white/20 backdrop-blur-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all duration-300 flex items-center">
                 <div className="pl-3 rtl:pl-0 rtl:pr-3 text-text-muted flex-shrink-0">
                   <Mail size={20} />
@@ -147,7 +167,6 @@ export default function Footer() {
                 </button>
               </form>
 
-              {/* Social Proof & Rating Note */}
               <div className="flex items-center justify-between mt-4 px-2 text-xs text-text-secondary">
                 <div className="flex items-center gap-1.5">
                   <div className="flex -space-x-2 rtl:space-x-reverse">
@@ -189,8 +208,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Main Footer Content Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16">
+        {/* Main Footer Content Grid (Covers upper MOT7KM text initially, reveals on scroll) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 mb-16 relative z-10">
           
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-start">
@@ -212,7 +231,6 @@ export default function Footer() {
               {t("footer.desc")}
             </p>
 
-            {/* Live System Status Badge */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-6">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -221,7 +239,6 @@ export default function Footer() {
               <span>{t("footer.statusOperational")}</span>
             </div>
 
-            {/* Social Links */}
             <div className="flex items-center gap-3">
               {[
                 { Icon: Facebook, href: "https://www.facebook.com/profile.php?id=61591358790071", label: "Facebook" },
@@ -295,6 +312,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm font-medium">
               {[
                 { label: t("footer.aboutUs"), href: "/about" },
+                { label: t("footer.blog"), href: "/blog" },
                 { label: t("footer.terms"), href: "/terms" },
                 { label: t("footer.privacy"), href: "/privacy" },
                 { label: t("footer.usage"), href: "/usage" }
@@ -338,30 +356,22 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Utility Bar with integrated watermark */}
-        <div className="relative pt-8 border-t border-white/10">
-          
-          {/* Subtle Watermark Typography */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 pointer-events-none select-none overflow-hidden w-full flex justify-center -z-10 opacity-30">
-            <h1 className="text-[16vw] md:text-[14vw] leading-none font-black text-transparent bg-clip-text bg-gradient-to-b from-white/10 to-transparent tracking-tighter translate-y-1/4">
-              MOT7KM
-            </h1>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 relative z-10">
-            <p className="text-text-muted text-xs sm:text-sm font-medium">
-              {t("footer.rights")}
-            </p>
 
-            <div className="flex items-center gap-4">
-              <button 
-                onClick={scrollToTop}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface/80 border border-white/10 text-text-secondary hover:text-white hover:bg-primary/20 hover:border-primary/40 transition-all text-xs font-bold cursor-pointer"
-              >
-                <span>{t("footer.backToTop")}</span>
-                <ArrowUp size={14} />
-              </button>
-            </div>
+
+        {/* Bottom Utility Bar (Privacy / Rights / Back to top) */}
+        <div className="relative z-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-text-muted text-xs sm:text-sm font-medium">
+            {t("footer.rights")}
+          </p>
+
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={scrollToTop}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface/80 border border-white/10 text-text-secondary hover:text-white hover:bg-primary/20 hover:border-primary/40 transition-all text-xs font-bold cursor-pointer"
+            >
+              <span>{t("footer.backToTop")}</span>
+              <ArrowUp size={14} />
+            </button>
           </div>
         </div>
 

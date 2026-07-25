@@ -239,6 +239,50 @@
       "title": "Web: Thinking & Control"
     }
   },
+  "blogPage": {
+    "badge": "Mot7km Blog",
+    "title": "Articles & Restaurant Management Insights",
+    "desc": "Discover the latest articles, trends, and practical tips to grow your business and boost sales for your restaurant or cafe.",
+    "searchPlaceholder": "Search articles & updates...",
+    "allCategories": "All Categories",
+    "categories": {
+      "guides": "Guides & Manuals",
+      "pos": "POS & Operations",
+      "marketing": "Marketing & Sales",
+      "updates": "Product Updates"
+    },
+    "readMore": "Read Full Article",
+    "readTime": "min read",
+    "articles": [
+      {
+        "id": "1",
+        "title": "How to Increase Restaurant Sales by 30% Using QR Digital Menus",
+        "excerpt": "Learn the strategies top cafes and restaurants use to leverage digital menus and increase average order value.",
+        "category": "marketing",
+        "date": "July 20, 2026",
+        "readTime": "5",
+        "author": "Mot7km Team"
+      },
+      {
+        "id": "2",
+        "title": "Why Offline-First Capability is Essential for POS Systems",
+        "excerpt": "Why internet outage is a major risk for sales, and how to guarantee your POS never stops during peak hours.",
+        "category": "pos",
+        "date": "July 15, 2026",
+        "readTime": "4",
+        "author": "Tech Team"
+      },
+      {
+        "id": "3",
+        "title": "Announcing Update 1.1: Live Sales Analytics & Smart Shift Audit",
+        "excerpt": "Explore the new features in Mot7km platform including automated inventory tracking and shift reconciliation.",
+        "category": "updates",
+        "date": "July 10, 2026",
+        "readTime": "3",
+        "author": "Product Team"
+      }
+    ]
+  },
   "footer": {
     "address": "Ismailia, Egypt",
     "contact": "Contact Us",
