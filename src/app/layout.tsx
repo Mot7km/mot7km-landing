@@ -57,6 +57,7 @@ export const metadata: Metadata = {
 };
 
 import SplashScreen from "@/components/layout/SplashScreen";
+import Navbar from "@/components/layout/Navbar";
 import { ThemeProvider } from "@/config/ThemeProvider";
 
 export default function RootLayout({
@@ -119,10 +120,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-background text-text-primary overflow-x-hidden">
+      <body className="min-h-full flex flex-col font-sans bg-background text-text-primary overflow-x-hidden pt-20">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <I18nProvider>
             <SplashScreen />
+            <Navbar />
             {children}
           </I18nProvider>
         </ThemeProvider>

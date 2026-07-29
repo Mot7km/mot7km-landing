@@ -158,7 +158,7 @@ export default function Hero() {
               className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
             >
               <Link
-                href="#pricing"
+                href="/demo"
                 className="w-full sm:w-auto px-7 py-4 rounded-2xl bg-gradient-to-r from-primary via-accent to-primary bg-200% animate-gradient text-white font-extrabold text-base sm:text-lg transition-all duration-300 shadow-[0_0_25px_rgba(22,131,199,0.4)] hover:shadow-[0_0_35px_rgba(22,131,199,0.6)] hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2.5 group cursor-pointer"
               >
                 <span>{t("hero.cta1")}</span>

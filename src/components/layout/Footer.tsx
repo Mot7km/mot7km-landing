@@ -267,16 +267,16 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-sm font-medium">
               {[
-                { label: t("nav.howItWorks"), href: "#how-it-works" },
-                { label: t("nav.features"), href: "#features" },
-                { label: t("nav.pricing"), href: "#pricing" },
-                { label: t("nav.faq"), href: "#faq" }
+                { label: t("nav.features"), href: "/#features" },
+                { label: t("nav.pricing"), href: "/#pricing" },
+                { label: isRtl ? "التكاملات والربط" : "Integrations", href: "/integrations" },
+                { label: isRtl ? "سجل التحديثات" : "Changelog", href: "/changelog" },
               ].map((link, i) => (
                 <li key={i}>
-                  <a href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group">
+                  <Link href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
                     <span>{link.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -304,18 +304,19 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company Column */}
+          {/* Resources & Company Column */}
           <div className="lg:col-span-2 sm:col-span-1">
             <h4 className="font-bold text-text-primary mb-5 text-base tracking-wide uppercase text-xs text-primary">
-              {t("footer.company")}
+              {isRtl ? "الموارد والشركة" : "Resources & Company"}
             </h4>
             <ul className="space-y-3 text-sm font-medium">
               {[
                 { label: t("footer.aboutUs"), href: "/about" },
                 { label: t("footer.blog"), href: "/blog" },
-                { label: t("footer.terms"), href: "/terms" },
-                { label: t("footer.privacy"), href: "/privacy" },
-                { label: t("footer.usage"), href: "/usage" }
+                { label: isRtl ? "مركز المساعدة والتوثيق" : "Docs & Help", href: "/docs" },
+                { label: isRtl ? "الوظائف" : "Careers", href: "/careers" },
+                { label: isRtl ? "طلب عرض تجريبي" : "Request Demo", href: "/demo" },
+                { label: isRtl ? "اتصل بنا" : "Contact Us", href: "/contact" },
               ].map((link, i) => (
                 <li key={i}>
                   <Link href={link.href} className="text-text-secondary hover:text-primary transition-colors inline-flex items-center gap-2 group">
