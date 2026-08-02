@@ -485,7 +485,7 @@ export default function AboutUs() {
                   <div className="space-y-2 text-xs font-mono">
                     <div className="flex justify-between items-center text-primary font-bold">
                       <span>[POS_CORE_ENGINE]</span>
-                      <span className="text-[10px] px-2 py-0.5 bg-primary/10 rounded">Flutter + Desktop</span>
+                      <span className="text-[10px] px-2 py-0.5 bg-primary/10 rounded">Cross-Platform POS</span>
                     </div>
                     <div className="text-text-secondary text-[11px] truncate">
                       ✓ Offline Queueing: Ready
@@ -511,13 +511,13 @@ export default function AboutUs() {
                   <div className="space-y-2 text-xs font-mono">
                     <div className="flex justify-between items-center text-accent font-bold">
                       <span>[CLOUD_API_GATEWAY]</span>
-                      <span className="text-[10px] px-2 py-0.5 bg-accent/10 rounded">Go / Node Cluster</span>
+                      <span className="text-[10px] px-2 py-0.5 bg-accent/10 rounded">High-Scale Cluster</span>
                     </div>
                     <div className="text-text-secondary text-[11px] truncate">
                       ✓ POST /api/v1/sync 200 OK (8ms)
                     </div>
                     <div className="text-text-secondary text-[11px] truncate">
-                      ✓ Real-time WebSockets: Connected
+                      ✓ Real-time Event Streaming: Connected
                     </div>
                   </div>
                 ),
@@ -537,7 +537,7 @@ export default function AboutUs() {
                   <div className="space-y-2 text-xs font-mono">
                     <div className="flex justify-between items-center text-blue-500 font-bold">
                       <span>[WEB_DASHBOARD_UX]</span>
-                      <span className="text-[10px] px-2 py-0.5 bg-blue-500/10 rounded">Next.js + Tailwind</span>
+                      <span className="text-[10px] px-2 py-0.5 bg-blue-500/10 rounded">Instant Web Engine</span>
                     </div>
                     <div className="text-text-secondary text-[11px] truncate">
                       ✓ App-less Customer QR Menu
