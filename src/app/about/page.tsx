@@ -18,7 +18,12 @@ import {
   HeartHandshake,
   Sparkles,
   AlertTriangle,
-  CheckCircle2
+  CheckCircle2,
+  Code2,
+  Server,
+  Globe,
+  Quote,
+  Mail
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import SubpageHeader from "@/components/layout/SubpageHeader";
@@ -360,7 +365,147 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* 7. Final CTA - Massive Glowing Action Block */}
+        {/* 7. Leadership & Founders - World-Class UI/UX Edition */}
+        <section className="mb-32 md:mb-40 max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-4 uppercase tracking-widest backdrop-blur-md">
+              <Users size={14} />
+              <span>{t("about.team.title")}</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-text-primary mb-6">
+              {t("about.team.subtitle")}
+            </h2>
+            <p className="text-lg sm:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed font-normal">
+              {t("about.team.desc")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                id: "ibrahim",
+                icon: <Code2 className="w-5 h-5 text-primary" />,
+                badge: "CTO & Mobile / Desktop",
+                gradient: "from-primary/20 via-accent/10 to-transparent",
+                borderHover: "hover:border-primary/50",
+                avatarGradient: "from-primary to-accent",
+                ringColor: "ring-primary/30",
+                socials: { linkedin: "#", github: "#", mail: "mailto:ibrahim@mot7km.store" }
+              },
+              {
+                id: "amr",
+                icon: <Server className="w-5 h-5 text-accent" />,
+                badge: "Backend Lead & Infra",
+                gradient: "from-accent/20 via-primary/10 to-transparent",
+                borderHover: "hover:border-accent/50",
+                avatarGradient: "from-accent to-emerald-500",
+                ringColor: "ring-accent/30",
+                socials: { linkedin: "#", github: "#", mail: "mailto:amr@mot7km.store" }
+              },
+              {
+                id: "ahmed",
+                icon: <Globe className="w-5 h-5 text-blue-500" />,
+                badge: "Web Lead & UX",
+                gradient: "from-blue-500/20 via-primary/10 to-transparent",
+                borderHover: "hover:border-blue-500/50",
+                avatarGradient: "from-blue-500 to-indigo-600",
+                ringColor: "ring-blue-500/30",
+                socials: { linkedin: "#", github: "#", mail: "mailto:ahmed@mot7km.store" }
+              }
+            ].map((member, i) => (
+              <motion.div
+                key={member.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15, duration: 0.6 }}
+                className={`bg-surface/40 backdrop-blur-2xl border border-black/5 dark:border-white/10 rounded-[2.5rem] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden transition-all duration-500 group ${member.borderHover} hover:-translate-y-2.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(var(--primary-rgb),0.15)]`}
+              >
+                {/* Background Ambient Blur */}
+                <div className={`absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl ${member.gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+                <div className="relative z-10 flex-1 flex flex-col">
+                  {/* Top Row: Avatar & Specialization Badge */}
+                  <div className="flex items-start justify-between mb-8">
+                    {/* Founder Avatar Monogram with Role Overlay */}
+                    <div className="relative group/avatar">
+                      <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${member.avatarGradient} p-0.5 shadow-lg group-hover/avatar:scale-105 transition-transform duration-300 ring-4 ${member.ringColor}`}>
+                        <div className="w-full h-full bg-background rounded-[14px] flex items-center justify-center font-black text-2xl tracking-wider text-text-primary shadow-inner">
+                          {t(`about.team.members.${member.id}.initials`)}
+                        </div>
+                      </div>
+                      {/* Overlaid Badge Icon */}
+                      <div className="absolute -bottom-2 -right-2 p-2 rounded-xl bg-surface border border-black/10 dark:border-white/15 shadow-md text-text-primary backdrop-blur-md">
+                        {member.icon}
+                      </div>
+                    </div>
+
+                    <span className="px-3.5 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-black/5 dark:border-white/10 text-[11px] font-bold text-text-secondary uppercase tracking-wider shadow-sm">
+                      {member.badge}
+                    </span>
+                  </div>
+
+                  {/* Name & Role */}
+                  <h3 className="text-2xl sm:text-3xl font-black text-text-primary mb-1 tracking-tight group-hover:text-primary transition-colors">
+                    {t(`about.team.members.${member.id}.name`)}
+                  </h3>
+                  <div className="text-primary font-bold text-sm sm:text-base mb-6 tracking-wide flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                    <span>{t(`about.team.members.${member.id}.role`)}</span>
+                  </div>
+
+                  {/* Personal Engineering Philosophy Quote */}
+                  <div className="mb-6 p-4 rounded-2xl bg-background/60 border border-black/5 dark:border-white/5 relative overflow-hidden backdrop-blur-sm">
+                    <Quote className="w-8 h-8 text-primary/10 absolute -top-1 -right-1 rtl:-left-1 rtl:right-auto" />
+                    <p className="text-xs sm:text-sm font-medium text-text-secondary italic leading-relaxed relative z-10">
+                      "{t(`about.team.members.${member.id}.quote`)}"
+                    </p>
+                  </div>
+
+                  {/* Bio Description */}
+                  <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal mb-8 opacity-90 flex-1">
+                    {t(`about.team.members.${member.id}.bio`)}
+                  </p>
+
+                  {/* Expertise / Skills Pills */}
+                  <div className="flex flex-wrap gap-2 mb-8">
+                    {Array.isArray(t(`about.team.members.${member.id}.skills`, { returnObjects: true })) && 
+                      (t(`about.team.members.${member.id}.skills`, { returnObjects: true }) as string[]).map((skill, sIdx) => (
+                        <span key={sIdx} className="px-3 py-1 bg-background/80 border border-black/5 dark:border-white/10 rounded-lg text-xs font-semibold text-text-primary shadow-xs">
+                          {skill}
+                        </span>
+                      ))}
+                  </div>
+                </div>
+
+                {/* Footer Bar: Social Links & Status */}
+                <div className="relative z-10 pt-6 border-t border-black/5 dark:border-white/10 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl bg-background border border-black/5 dark:border-white/10 text-text-secondary hover:text-primary hover:border-primary/30 transition-all hover:scale-110 shadow-xs" title="LinkedIn">
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.7a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+                      </svg>
+                    </a>
+                    <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl bg-background border border-black/5 dark:border-white/10 text-text-secondary hover:text-primary hover:border-primary/30 transition-all hover:scale-110 shadow-xs" title="GitHub">
+                      <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                      </svg>
+                    </a>
+                    <a href={member.socials.mail} className="p-2 rounded-xl bg-background border border-black/5 dark:border-white/10 text-text-secondary hover:text-primary hover:border-primary/30 transition-all hover:scale-110 shadow-xs" title="Email">
+                      <Mail size={16} />
+                    </a>
+                  </div>
+
+                  <span className="text-[11px] font-bold text-text-secondary/60 uppercase tracking-widest">
+                    Mot7km Founder
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* 8. Final CTA - Massive Glowing Action Block */}
         <section className="max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
