@@ -3,7 +3,7 @@
 import { useTranslation } from "react-i18next";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import { 
   ArrowLeft,
   Target, 
@@ -23,13 +23,20 @@ import {
   Server,
   Globe,
   Quote,
-  Mail
+  Mail,
+  Cpu,
+  Activity,
+  Terminal,
+  Layers,
+  Wifi,
+  Radio
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
 import SubpageHeader from "@/components/layout/SubpageHeader";
 
 export default function AboutUs() {
   const { t } = useTranslation();
+  const [activePillar, setActivePillar] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -365,10 +372,11 @@ export default function AboutUs() {
           </div>
         </section>
 
-        {/* 7. Leadership & Founders - World-Class UI/UX Edition */}
-        <section className="mb-32 md:mb-40 max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-4 uppercase tracking-widest backdrop-blur-md">
+        {/* 7. Leadership & Connected Architecture Graphic Showcase */}
+        <section className="mb-32 md:mb-40 max-w-7xl mx-auto relative">
+          {/* Header */}
+          <div className="text-center mb-16 relative z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold mb-4 uppercase tracking-widest backdrop-blur-md shadow-sm">
               <Users size={14} />
               <span>{t("about.team.title")}</span>
             </div>
@@ -380,7 +388,88 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Central Architecture Hub (Mot7km Engine Core) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="mb-12 relative z-20 max-w-2xl mx-auto"
+          >
+            <div className="bg-gradient-to-r from-primary/15 via-accent/20 to-primary/15 backdrop-blur-2xl border border-primary/30 rounded-3xl p-6 md:p-8 text-center relative overflow-hidden shadow-[0_0_50px_rgba(var(--primary-rgb),0.15)] group">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb),0.15),transparent_70%)] animate-pulse pointer-events-none" />
+              
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex items-center gap-4 text-start">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-accent p-0.5 shadow-lg flex-shrink-0">
+                    <div className="w-full h-full bg-background rounded-[14px] flex items-center justify-center text-primary">
+                      <Cpu size={26} className="animate-pulse" />
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-primary uppercase tracking-widest mb-1 flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                      {t("about.team.hub.status")}
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-black text-text-primary tracking-tight">
+                      {t("about.team.hub.title")}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="px-4 py-2 rounded-xl bg-background/80 border border-black/5 dark:border-white/10 text-xs font-semibold text-text-secondary shadow-sm">
+                  {t("about.team.hub.subtitle")}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Connecting Architecture Line Rays (Desktop Visual Connection) */}
+          <div className="hidden md:block relative h-16 w-full max-w-5xl mx-auto my-[-1.5rem] z-10 pointer-events-none">
+            <svg className="w-full h-full overflow-visible" viewBox="0 0 1000 60" fill="none">
+              {/* Left Ray to Center */}
+              <path 
+                d="M 166 0 Q 300 40 500 60" 
+                stroke="url(#gradient-ray-1)" 
+                strokeWidth={activePillar === 'ibrahim' ? "3" : "2"} 
+                strokeDasharray="6 6"
+                className="transition-all duration-300 opacity-70" 
+              />
+              {/* Middle Ray to Center */}
+              <path 
+                d="M 500 0 L 500 60" 
+                stroke="url(#gradient-ray-2)" 
+                strokeWidth={activePillar === 'amr' ? "3" : "2"} 
+                strokeDasharray="6 6"
+                className="transition-all duration-300 opacity-70" 
+              />
+              {/* Right Ray to Center */}
+              <path 
+                d="M 834 0 Q 700 40 500 60" 
+                stroke="url(#gradient-ray-3)" 
+                strokeWidth={activePillar === 'ahmed' ? "3" : "2"} 
+                strokeDasharray="6 6"
+                className="transition-all duration-300 opacity-70" 
+              />
+
+              <defs>
+                <linearGradient id="gradient-ray-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.3" />
+                </linearGradient>
+                <linearGradient id="gradient-ray-2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.3" />
+                </linearGradient>
+                <linearGradient id="gradient-ray-3" x1="100%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.3" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          {/* Founders Connected Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-20">
             {[
               {
                 id: "ibrahim",
@@ -390,6 +479,22 @@ export default function AboutUs() {
                 borderHover: "hover:border-primary/50",
                 avatarGradient: "from-primary to-accent",
                 ringColor: "ring-primary/30",
+                nodeBg: "bg-primary/5 border-primary/20 text-primary",
+                nodeStatus: "ONLINE • 0ms OFF-LINE POS",
+                nodeContent: (
+                  <div className="space-y-2 text-xs font-mono">
+                    <div className="flex justify-between items-center text-primary font-bold">
+                      <span>[POS_CORE_ENGINE]</span>
+                      <span className="text-[10px] px-2 py-0.5 bg-primary/10 rounded">Flutter + Desktop</span>
+                    </div>
+                    <div className="text-text-secondary text-[11px] truncate">
+                      ✓ Offline Queueing: Ready
+                    </div>
+                    <div className="text-text-secondary text-[11px] truncate">
+                      ✓ Auto Thermal Printing: Active
+                    </div>
+                  </div>
+                ),
                 socials: { linkedin: "#", github: "#", mail: "mailto:ibrahim@mot7km.store" }
               },
               {
@@ -400,6 +505,22 @@ export default function AboutUs() {
                 borderHover: "hover:border-accent/50",
                 avatarGradient: "from-accent to-emerald-500",
                 ringColor: "ring-accent/30",
+                nodeBg: "bg-accent/5 border-accent/20 text-accent",
+                nodeStatus: "99.99% API UPTIME",
+                nodeContent: (
+                  <div className="space-y-2 text-xs font-mono">
+                    <div className="flex justify-between items-center text-accent font-bold">
+                      <span>[CLOUD_API_GATEWAY]</span>
+                      <span className="text-[10px] px-2 py-0.5 bg-accent/10 rounded">Go / Node Cluster</span>
+                    </div>
+                    <div className="text-text-secondary text-[11px] truncate">
+                      ✓ POST /api/v1/sync 200 OK (8ms)
+                    </div>
+                    <div className="text-text-secondary text-[11px] truncate">
+                      ✓ Real-time WebSockets: Connected
+                    </div>
+                  </div>
+                ),
                 socials: { linkedin: "#", github: "#", mail: "mailto:amr@mot7km.store" }
               },
               {
@@ -410,6 +531,22 @@ export default function AboutUs() {
                 borderHover: "hover:border-blue-500/50",
                 avatarGradient: "from-blue-500 to-indigo-600",
                 ringColor: "ring-blue-500/30",
+                nodeBg: "bg-blue-500/5 border-blue-500/20 text-blue-500",
+                nodeStatus: "INSTANT QR MENU",
+                nodeContent: (
+                  <div className="space-y-2 text-xs font-mono">
+                    <div className="flex justify-between items-center text-blue-500 font-bold">
+                      <span>[WEB_DASHBOARD_UX]</span>
+                      <span className="text-[10px] px-2 py-0.5 bg-blue-500/10 rounded">Next.js + Tailwind</span>
+                    </div>
+                    <div className="text-text-secondary text-[11px] truncate">
+                      ✓ App-less Customer QR Menu
+                    </div>
+                    <div className="text-text-secondary text-[11px] truncate">
+                      ✓ Live Menu Catalog Sync
+                    </div>
+                  </div>
+                ),
                 socials: { linkedin: "#", github: "#", mail: "mailto:ahmed@mot7km.store" }
               }
             ].map((member, i) => (
@@ -419,56 +556,72 @@ export default function AboutUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.6 }}
-                className={`bg-surface/40 backdrop-blur-2xl border border-black/5 dark:border-white/10 rounded-[2.5rem] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden transition-all duration-500 group ${member.borderHover} hover:-translate-y-2.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(var(--primary-rgb),0.15)]`}
+                onMouseEnter={() => setActivePillar(member.id)}
+                onMouseLeave={() => setActivePillar(null)}
+                className={`bg-surface/40 backdrop-blur-2xl border border-black/5 dark:border-white/10 rounded-[2.5rem] p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden transition-all duration-500 group ${member.borderHover} ${activePillar === member.id ? 'scale-[1.02] shadow-[0_20px_50px_rgba(var(--primary-rgb),0.2)] border-primary/50' : 'hover:-translate-y-2 hover:shadow-xl'}`}
               >
                 {/* Background Ambient Blur */}
                 <div className={`absolute top-0 right-0 w-72 h-72 bg-gradient-to-bl ${member.gradient} rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
 
-                <div className="relative z-10 flex-1 flex flex-col">
-                  {/* Top Row: Avatar & Specialization Badge */}
-                  <div className="flex items-start justify-between mb-8">
-                    {/* Founder Avatar Monogram with Role Overlay */}
-                    <div className="relative group/avatar">
-                      <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${member.avatarGradient} p-0.5 shadow-lg group-hover/avatar:scale-105 transition-transform duration-300 ring-4 ${member.ringColor}`}>
-                        <div className="w-full h-full bg-background rounded-[14px] flex items-center justify-center font-black text-2xl tracking-wider text-text-primary shadow-inner">
-                          {t(`about.team.members.${member.id}.initials`)}
-                        </div>
-                      </div>
-                      {/* Overlaid Badge Icon */}
-                      <div className="absolute -bottom-2 -right-2 p-2 rounded-xl bg-surface border border-black/10 dark:border-white/15 shadow-md text-text-primary backdrop-blur-md">
-                        {member.icon}
+                <div className="relative z-10 flex-1 flex flex-col items-center text-center">
+                  {/* Centered Founder Avatar Monogram at the VERY TOP */}
+                  <div className="relative group/avatar mb-6 mt-2">
+                    <div className={`w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br ${member.avatarGradient} p-0.5 shadow-xl group-hover/avatar:scale-105 transition-transform duration-300 ring-4 ${member.ringColor}`}>
+                      <div className="w-full h-full bg-background rounded-[22px] flex items-center justify-center font-black text-3xl tracking-wider text-text-primary shadow-inner">
+                        {t(`about.team.members.${member.id}.initials`)}
                       </div>
                     </div>
-
-                    <span className="px-3.5 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-black/5 dark:border-white/10 text-[11px] font-bold text-text-secondary uppercase tracking-wider shadow-sm">
-                      {member.badge}
-                    </span>
+                    <div className="absolute -bottom-2 -right-2 p-2.5 rounded-2xl bg-surface border border-black/10 dark:border-white/15 shadow-lg text-text-primary backdrop-blur-md">
+                      {member.icon}
+                    </div>
                   </div>
 
-                  {/* Name & Role */}
-                  <h3 className="text-2xl sm:text-3xl font-black text-text-primary mb-1 tracking-tight group-hover:text-primary transition-colors">
+                  {/* Name & Role (Centered) */}
+                  <h3 className="text-2xl sm:text-3xl font-black text-text-primary mb-1 tracking-tight group-hover:text-primary transition-colors text-center">
                     {t(`about.team.members.${member.id}.name`)}
                   </h3>
-                  <div className="text-primary font-bold text-sm sm:text-base mb-6 tracking-wide flex items-center gap-2">
+                  <div className="text-primary font-bold text-sm mb-4 tracking-wide flex items-center justify-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     <span>{t(`about.team.members.${member.id}.role`)}</span>
                   </div>
 
-                  {/* Personal Engineering Philosophy Quote */}
-                  <div className="mb-6 p-4 rounded-2xl bg-background/60 border border-black/5 dark:border-white/5 relative overflow-hidden backdrop-blur-sm">
-                    <Quote className="w-8 h-8 text-primary/10 absolute -top-1 -right-1 rtl:-left-1 rtl:right-auto" />
+                  {/* Specialization Badges (Placed below Role) */}
+                  <div className="flex flex-wrap items-center justify-center gap-2 mb-6 w-full">
+                    <span className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-md border border-black/5 dark:border-white/10 text-[11px] font-bold text-text-secondary uppercase tracking-wider shadow-sm">
+                      {member.badge}
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-[10px] font-bold text-primary tracking-widest uppercase">
+                      {t(`about.team.members.${member.id}.pillarTitle`)}
+                    </span>
+                  </div>
+
+                  {/* Live Interactive Node Visualization */}
+                  <div className={`mb-6 p-4 rounded-2xl border backdrop-blur-md transition-all duration-300 w-full text-start ${member.nodeBg}`}>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-wider">
+                        <Activity size={12} className="animate-pulse" />
+                        <span>{member.nodeStatus}</span>
+                      </div>
+                      <span className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
+                    </div>
+                    {member.nodeContent}
+                  </div>
+
+                  {/* Quote */}
+                  <div className="mb-6 p-4 rounded-2xl bg-background/60 border border-black/5 dark:border-white/5 relative overflow-hidden backdrop-blur-sm w-full text-center">
+                    <Quote className="w-7 h-7 text-primary/10 absolute -top-1 -right-1 rtl:-left-1 rtl:right-auto" />
                     <p className="text-xs sm:text-sm font-medium text-text-secondary italic leading-relaxed relative z-10">
                       "{t(`about.team.members.${member.id}.quote`)}"
                     </p>
                   </div>
 
                   {/* Bio Description */}
-                  <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-normal mb-8 opacity-90 flex-1">
+                  <p className="text-text-secondary text-sm leading-relaxed font-normal mb-6 opacity-90 flex-1 text-center sm:text-start">
                     {t(`about.team.members.${member.id}.bio`)}
                   </p>
 
-                  {/* Expertise / Skills Pills */}
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  {/* Expertise / Skills Pills (Centered) */}
+                  <div className="flex flex-wrap justify-center gap-2 mb-8 w-full">
                     {Array.isArray(t(`about.team.members.${member.id}.skills`, { returnObjects: true })) && 
                       (t(`about.team.members.${member.id}.skills`, { returnObjects: true }) as string[]).map((skill, sIdx) => (
                         <span key={sIdx} className="px-3 py-1 bg-background/80 border border-black/5 dark:border-white/10 rounded-lg text-xs font-semibold text-text-primary shadow-xs">
@@ -478,7 +631,7 @@ export default function AboutUs() {
                   </div>
                 </div>
 
-                {/* Footer Bar: Social Links & Status */}
+                {/* Footer Bar */}
                 <div className="relative z-10 pt-6 border-t border-black/5 dark:border-white/10 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 rounded-xl bg-background border border-black/5 dark:border-white/10 text-text-secondary hover:text-primary hover:border-primary/30 transition-all hover:scale-110 shadow-xs" title="LinkedIn">

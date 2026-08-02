@@ -940,15 +940,22 @@
     },
     "team": {
       "title": "Leadership & Founders",
-      "subtitle": "The Engineers Behind Mot7km",
-      "desc": "Built by engineers who believe SaaS should be unbreakable, intuitive, and relentlessly fast.",
+      "subtitle": "Architecture & Engineering Pillars",
+      "desc": "Three core technical pillars driving the unified Mot7km SaaS ecosystem.",
+      "hub": {
+        "title": "Mot7km Central SaaS Core",
+        "subtitle": "Real-Time Sync Engine & Command Hub",
+        "status": "System Status: 100% Operational"
+      },
       "members": {
         "ibrahim": {
           "name": "Ibrahim Nasser",
           "role": "Co-Founder & CTO",
           "initials": "IN",
           "quote": "Building cross-platform software that operates flawlessly when the peak rush hits.",
-          "bio": "Leads the company's technical vision, product architecture, and engineering strategy. Responsible for the development of mobile and desktop applications while overseeing web and backend development to build a scalable SaaS platform.",
+          "bio": "Leads the company's technical vision and product architecture. Responsible for mobile and desktop POS applications with offline resilience.",
+          "pillarTitle": "Mobile & Desktop Pillar",
+          "pillarDesc": "Unified POS & Field Operations Engine",
           "skills": ["Technical Vision", "Mobile & Desktop Apps", "Product Architecture", "SaaS Engineering"]
         },
         "amr": {
@@ -956,7 +963,9 @@
           "role": "Co-Founder & Backend Lead",
           "initials": "AA",
           "quote": "Architecting resilient backends to process high-throughput transactions seamlessly.",
-          "bio": "Drives backend development, system architecture, APIs, and infrastructure. Focused on building reliable, secure, and scalable services that power the platform.",
+          "bio": "Drives backend development, system architecture, APIs, and infrastructure. Focused on reliable, high-scale cloud services.",
+          "pillarTitle": "Backend & Infrastructure Pillar",
+          "pillarDesc": "High-Throughput APIs & Cloud Gateways",
           "skills": ["System Architecture", "High-Scale APIs", "Cloud Infrastructure", "Security & Reliability"]
         },
         "ahmed": {
@@ -964,7 +973,9 @@
           "role": "Co-Founder & Web Lead",
           "initials": "AE",
           "quote": "Crafting frictionless web experiences with zero latency and radical simplicity.",
-          "bio": "Leads web application development and user-facing experiences, ensuring performance, usability, and seamless integration across the platform.",
+          "bio": "Leads web application development and user experiences, ensuring performance and seamless digital menu interactions.",
+          "pillarTitle": "Web & User Experience Pillar",
+          "pillarDesc": "Central Web Dashboard & Instant QR Ecosystem",
           "skills": ["Web Architecture", "UI/UX Engineering", "Performance Optimization", "Ecosystem Integration"]
         }
       }
