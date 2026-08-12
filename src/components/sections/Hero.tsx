@@ -19,7 +19,8 @@ import {
   Play,
   WifiOff,
   ShoppingBag,
-  BarChart3
+  BarChart3,
+  Star
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
@@ -189,8 +190,9 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-10 sm:mt-12"
             >
-              <span className="text-[11px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-3 px-1 text-center lg:text-start">
-                {isRTL ? "استكشف إمكانيات المحرك السحابي:" : "Explore Engine Capabilities:"}
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center gap-1.5 justify-center lg:justify-start mb-3.5 px-1">
+                <Zap size={14} className="text-primary animate-pulse" />
+                <span>{isRTL ? "استكشف إمكانيات المحرك السحابي:" : "Explore Engine Capabilities:"}</span>
               </span>
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm font-bold">
                 {[
@@ -205,10 +207,10 @@ export default function Hero() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id as any)}
-                      className={`relative flex items-center gap-2 px-3.5 py-2.5 rounded-xl border transition-all duration-300 cursor-pointer ${
+                      className={`relative flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all duration-300 cursor-pointer ${
                         isActive
-                          ? "bg-primary text-white border-primary shadow-md shadow-primary/25 scale-105"
-                          : "bg-slate-100/80 hover:bg-slate-200/80 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-white/10"
+                          ? "bg-primary text-white border-primary shadow-lg shadow-primary/30 scale-105 font-black"
+                          : "bg-white/80 hover:bg-white dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 border-slate-200/80 dark:border-white/10 hover:border-primary/40 shadow-sm"
                       }`}
                     >
                       <Icon size={16} />
@@ -229,9 +231,9 @@ export default function Hero() {
             className="hidden sm:flex flex-1 relative w-full min-h-[460px] md:h-[540px] lg:h-[620px] justify-center items-center perspective-1000 transform-gpu"
           >
             {/* Ambient Lighting Halo */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] md:w-[480px] md:h-[480px] bg-primary/25 blur-[100px] rounded-full animate-pulse pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] md:w-[500px] md:h-[500px] bg-primary/20 dark:bg-primary/25 blur-[120px] rounded-full animate-pulse-slow pointer-events-none" />
 
-            {/* Main Interactive Showcase Mockup Card (Dynamic Content based on Active Tab) */}
+            {/* Main Interactive SaaS Window Frame Mockup Card */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}
@@ -242,11 +244,27 @@ export default function Hero() {
                 style={{
                   x: dashboardX,
                   y: dashboardY,
-                  rotateY: isRTL ? 8 : -8,
-                  rotateX: 3,
+                  rotateY: isRTL ? 6 : -6,
+                  rotateX: 2,
                 }}
-                className="absolute left-0 lg:-left-12 top-4 w-[92%] md:w-[82%] rounded-[1.8rem] border border-slate-200/90 dark:border-white/20 shadow-[0_30px_70px_rgba(0,0,0,0.12)] dark:shadow-[0_30px_70px_rgba(0,0,0,0.75)] overflow-hidden bg-white/95 dark:bg-[#0c1626]/95 backdrop-blur-2xl z-10 transition-all duration-300 transform-gpu"
+                className="absolute left-0 lg:-left-10 top-2 w-[95%] md:w-[86%] rounded-[2rem] border border-slate-200/90 dark:border-white/20 shadow-[0_25px_60px_rgba(15,23,42,0.12)] dark:shadow-[0_30px_70px_rgba(0,0,0,0.85)] overflow-hidden bg-white dark:bg-[#091122] backdrop-blur-2xl z-10 transition-all duration-300 transform-gpu"
               >
+                {/* Browser macOS Top Bar Control */}
+                <div className="flex items-center justify-between px-4 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 border-b border-slate-200/80 dark:border-white/10 text-xs text-slate-500 font-medium select-none">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
+                    <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
+                  </div>
+                  <div className="flex items-center gap-1 px-3 py-1 rounded-md bg-white/70 dark:bg-black/40 border border-slate-200/60 dark:border-white/10 text-[10.5px] text-slate-600 dark:text-slate-400 font-extrabold dir-ltr">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-ping" />
+                    app.mot7km.store/{activeTab}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">v2.4 Live</span>
+                  </div>
+                </div>
+
                 <div className="relative w-full aspect-[16/10]">
                   <Image
                     src={currentShowcase.image}
@@ -258,22 +276,22 @@ export default function Hero() {
                   />
                   
                   {/* Top Floating Feature Header overlay */}
-                  <div className="absolute top-3 left-4 right-4 flex items-center justify-between p-2.5 rounded-xl bg-slate-900/80 dark:bg-black/70 backdrop-blur-md text-white border border-white/10 z-20">
-                    <div className="flex items-center gap-2">
-                      <div className="p-1 rounded-md bg-primary text-white">
-                        <Sparkles size={13} />
+                  <div className="absolute top-3 left-4 right-4 flex items-center justify-between p-2.5 rounded-xl bg-slate-900/85 dark:bg-black/75 backdrop-blur-md text-white border border-white/10 z-20 shadow-lg">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 rounded-lg bg-primary text-white shadow-sm">
+                        <Sparkles size={14} />
                       </div>
                       <div>
                         <h6 className="text-xs font-black">{currentShowcase.title}</h6>
                         <p className="text-[10px] text-slate-300 font-medium line-clamp-1">{currentShowcase.desc}</p>
                       </div>
                     </div>
-                    <span className="text-[10px] font-black px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                    <span className="text-[10.5px] font-black px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
                       {currentShowcase.metric} {currentShowcase.metricLabel}
                     </span>
                   </div>
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent pointer-events-none" />
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -283,7 +301,7 @@ export default function Hero() {
               style={{ x: posX, y: posY }}
               animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute right-0 lg:-right-4 top-10 p-3.5 rounded-2xl bg-white/95 dark:bg-[#0f192e]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-30 min-w-[210px] transform-gpu"
+              className="absolute right-0 lg:-right-4 top-8 p-3.5 rounded-2xl bg-white/95 dark:bg-[#0f192e]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-30 min-w-[210px] transform-gpu"
             >
               <div className="flex items-center gap-2.5 mb-2">
                 <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
@@ -303,7 +321,7 @@ export default function Hero() {
               </div>
               <div className="pt-2 border-t border-slate-200/60 dark:border-white/10 flex items-center justify-between text-[11px] font-extrabold">
                 <span className="text-slate-600 dark:text-slate-300">{isRTL ? "المجموع:" : "Total:"}</span>
-                <span className="text-primary dark:text-primary-light">{isRTL ? "145.00 ج.م" : "145.00 EGP"}</span>
+                <span className="text-primary dark:text-primary-light font-black">{isRTL ? "145.00 ج.م" : "145.00 EGP"}</span>
               </div>
             </motion.div>
 
@@ -312,15 +330,16 @@ export default function Hero() {
               style={{ x: mobileX, y: mobileY }}
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-4 lg:left-0 bottom-8 p-3 rounded-2xl bg-white/95 dark:bg-[#0f192e]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-30 min-w-[200px] transform-gpu"
+              className="absolute left-2 lg:-left-2 bottom-8 p-3 rounded-2xl bg-white/95 dark:bg-[#0f192e]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-30 min-w-[200px] transform-gpu"
             >
               <div className="flex items-center gap-2.5">
                 <div className="p-2 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20">
                   <WifiOff size={16} />
                 </div>
                 <div>
-                  <span className="text-xs font-black text-slate-900 dark:text-white block">
-                    {isRTL ? "⚡ 100% يعمل بدون إنترنت" : "⚡ 100% Offline POS"}
+                  <span className="text-xs font-black text-slate-900 dark:text-white flex items-center gap-1">
+                    <Zap size={13} className="text-amber-500 fill-amber-500" />
+                    <span>{isRTL ? "100% يعمل بدون إنترنت" : "100% Offline POS"}</span>
                   </span>
                   <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
                     {isRTL ? "مزامنة سحابية تلقائية" : "Auto Cloud Syncing"}
@@ -333,7 +352,7 @@ export default function Hero() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute right-6 sm:right-12 bottom-4 p-3 rounded-2xl bg-white/95 dark:bg-[#0f192e]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-30 transform-gpu"
+              className="absolute right-6 sm:right-12 bottom-4 p-3 rounded-2xl bg-white/95 dark:bg-[#0f192e]/95 backdrop-blur-2xl border border-slate-200/90 dark:border-white/15 shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)] z-30 transform-gpu"
             >
               <div className="flex items-center gap-2">
                 <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
@@ -344,7 +363,8 @@ export default function Hero() {
                     {isRTL ? "مبيعات اليوم" : "Today's Revenue"}
                   </span>
                   <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-                    +28.4% 📈
+                    <span>+28.4%</span>
+                    <TrendingUp size={13} />
                   </span>
                 </div>
               </div>
@@ -368,39 +388,42 @@ export default function Hero() {
             </p>
 
             {/* Micro Rating Badge */}
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-xs font-extrabold text-slate-800 dark:text-slate-200">
-              <span className="text-amber-400">★★★★★</span>
+            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-xs font-extrabold text-slate-800 dark:text-slate-200 shadow-sm">
+              <div className="flex items-center text-amber-400 gap-0.5">
+                {[...Array(5)].map((_, idx) => (
+                  <Star key={idx} size={12} fill="currentColor" />
+                ))}
+              </div>
               <span>4.9/5 (1,200+ {isRTL ? "مطعم وكافيه" : "Outlets"})</span>
             </div>
           </div>
 
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-8 md:gap-12 opacity-90 hover:opacity-100 transition-all duration-500">
-            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-slate-100/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
+            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-white/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
               <span className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center shadow-md shadow-primary/30 text-white font-bold text-xs">
                 B
               </span>
               <span>Burger Hub</span>
             </div>
 
-            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-slate-100/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
+            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-white/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
               <span className="w-8 h-8 rounded-xl bg-secondary flex items-center justify-center shadow-md shadow-secondary/30 text-white font-bold text-xs">
                 C
               </span>
               <span>Cafe Latte</span>
             </div>
 
-            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-slate-100/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
+            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-white/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
               <span className="w-8 h-8 rounded-xl bg-accent flex items-center justify-center shadow-md shadow-accent/30 text-white font-bold text-xs">
                 S
               </span>
               <span>Steak House</span>
             </div>
 
-            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-slate-100/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
+            <div className="flex items-center gap-3 font-black text-sm sm:text-base text-slate-800 dark:text-white hover:scale-105 transition-transform bg-white/90 dark:bg-white/[0.04] px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-white/10 shadow-sm">
               <span className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center shadow-md shadow-emerald-500/30 text-white font-bold text-xs">
                 J
               </span>
-              <span>Juice Time</span>
             </div>
           </div>
         </motion.div>

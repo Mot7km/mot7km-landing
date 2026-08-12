@@ -15,6 +15,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mot7km.store"),
   title: "متحكم (Mot7km) - نظام سحابي لإدارة المطاعم والكافيهات | Smart Business Control",
   description: "منصة متحكم (Mot7km) هي نظام سحابي متكامل لإدارة المطاعم، الكافيهات، نقاط البيع الكاشير (POS)، المنيو الإلكتروني (QR)، ومتابعة المبيعات فورياً.",
   keywords: [
