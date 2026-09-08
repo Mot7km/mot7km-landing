@@ -57,7 +57,7 @@ export default function SegmentedTabbar<T = string | number>({
                 />
               )}
               
-              {/* Icon */}
+              {/* Icon – always visible */}
               {tab.icon && (
                 <span
                   className={`relative z-10 transition-colors ${
@@ -70,12 +70,14 @@ export default function SegmentedTabbar<T = string | number>({
                 </span>
               )}
 
-              {/* Desktop Title (Always shown on md: screens and above) */}
-              <span className="relative z-10 hidden md:inline">
-                {tab.title}
-              </span>
+              {/* Desktop Title – only shown when active */}
+              {isActive && (
+                <span className="relative z-10 hidden md:inline">
+                  {tab.title}
+                </span>
+              )}
 
-              {/* Mobile Title */}
+              {/* Mobile Title – shown only when active (if icon exists) or always (if no icon) */}
               <span className={`relative z-10 md:hidden ${hasIcon ? (isActive ? "inline" : "hidden") : "inline"}`}>
                 {displayMobileTitle}
               </span>
