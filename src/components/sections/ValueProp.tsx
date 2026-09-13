@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, Fragment } from "react";
+import { useState, Fragment } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -23,7 +23,6 @@ import {
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
-import SegmentedTabbar from "@/components/ui/SegmentedTabbar";
 
 interface StepData {
   id: string;
@@ -91,18 +90,6 @@ export default function ValueProp() {
     }
   ];
 
-  // Build tabs for SegmentedTabbar
-  const tabs = useMemo(
-    () =>
-      stepsData.map((step, idx) => ({
-        id: idx,
-        title: t(step.badgeKey),
-        icon: <step.icon size={18} />,
-        activeColorClass: step.color.split(" ")[0].replace("from-", ""), // e.g. "primary"
-      })),
-    [stepsData, t]
-  );
-
   const scrollToStep = (id: number) => {
     if (typeof window !== "undefined") {
       const isMobile = window.innerWidth < 1024;
@@ -114,7 +101,6 @@ export default function ValueProp() {
   };
 
   const currentStep = stepsData[activeStep] || stepsData[0];
-  const ActiveIcon = currentStep.icon;
 
   return (
     <section
@@ -122,14 +108,14 @@ export default function ValueProp() {
       className="py-16 sm:py-24 md:py-32 lg:py-36 bg-background relative"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      {/* Background orbs (unchanged) */}
+      {/* Background orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
         <div className="absolute top-1/3 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-primary/10 blur-[140px] rounded-full -translate-y-1/2 translate-x-1/3" />
         <div className="absolute bottom-10 left-0 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-accent/10 blur-[130px] rounded-full -translate-x-1/3" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-        {/* Header (unchanged) */}
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -165,96 +151,116 @@ export default function ValueProp() {
           </motion.p>
         </div>
 
-        {/* ── GALLERY CONTAINER (same structure as Features) ── */}
+        {/* ── GALLERY CONTAINER ── */}
         <div className="grid grid-cols-1 relative">
           {/* Layer 1: Invisible scroll tracks */}
           <div className="col-start-1 row-start-1 z-0">
             {STEP_ORDER.map((idx) => (
               <Fragment key={idx}>
-                {/* Desktop: one track per step (both text & visual) */}
                 <div className="hidden lg:block">
                   <Track
                     id={`track-desktop-${idx}`}
-                    onActive={() => { setActiveStep(idx); setMobileView("both"); }}
+                    onActive={() => {
+                      setActiveStep(idx);
+                      setMobileView("both");
+                    }}
                   />
                 </div>
 
-                {/* Mobile: two tracks per step (text → visual) */}
                 <div className="block lg:hidden">
                   <Track
                     id={`track-mobile-${idx}-text`}
-                    onActive={() => { setActiveStep(idx); setMobileView("text"); }}
+                    onActive={() => {
+                      setActiveStep(idx);
+                      setMobileView("text");
+                    }}
                   />
                   <Track
                     id={`track-mobile-${idx}-visual`}
-                    onActive={() => { setActiveStep(idx); setMobileView("visual"); }}
+                    onActive={() => {
+                      setActiveStep(idx);
+                      setMobileView("visual");
+                    }}
                   />
                 </div>
               </Fragment>
             ))}
           </div>
 
-          {/* Layer 2: Sticky UI (tab bar + content) */}
+          {/* Layer 2: Sticky UI */}
           <div className="col-start-1 row-start-1 z-10 pointer-events-none">
             <div className="sticky top-0 h-[100dvh] w-full flex flex-col pointer-events-auto pt-16 lg:pt-20">
-              {/* TAB BAR – using SegmentedTabbar */}
-              <div className="flex-shrink-0 w-full px-4 pb-4 bg-background/80 backdrop-blur-sm z-20">
-                <div className="max-w-2xl mx-auto">
-                  <SegmentedTabbar
-                    tabs={tabs}
-                    activeTab={activeStep}
-                    onChange={scrollToStep}
-                    layoutId="valuePropTab"
-                  />
-                </div>
+              {/* MOBILE HORIZONTAL TELEMETRY (lg:hidden) */}
+              <div className="lg:hidden shrink-0 w-full px-4 pb-3 z-20">
+                <StageNavigatorHorizontal
+                  steps={stepsData}
+                  activeStep={activeStep}
+                  onSelect={scrollToStep}
+                  t={t}
+                />
               </div>
 
-              {/* CONTENT – fills remaining height, centered */}
-              <div className="flex-1 w-full flex items-center justify-center overflow-hidden">
-                <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 h-full flex flex-col justify-center">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`${activeStep}-${mobileView}`}
-                      initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -30, scale: 0.98 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                      className="relative rounded-[2.5rem] bg-surface/40 backdrop-blur-3xl border border-white/10 p-6 sm:p-10 md:p-14 shadow-[0_30px_70px_rgba(0,0,0,0.5)] overflow-hidden w-full"
-                    >
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-                        {/* TEXT SECTION */}
-                        <div
-                          className={`${
-                            mobileView === "visual" ? "hidden lg:flex" : "flex"
-                          } lg:col-span-5 flex-col items-center lg:items-start text-center lg:text-start order-2 lg:order-1 w-full`}
+              {/* CONTENT + DESKTOP SIDEBAR */}
+              <div className="flex-1 min-h-0 w-full px-4 sm:px-6 lg:px-8 py-3 lg:py-6 flex flex-col">
+                <div className="w-full max-w-7xl mx-auto my-auto">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center">
+                    {/* MAIN CARD (left in LTR, right in RTL) */}
+                    <div className="lg:col-span-8 order-1">
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={`${activeStep}-${mobileView}`}
+                          initial={{ opacity: 0, y: 25, scale: 0.99 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -25, scale: 0.99 }}
+                          transition={{ duration: 0.35, ease: "easeOut" }}
+                          className="relative rounded-[2rem] bg-surface/40 backdrop-blur-3xl border border-white/10 p-5 sm:p-7 lg:p-8 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.6)] overflow-hidden w-full"
                         >
-                          <StepText step={currentStep} t={t} />
-                        </div>
+                          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                            {/* TEXT */}
+                            <div
+                              className={`${
+                                mobileView === "visual" ? "hidden lg:flex" : "flex"
+                              } lg:col-span-5 flex-col items-center lg:items-start text-center lg:text-start order-2 lg:order-1 w-full`}
+                            >
+                              <StepText step={currentStep} t={t} />
+                            </div>
 
-                        {/* VISUAL SECTION */}
-                        <div
-                          className={`${
-                            mobileView === "text" ? "hidden lg:flex" : "flex"
-                          } lg:col-span-7 relative order-1 lg:order-2 perspective-1000 flex justify-center w-full`}
-                        >
-                          <StepVisual
-                            step={currentStep}
-                            stepIndex={activeStep}
-                            step2ViewMode={step2ViewMode}
-                            setStep2ViewMode={setStep2ViewMode}
-                            t={t}
-                          />
-                        </div>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
+                            {/* VISUAL */}
+                            <div
+                              className={`${
+                                mobileView === "text" ? "hidden lg:flex" : "flex"
+                              } lg:col-span-7 relative order-1 lg:order-2 perspective-1000 flex justify-center w-full`}
+                            >
+                              <StepVisual
+                                step={currentStep}
+                                stepIndex={activeStep}
+                                step2ViewMode={step2ViewMode}
+                                setStep2ViewMode={setStep2ViewMode}
+                                t={t}
+                              />
+                            </div>
+                          </div>
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+
+                    {/* DESKTOP VERTICAL PIPELINE RAIL (right in LTR, left in RTL) */}
+                    <div className="hidden lg:block lg:col-span-4 order-2">
+                      <StageNavigatorVertical
+                        steps={stepsData}
+                        activeStep={activeStep}
+                        onSelect={scrollToStep}
+                        t={t}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Trust & Guarantees (unchanged, placed after gallery) */}
+        {/* Trust & Guarantees */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -266,8 +272,12 @@ export default function ValueProp() {
               <Clock size={20} />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-bold text-white">{t("value.guarantees.setup")}</h4>
-              <p className="text-[11px] text-text-secondary">{t("value.guarantees.setupSub")}</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white">
+                {t("value.guarantees.setup")}
+              </h4>
+              <p className="text-[11px] text-text-secondary">
+                {t("value.guarantees.setupSub")}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -275,8 +285,12 @@ export default function ValueProp() {
               <WifiOff size={20} />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-bold text-white">{t("value.guarantees.offline")}</h4>
-              <p className="text-[11px] text-text-secondary">{t("value.guarantees.offlineSub")}</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white">
+                {t("value.guarantees.offline")}
+              </h4>
+              <p className="text-[11px] text-text-secondary">
+                {t("value.guarantees.offlineSub")}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -284,8 +298,12 @@ export default function ValueProp() {
               <Lock size={20} />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-bold text-white">{t("value.guarantees.security")}</h4>
-              <p className="text-[11px] text-text-secondary">{t("value.guarantees.securitySub")}</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white">
+                {t("value.guarantees.security")}
+              </h4>
+              <p className="text-[11px] text-text-secondary">
+                {t("value.guarantees.securitySub")}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -293,8 +311,12 @@ export default function ValueProp() {
               <Headphones size={20} />
             </div>
             <div>
-              <h4 className="text-xs sm:text-sm font-bold text-white">{t("value.guarantees.support")}</h4>
-              <p className="text-[11px] text-text-secondary">{t("value.guarantees.supportSub")}</p>
+              <h4 className="text-xs sm:text-sm font-bold text-white">
+                {t("value.guarantees.support")}
+              </h4>
+              <p className="text-[11px] text-text-secondary">
+                {t("value.guarantees.supportSub")}
+              </p>
             </div>
           </div>
         </motion.div>
@@ -304,10 +326,355 @@ export default function ValueProp() {
 }
 
 /* ==========================================
-   SUB-COMPONENTS (unchanged, except Track is now shared)
+   STAGE NAVIGATOR — HORIZONTAL (mobile only)
 ========================================== */
 
-// Scroll track listener – used for both desktop & mobile
+function StageNavigatorHorizontal({
+  steps,
+  activeStep,
+  onSelect,
+  t,
+}: {
+  steps: StepData[];
+  activeStep: number;
+  onSelect: (id: number) => void;
+  t: (key: string) => string;
+}) {
+  const progress =
+    steps.length > 1 ? (activeStep / (steps.length - 1)) * 100 : 0;
+
+  return (
+    <div className="relative w-full max-w-3xl mx-auto">
+      <div className="relative rounded-2xl bg-surface/40 backdrop-blur-2xl border border-white/10 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] overflow-hidden">
+        {/* Top telemetry strip */}
+        <div className="flex items-center justify-between px-3 py-1.5 border-b border-white/[0.06] bg-black/20">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="relative flex w-1.5 h-1.5 shrink-0">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            </span>
+            <span className="text-[10px] font-mono font-black tracking-[0.2em] text-emerald-400 uppercase">
+              Live
+            </span>
+            <span className="hidden sm:inline text-[10px] font-mono font-bold tracking-[0.15em] text-white/25 uppercase truncate">
+              // pipeline
+            </span>
+          </div>
+          <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-white/40 uppercase shrink-0">
+            {String(activeStep + 1).padStart(2, "0")}
+            <span className="text-white/20 mx-0.5">/</span>
+            {String(steps.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* Horizontal rail */}
+        <div className="relative px-3 py-3">
+          <div className="relative grid grid-cols-3 w-full">
+            {/* Track container — no overflow-hidden so glow can breathe */}
+            <div className="absolute top-4 -translate-y-1/2 left-[16.667%] right-[16.667%] h-[2px]">
+              {/* Track background */}
+              <div className="absolute inset-0 bg-white/[0.08] rounded-full" />
+
+              {/* Progress fill */}
+              <motion.div
+                className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-primary via-secondary to-emerald-400 rounded-full"
+                initial={false}
+                animate={{ width: `${progress}%` }}
+                transition={{ type: "spring", stiffness: 200, damping: 30 }}
+              />
+
+              {/* Glow tip — sibling, animated by `left` */}
+              <motion.div
+                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-none"
+                initial={false}
+                animate={{ left: `${progress}%` }}
+                transition={{ type: "spring", stiffness: 200, damping: 30 }}
+              >
+                <motion.span
+                  className="block w-3 h-3 rounded-full bg-white/60 blur-[3px]"
+                  animate={{
+                    opacity: [0.3, 0.9, 0.3],
+                    scale: [0.85, 1.1, 0.85],
+                  }}
+                  transition={{
+                    duration: 1.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
+            </div>
+
+            {/* Nodes */}
+            {steps.map((step, idx) => {
+              const isActive = activeStep === idx;
+              const isCompleted = activeStep > idx;
+              const Icon = step.icon;
+
+              return (
+                <button
+                  key={step.id}
+                  onClick={() => onSelect(idx)}
+                  className="relative flex flex-col items-center gap-1.5 cursor-pointer group z-10"
+                  aria-label={t(step.badgeKey)}
+                >
+                  {isActive && (
+                    <motion.span
+                      className="absolute top-0 w-8 h-8 rounded-full border-2 border-primary/50 pointer-events-none"
+                      initial={{ scale: 1, opacity: 0.7 }}
+                      animate={{ scale: [1, 1.7], opacity: [0.7, 0] }}
+                      transition={{
+                        duration: 1.8,
+                        repeat: Infinity,
+                        ease: "easeOut",
+                      }}
+                    />
+                  )}
+
+                  <div
+                    className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
+                      isActive
+                        ? `bg-gradient-to-tr ${step.color} text-white shadow-lg shadow-primary/40 scale-110 ring-2 ring-white/25`
+                        : isCompleted
+                        ? "bg-white/[0.06] text-emerald-400 border border-emerald-400/40"
+                        : "bg-white/[0.03] border border-white/10 text-white/35 group-hover:text-white/70 group-hover:border-white/25"
+                    }`}
+                  >
+                    {isCompleted ? <CheckCircle2 size={16} /> : <Icon size={16} />}
+                  </div>
+
+                  <div className="flex flex-col items-center gap-0 text-center">
+                    <span
+                      className={`text-[9px] font-mono font-black tracking-widest transition-colors ${
+                        isActive ? "text-white" : "text-white/30"
+                      }`}
+                    >
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`text-[10px] font-black whitespace-nowrap transition-all ${
+                        isActive
+                          ? "text-white"
+                          : "text-white/40 group-hover:text-white/70"
+                      }`}
+                    >
+                      {t(step.badgeKey)}
+                    </span>
+                  </div>
+
+                  <div className="h-0.5 w-8 mt-0.5 relative">
+                    {isActive && (
+                      <motion.div
+                        layoutId="stageIndicatorMobile"
+                        className={`absolute inset-0 rounded-full bg-gradient-to-r ${step.color}`}
+                        transition={{
+                          type: "spring",
+                          stiffness: 350,
+                          damping: 30,
+                        }}
+                      />
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   STAGE NAVIGATOR — VERTICAL PIPELINE (desktop only)
+========================================== */
+
+function StageNavigatorVertical({
+  steps,
+  activeStep,
+  onSelect,
+  t,
+}: {
+  steps: StepData[];
+  activeStep: number;
+  onSelect: (id: number) => void;
+  t: (key: string) => string;
+}) {
+  const progress =
+    steps.length > 1 ? (activeStep / (steps.length - 1)) * 100 : 0;
+
+  return (
+    <div className="relative w-full">
+      <div className="relative rounded-[2rem] bg-surface/40 backdrop-blur-3xl border border-white/10 shadow-[0_30px_70px_-25px_rgba(0,0,0,0.7)] overflow-hidden p-5">
+        {/* Telemetry header */}
+        <div className="flex items-center justify-between pb-4 mb-5 border-b border-white/[0.06]">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="relative flex w-1.5 h-1.5 shrink-0">
+              <span className="absolute inline-flex w-full h-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+              <span className="relative inline-flex w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            </span>
+            <span className="text-[10px] font-mono font-black tracking-[0.2em] text-emerald-400 uppercase">
+              Live
+            </span>
+            <span className="text-[10px] font-mono font-bold tracking-[0.15em] text-white/25 uppercase truncate">
+              // pipeline
+            </span>
+          </div>
+          <span className="text-[10px] font-mono font-bold tracking-[0.2em] text-white/40 uppercase shrink-0">
+            {String(activeStep + 1).padStart(2, "0")}
+            <span className="text-white/20 mx-0.5">/</span>
+            {String(steps.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        {/* Vertical rail */}
+        <div className="relative">
+          {/* Track container — anchored to icon centers, no overflow-hidden */}
+          <div className="absolute top-[34px] bottom-[34px] left-[34px] -translate-x-1/2 w-[2px]">
+            {/* Track background */}
+            <div className="absolute inset-0 bg-white/[0.08] rounded-full" />
+
+            {/* Progress fill */}
+            <motion.div
+              className="absolute top-0 left-0 right-0 bg-gradient-to-b from-primary via-secondary to-emerald-400 rounded-full"
+              initial={false}
+              animate={{ height: `${progress}%` }}
+              transition={{ type: "spring", stiffness: 200, damping: 30 }}
+            />
+
+            {/* Glow tip — sibling, animated by `top` */}
+            <motion.div
+              className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+              initial={false}
+              animate={{ top: `${progress}%` }}
+              transition={{ type: "spring", stiffness: 200, damping: 30 }}
+            >
+              <motion.span
+                className="block w-3 h-3 rounded-full bg-white/60 blur-[3px]"
+                animate={{
+                  opacity: [0.3, 0.9, 0.3],
+                  scale: [0.85, 1.1, 0.85],
+                }}
+                transition={{
+                  duration: 1.6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+          </div>
+
+          {/* Nodes */}
+          <div className="relative space-y-2.5">
+            {steps.map((step, idx) => {
+              const isActive = activeStep === idx;
+              const isCompleted = activeStep > idx;
+              const Icon = step.icon;
+
+              return (
+                <button
+                  key={step.id}
+                  onClick={() => onSelect(idx)}
+                  className={`group relative w-full text-start flex items-center gap-3.5 p-3 rounded-2xl transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? "bg-gradient-to-r from-white/[0.07] to-transparent border border-white/10"
+                      : "border border-transparent hover:bg-white/[0.03]"
+                  }`}
+                >
+                  {/* Node circle */}
+                  <div className="relative shrink-0">
+                    {isActive && (
+                      <motion.span
+                        className="absolute inset-0 rounded-xl border-2 border-primary/50 pointer-events-none"
+                        initial={{ scale: 1, opacity: 0.7 }}
+                        animate={{ scale: [1, 1.8], opacity: [0.7, 0] }}
+                        transition={{
+                          duration: 1.8,
+                          repeat: Infinity,
+                          ease: "easeOut",
+                        }}
+                      />
+                    )}
+                    <div
+                      className={`relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 shadow-md ${
+                        isActive
+                          ? `bg-gradient-to-tr ${step.color} text-white ring-4 ring-primary/15 shadow-primary/40 scale-105`
+                          : isCompleted
+                          ? "bg-emerald-500/15 text-emerald-400 border border-emerald-400/30"
+                          : "bg-white/[0.03] border border-white/10 text-white/35 group-hover:text-white/70 group-hover:border-white/20"
+                      }`}
+                    >
+                      {isCompleted ? (
+                        <CheckCircle2 size={18} />
+                      ) : (
+                        <Icon size={18} />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Text block */}
+                  <div className="flex flex-col flex-1 min-w-0">
+                    <span
+                      className={`text-[10px] font-mono font-black tracking-[0.2em] mb-0.5 transition-colors ${
+                        isActive
+                          ? "text-primary"
+                          : isCompleted
+                          ? "text-emerald-400/70"
+                          : "text-white/30"
+                      }`}
+                    >
+                      PHASE {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`text-sm font-black truncate transition-colors ${
+                        isActive
+                          ? "text-white"
+                          : "text-white/55 group-hover:text-white/85"
+                      }`}
+                    >
+                      {t(step.badgeKey)}
+                    </span>
+                  </div>
+
+                  {/* Right status dot */}
+                  <div className="shrink-0 flex items-center justify-center w-3">
+                    {isActive ? (
+                      <motion.span
+                        className="block w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_10px_2px_rgba(var(--primary),0.6)]"
+                        animate={{ opacity: [0.4, 1, 0.4] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      />
+                    ) : isCompleted ? (
+                      <span className="block w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
+                    ) : (
+                      <span className="block w-1.5 h-1.5 rounded-full bg-white/15" />
+                    )}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Footer strip */}
+        <div className="mt-5 pt-4 border-t border-white/[0.06] flex items-center justify-between gap-2">
+          <span className="text-[10px] font-mono font-bold tracking-[0.15em] text-white/30 uppercase truncate">
+            {steps[activeStep]?.engineeringTag}
+          </span>
+          <span className="flex items-center gap-1 text-[10px] font-mono font-black tracking-[0.15em] text-emerald-400 uppercase shrink-0">
+            <Zap size={11} />
+            Active
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ==========================================
+   SUB-COMPONENTS
+========================================== */
+
 function Track({ id, onActive }: { id: string; onActive: () => void }) {
   const { ref } = useInView({
     threshold: 0.5,
@@ -315,16 +682,19 @@ function Track({ id, onActive }: { id: string; onActive: () => void }) {
       if (inView) onActive();
     },
   });
-  return <div id={id} ref={ref} className="h-[100dvh] w-full" aria-hidden="true" />;
+  return (
+    <div id={id} ref={ref} className="h-[100dvh] w-full" aria-hidden="true" />
+  );
 }
 
-// Text block (exactly as before)
 function StepText({ step, t }: { step: StepData; t: (key: string) => string }) {
   const Icon = step.icon;
   return (
     <div className="flex flex-col relative z-20 w-full max-w-lg mx-auto">
       <div className="flex items-center gap-3 mb-4 sm:mb-6">
-        <span className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${step.themeColor} shadow-md shrink-0`}>
+        <span
+          className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${step.themeColor} shadow-md shrink-0`}
+        >
           <Icon size={20} className={step.themeColor.split(" ")[0]} />
         </span>
         <h3 className="text-2xl sm:text-4xl font-black leading-tight text-slate-900 dark:text-white">
@@ -345,7 +715,6 @@ function StepText({ step, t }: { step: StepData; t: (key: string) => string }) {
   );
 }
 
-// Visual block (exactly as before, with its internal toggles)
 function StepVisual({
   step,
   stepIndex,
@@ -361,7 +730,9 @@ function StepVisual({
 }) {
   return (
     <div className="relative w-full group perspective-1000">
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-gradient-to-r ${step.color} blur-[90px] rounded-full pointer-events-none opacity-30 -z-10 transition-opacity duration-700 group-hover:opacity-50`} />
+      <div
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-gradient-to-r ${step.color} blur-[90px] rounded-full pointer-events-none opacity-30 -z-10 transition-opacity duration-700 group-hover:opacity-50`}
+      />
 
       <div className="relative w-full bg-surface/40 backdrop-blur-3xl rounded-3xl border border-white/10 p-4 sm:p-6 shadow-xl min-h-[380px] flex flex-col justify-between">
         <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
@@ -397,8 +768,12 @@ function StepVisual({
                         <Store size={16} />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold text-white">{t("value.mockup.branchName")}</h4>
-                        <p className="text-[10px] text-text-secondary">{t("value.mockup.menuSubtitle")}</p>
+                        <h4 className="text-xs font-bold text-white">
+                          {t("value.mockup.branchName")}
+                        </h4>
+                        <p className="text-[10px] text-text-secondary">
+                          {t("value.mockup.menuSubtitle")}
+                        </p>
                       </div>
                     </div>
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-lg bg-primary/20 text-primary border border-primary/30">
@@ -411,11 +786,20 @@ function StepVisual({
                       { name: t("value.mockup.item2"), price: "45 EGP" },
                       { name: t("value.mockup.item3"), price: "55 EGP" }
                     ].map((item, i) => (
-                      <div key={i} className="p-2 bg-surface/60 border border-white/5 rounded-lg flex flex-col">
-                        <span className="text-[11px] font-bold text-white">{item.name}</span>
+                      <div
+                        key={i}
+                        className="p-2 bg-surface/60 border border-white/5 rounded-lg flex flex-col"
+                      >
+                        <span className="text-[11px] font-bold text-white">
+                          {item.name}
+                        </span>
                         <div className="flex items-center justify-between text-[10px]">
-                          <span className="text-primary font-extrabold">{item.price}</span>
-                          <span className="text-emerald-400 font-medium">{t("value.mockup.available")}</span>
+                          <span className="text-primary font-extrabold">
+                            {item.price}
+                          </span>
+                          <span className="text-emerald-400 font-medium">
+                            {t("value.mockup.available")}
+                          </span>
                         </div>
                       </div>
                     ))}
@@ -510,8 +894,12 @@ function StepVisual({
                         <QrCode size={24} className="text-black" />
                       </div>
                       <div>
-                        <p className="text-[11px] font-bold text-white">{t("value.mockup.scanOrder")}</p>
-                        <p className="text-[10px] text-text-secondary">{t("value.mockup.feedbackSupport")}</p>
+                        <p className="text-[11px] font-bold text-white">
+                          {t("value.mockup.scanOrder")}
+                        </p>
+                        <p className="text-[10px] text-text-secondary">
+                          {t("value.mockup.feedbackSupport")}
+                        </p>
                       </div>
                     </div>
                     <div className="p-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary text-[11px] font-semibold text-center flex items-center justify-center gap-1.5">
@@ -539,7 +927,10 @@ function StepVisual({
                         {t("value.mockup.todaySales")}
                       </span>
                       <h3 className="text-lg font-black text-white mt-0.5">
-                        14,850 <span className="text-sm font-normal text-primary">EGP</span>
+                        14,850{" "}
+                        <span className="text-sm font-normal text-primary">
+                          EGP
+                        </span>
                       </h3>
                     </div>
                     <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
@@ -548,8 +939,11 @@ function StepVisual({
                   </div>
                   <div className="flex items-end gap-1.5 h-16 pt-3 border-t border-white/10">
                     {[40, 65, 80, 55, 90, 100, 75, 85].map((val, i) => (
-                      <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
-                        <motion.div 
+                      <div
+                        key={i}
+                        className="flex-1 flex flex-col items-center gap-0.5"
+                      >
+                        <motion.div
                           initial={{ height: 0 }}
                           whileInView={{ height: `${val}%` }}
                           viewport={{ once: true }}
@@ -565,7 +959,9 @@ function StepVisual({
                     <ShieldCheck size={14} className="text-emerald-400" />
                     {t("value.mockup.shiftAudit")}
                   </span>
-                  <span className="text-emerald-400 font-bold">{t("value.mockup.auditMatch")}</span>
+                  <span className="text-emerald-400 font-bold">
+                    {t("value.mockup.auditMatch")}
+                  </span>
                 </div>
               </motion.div>
             )}
