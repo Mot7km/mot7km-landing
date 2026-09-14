@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import SubpageHeader from "@/components/layout/SubpageHeader";
 
 interface PageHeroProps {
   badge?: string;
@@ -10,8 +9,6 @@ interface PageHeroProps {
   subtitle?: string;
   description?: string;
   gradientTitle?: string;
-  backHref?: string;
-  backLabel?: string;
 }
 
 export default function PageHero({

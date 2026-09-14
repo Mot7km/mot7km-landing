@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { SolutionPageData } from "@/data/solutionPages";
-import SubpageHeader from "@/components/layout/SubpageHeader";
 import { 
   Zap, Coffee, QrCode, PieChart, UtensilsCrossed, 
   Users, ShieldCheck, Printer, CupSoda, Star, Clock, Gamepad2, Bell 
@@ -32,9 +31,6 @@ export default function SolutionContent({ data }: SolutionContentProps) {
       </div>
       
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        
-        {/* Reusable Sticky Action Bar */}
-        <SubpageHeader backHref="/#use-cases" backLabel={t("solutions.back") || "العودة لحالات الاستخدام"} />
 
         {/* Solution Hero */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20 md:mb-28">

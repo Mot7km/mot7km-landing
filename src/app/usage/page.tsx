@@ -3,7 +3,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import Footer from "@/components/layout/Footer";
-import SubpageHeader from "@/components/layout/SubpageHeader";
 
 export default function AcceptableUsePolicy() {
   const { t } = useTranslation();
@@ -16,10 +15,6 @@ export default function AcceptableUsePolicy() {
   return (
     <main className="min-h-screen max-w-screen bg-background text-text-primary overflow-x-hidden flex flex-col">
       <div className="flex-1 pt-4 pb-20 px-4 md:px-8 relative z-10">
-        {/* Sticky Action Header */}
-        <div className="max-w-4xl mx-auto">
-          <SubpageHeader backHref="/" backLabel={t("notFound.goHome")} />
-        </div>
 
         {/* Background Decorative Elements */}
         <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none -z-10" />

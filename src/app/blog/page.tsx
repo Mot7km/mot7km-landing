@@ -17,7 +17,6 @@ import {
   ShieldCheck
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
-import SubpageHeader from "@/components/layout/SubpageHeader";
 
 interface Article {
   id: string;
@@ -60,9 +59,6 @@ export default function BlogPage() {
       <div className="absolute top-[25%] -right-64 w-[500px] h-[500px] bg-accent/20 rounded-full blur-[140px] opacity-30 pointer-events-none -z-10 animate-pulse animation-delay-2000" />
 
       <div className="flex-1 pt-4 pb-24 px-4 sm:px-6 md:px-8 relative z-10 w-full max-w-[1400px] mx-auto">
-        
-        {/* Navigation */}
-        <SubpageHeader backHref="/" backLabel={t("notFound.goHome")} />
 
         {/* Hero Section */}
         <div className="flex flex-col items-center text-center mb-16 mt-8 relative">

@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import Link from "next/link";
 import { FeaturePageData } from "@/data/featurePages";
-import SubpageHeader from "@/components/layout/SubpageHeader";
 
 interface FeatureHeroProps {
   data: FeaturePageData;
@@ -25,9 +24,6 @@ export default function FeatureHero({ data }: FeatureHeroProps) {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        
-        {/* Reusable Sticky Action Bar */}
-        <SubpageHeader backHref="/#features" backLabel={isRtl ? "العودة للمميزات" : "Back to Features"} />
 
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text Content */}

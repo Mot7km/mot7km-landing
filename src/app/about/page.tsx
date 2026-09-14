@@ -32,7 +32,6 @@ import {
   Radio
 } from "lucide-react";
 import Footer from "@/components/layout/Footer";
-import SubpageHeader from "@/components/layout/SubpageHeader";
 
 export default function AboutUs() {
   const { t } = useTranslation();
@@ -55,9 +54,6 @@ export default function AboutUs() {
       <div className="absolute top-[30%] -right-64 w-[500px] h-[500px] bg-accent/20 rounded-full mix-blend-multiply filter blur-[120px] opacity-40 animate-pulse animation-delay-2000 pointer-events-none -z-10" />
 
       <div className="flex-1 pt-4 pb-24 px-4 sm:px-6 md:px-8 relative z-10 w-full max-w-[1400px] mx-auto">
-        
-        {/* Navigation */}
-        <SubpageHeader backHref="/" backLabel={t("notFound.goHome")} />
 
         {/* 1. Hero Section - Ultra Premium */}
         <div className="flex flex-col items-center text-center mb-24 md:mb-32 mt-12 relative">
