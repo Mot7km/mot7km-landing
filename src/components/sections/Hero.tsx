@@ -88,7 +88,7 @@ export default function Hero() {
   return (
     <section
       id="product"
-      className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 md:pt-44 md:pb-32 overflow-hidden"
+      className="relative overflow-hidden"
       onMouseMove={handleMouseMove}
     >
       {/* Light & Dark Adaptive Lighting Ambient Halo Orbs */}
